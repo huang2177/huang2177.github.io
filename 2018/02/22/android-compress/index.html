@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     
-    <title>android 7.0以后的popouwindow弹出问题 | Bm和弦的技术博客</title>
+    <title>Android中常用的图片压缩方式 | Bm和弦的技术博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="keywords" content>
@@ -111,7 +111,7 @@
                 </li>
                 
                 <li class>
-                    <a href="/android">
+                    <a href="/tags/android">
                         <i class="icon icon-lg icon-android"></i>
                         Android
                     </a>
@@ -128,6 +128,13 @@
                     <a href="/guitar">
                         <i class="icon icon-lg icon-file-image-o"></i>
                         吉他谱
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/tags">
+                        <i class="icon icon-lg icon-tags"></i>
+                        分类
                     </a>
                 </li>
                 
@@ -150,7 +157,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>android 7.0以后的popouwindow弹出问题</span>
+            <span>Android中常用的图片压缩方式</span>
             
         </div>
         
@@ -163,11 +170,11 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">android 7.0以后的popouwindow弹出问题</h1>
+        <h1 class="title">Android中常用的图片压缩方式</h1>
         <h5 class="subtitle">
             
-                <time datetime="2019-02-22T10:23:57.000Z" itemprop="datePublished" class="page-time">
-  2019-02-22
+                <time datetime="2018-02-22T10:27:17.000Z" itemprop="datePublished" class="page-time">
+  2018-02-22
 </time>
 
 
@@ -194,17 +201,17 @@
 
 
 <div class="container body-wrap">
-    <article id="post-android-access" class="post-article article-type-post" itemprop="blogPost">
+    <article id="post-android-compress" class="post-article article-type-post" itemprop="blogPost">
       <div class="post-card">
-          <h1 class="post-card-title">android 7.0以后的popouwindow弹出问题</h1>
+          <h1 class="post-card-title">Android中常用的图片压缩方式</h1>
           <div class="post-meta">
-              <time class="post-time" title="2019-02-22 18:23:57" datetime="2019-02-22T10:23:57.000Z" itemprop="datePublished">2019-02-22</time>
+              <time class="post-time" title="2018-02-22 18:27:17" datetime="2018-02-22T10:27:17.000Z" itemprop="datePublished">2018-02-22</time>
 
               
 
 
               
-	<span id="/2019/02/22/android-access/" class="leancloud_visitors" data-flag-title="android 7.0以后的popouwindow弹出问题" title="android 7.0以后的popouwindow弹出问题">
+	<span id="/2018/02/22/android-compress/" class="leancloud_visitors" data-flag-title="Android中常用的图片压缩方式" title="Android中常用的图片压缩方式">
 		
 			<i class="icon icon-eye"></i>
 		
@@ -215,56 +222,105 @@
               
     <span class="leancloud-comment">
         <i class="icon icon-comment-o"></i>
-        <a href="/2019/02/22/android-access/#comment">
-            <span class="valine-comment-count" data-xid="/2019/02/22/android-access/"></span>
+        <a href="/2018/02/22/android-compress/#comment">
+            <span class="valine-comment-count" data-xid="/2018/02/22/android-compress/"></span>
         </a>
     </span>
 
 
 
               
-  <span class="music"><i class="icon icon-music"></i></span>
-
           </div>
           <div class="post-content" id="post-content" itemprop="postContent">
               
-              <p><strong>android 7.0以后的popouwindow弹出问题</strong><br><code>public class CustomPopupWindow extends PopupWindow {
-    public CustomPopupWindow(View contentView, int width, int height){
-        super(contentView,width,height);
+              <p>图片压缩方式常用的有尺寸压缩、质量压缩、格式变化以及通过JNI调用libjpeg库来进行压缩，下面就先分别介绍下常见的质量压缩和尺寸压缩。（尺寸压缩，质量压缩底层也是通过调用native的方法进行压缩的，而native中的则是通过Skia这个库实现的，但是，最终还是调用了libjpeg库进行压缩的。）</p>
+<ol>
+<li>格式变化<br>现在android支持的图片格式有三种：png、jpeg、webp； </li>
+</ol>
+<ul>
+<li>png： 无损图片的压缩类型，能保存透明等图，它同时提供 24位和48位真彩色图像支持以及其他诸多技术性支持。 </li>
+<li>Jpeg：有损图片的压缩类型，有损压缩方式去除冗余的图像和彩色数据，获取得极高的压缩率的同时能展现十分丰富生动的图像，换句话说，就是可以用最少的磁盘空间得到较好的图像质量。但是，bitmap quality属性越小，图片的清晰度越差。 </li>
+<li>WebP：WebP（发音 weppy，项目主页），是谷歌推出的一种支持有损压缩和无损压缩的图片文件格式，派生自图像编码格式 VP8。</li>
+</ul>
+<p>结论：</p>
+<ol start="2">
+<li><p>质量压缩<br>设置bitmap quality属性，降低图片的质量，像素不会减少（就是指bitmap所占的内存大小），第一个参数为需要压缩的bitmap图片对象，第二个参数为压缩后图片保存的位置设置quality属性0-100，来实现压缩。（因为png是无损压缩，所以该属性对png是无效的。）</p>
+<p>`/**</p>
+<ul>
+<li>质量压缩<br>*</li>
+<li>@param format  图片格式   PNG，JPEG，WEBP</li>
+<li>@param quality 图片的质量 1-100<br>*/<br>public void compress(Bitmap.CompressFormat format, int quality) {<br> FileOutputStream fos = null;<br> try {<pre><code>//得到一个储存路径
+File file = new File(Environment.getExternalStorageDirectory(), &quot;test.jpg&quot;);
+//得到一个文件输入流
+fos = new FileOutputStream(file);
+//开始压缩
+Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
+bitmap.compress(format, quality, fos);
+</code></pre> } catch (FileNotFoundException e) {<pre><code>e.printStackTrace();
+</code></pre> } finally {<pre><code>if (fos != null) {
+    try {
+        fos.close();
+    } catch (IOException e) {
+        e.printStackTrace();
     }
-    @Override
-    public void showAsDropDown(View anchor) {
-        if(Build.VERSION.SDK_INT &gt;= 24) {
-            Rect rect = new Rect();
-            anchor.getGlobalVisibleRect(rect);
-            int h = anchor.getResources().getDisplayMetrics().heightPixels - rect.bottom;
-            setHeight(h);
-        }
-        super.showAsDropDown(anchor);
-    }
-    @Override
-    public void showAsDropDown(View anchor, int xoff, int yoff) {
-        if(Build.VERSION.SDK_INT == 24) {
-            Rect rect = new Rect();
-            anchor.getGlobalVisibleRect(rect);
-            int h = anchor.getResources().getDisplayMetrics().heightPixels - rect.bottom;
-            setHeight(h);
-    }
-        super.showAsDropDown(anchor, xoff, yoff);
+}
+</code></pre> }<br>}`</li>
+</ul>
+</li>
+</ol>
+<p>3.尺寸压缩<br>尺寸压缩由于是减小了图片的像素，所以它直接对bitmap产生了影响，当然最终生成的file文件也是相对的变小了；</p>
+<p>通过缩放图片像素来减少图片占用内存大小<br><code>public static void compressBitmapToFile(Bitmap bmp, File file){
+    // 尺寸压缩倍数,值越大，图片尺寸越小
+    int ratio = 2;
+    // 压缩Bitmap到对应尺寸
+    Bitmap result = Bitmap.createBitmap(bmp.getWidth() / ratio, bmp.getHeight() / ratio, Config.ARGB_8888);
+    Canvas canvas = new Canvas(result);
+    Rect rect = new Rect(0, 0, bmp.getWidth() / ratio, bmp.getHeight() / ratio);
+    canvas.drawBitmap(bmp, null, rect, null);
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    // 把压缩后的数据存放到baos中
+    result.compress(Bitmap.CompressFormat.JPEG, 100 ,baos);
+    try {  
+        FileOutputStream fos = new FileOutputStream(file);  
+        fos.write(baos.toByteArray());  
+        fos.flush();  
+        fos.close();  
+    } catch (Exception e) {  
+        e.printStackTrace();  
+    } 
 }</code></p>
-<iframe type="music" frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=464607112&auto=1&height=66"></iframe>
+<p>设置图片的采样率，降低图片像素<br><code>public static void compressBitmap(String filePath, File file){
+    // 数值越高，图片像素越低
+    int inSampleSize = 2;
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    //采样率
+    options.inSampleSize = inSampleSize;
+    Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);  
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    // 把压缩后的数据存放到baos中
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 100 ,baos);
+    try {  
+        FileOutputStream fos = new FileOutputStream(file);  
+        fos.write(baos.toByteArray());  
+        fos.flush();  
+        fos.close();  
+    } catch (Exception e) {  
+        e.printStackTrace();  
+    } 
+}</code></p>
+
           </div>
           
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-02-25T06:10:27.784Z" itemprop="dateUpdated">2019-02-25 14:10:27</time>
+    最后更新时间：<time datetime="2019-02-25T10:08:00.171Z" itemprop="dateUpdated">2019-02-25 18:08:00</time>
 </span><br>
 
 
         
-        转载注明出处，原文地址：<a href="/2019/02/22/android-access/" target="_blank" rel="external">https://huangbryant210707.github.io/2019/02/22/android-access/</a>
+        转载注明出处，原文地址：<a href="/2018/02/22/android-compress/" target="_blank" rel="external">https://huangbryant210707.github.io/2018/02/22/android-compress/</a>
         
     </div>
     <footer>
@@ -285,7 +341,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2019/02/22/android-access/&title=《android 7.0以后的popouwindow弹出问题》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/02/22/android-compress/&title=《Android中常用的图片压缩方式》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -297,7 +353,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2019/02/22/android-access/&title=《android 7.0以后的popouwindow弹出问题》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/02/22/android-compress/&title=《Android中常用的图片压缩方式》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -325,18 +381,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="prev">
-      <a href="/2019/02/22/android-compress/" id="post-prev" class="post-nav-link">
+      <a href="/2018/02/25/android01/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Android中常用的图片压缩方式</h4>
+        <h4 class="title">android01</h4>
       </a>
     </div>
   
 
   
     <div class="next">
-      <a href="/2019/02/21/scala01/" id="post-next" class="post-nav-link">
+      <a href="/2018/02/22/android-access/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Scala基础语法</h4>
+        <h4 class="title">android 7.0以后的popouwindow弹出问题</h4>
       </a>
     </div>
   
@@ -396,7 +452,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2019/02/22/android-access/&title=《android 7.0以后的popouwindow弹出问题》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/02/22/android-compress/&title=《Android中常用的图片压缩方式》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -408,7 +464,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2019/02/22/android-access/&title=《android 7.0以后的popouwindow弹出问题》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/02/22/android-compress/&title=《Android中常用的图片压缩方式》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -420,7 +476,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3aS27DMAxF0ex/0+64SKXcRzoFTF2NjMSJfTQgxM/rhdf1tvbfru4h1++/vW3JkCHjsYxru/aM1Sfpt/y5S6oMGTIOYKwi2P4e/j/7FyXsD8+SIUOGjC2DP5gvGTJkyOgwCCkN1rVNkSFDxmmM9ABHALy49q+5uAwZMh7I6ATBb19/pb8hQ4aMRzH6iWX6W7JB8VvJkCFjNCMt+t870xEkqOQYKkOGjNEMMk7x4cc4jPbT4A9UGTJkjGOkhzkyKNbJMfmG/vpEhgwZBzDS8j1vN9ZaBSS4L8+2MmTIGM3gR7EaeB98ecJcnBaRIUPGwxk8aNYCJW8MFIt9MmTIOIBBQmHawqylssUWggwZMo5h8LJ+OrzFN4Uz/pgZkSFDxlBG2pisAdJkOD2kypAh4wQGD2p3vRYptLVmRmTIkDGIUSuN1UY0agMWaCNkyJAxmpEe5moDFukr3tBOkCFDxiBG/6jXCZGkwYCeK0OGjNGMNKUkDU5e+q+lrHHVUIYMGYMYtWJ9v9DWGSNbHhBlyJAxmsEDa1qYSzcipsqQIeMwRjpU0Qm+/FlxM0CGDBkjGFe40K6E7cZaqrwstMmQIWMcIw2jtUJbesjrJ9UyZMiYx+BBdn9/LeDyLUMjFzJkyBjN6KSjhNdpBhQbAzJkyDiekR4HUdAsjWLIkCFDBrnmw6y1UEuKcTJkyDiBwZsB/FDI09Fa6U2GDBnnMNLUkXcY0rZlmrjKkCHjAMYPCUCdO0njBtEAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3aQY7bQAwEQP//05trgsRKNzmz8AKlk2DLtmoO4rjJ1ys+vn478mv+Pn93zbvvf/dthw88PDy8xa0nN5Hc+vP3PN9uTn3+LTw8PLzbvHc/szkvbiIoP/nS4OHh4X0ab7btbstGvpR4eHh4P4v3vO3Os4LnhcDDw8P7TN4sREhiizzGnb1yLGvBw8PD63KA4vH9CedX+nt4eHh466560tTPX2+Xb3/g4eHh3eDNItp2IzsbxpotGR4eHt5tXhIQnBqTOjuOEH0KDw8P7wKvjU33A1VtLJsEwa+2FOLh4eEteLd/ZrZdPtZ4w8PDw/sW3qkBqX0p2g+E4eHh4d3gbZpPG/b+3SI0wcPDwzvKywPcJJbNo9tZ/FFHyXh4eHgXeG2balZ52gbbcyl6LiT/qXt4eHh4a96mJLT/+vNwYf8uHh4e3j1eGw0Mg9SyGGwGGvDw8PC+n/cqj3zsIC8SsxbaiUvx8PDwOl7y0G8HrRL2c/FIrj8W4+Lh4eGVvDw8zYelNmMBbZst6vLh4eHhHeK1oUAerc4C3GQp26EHPDw8vFO8driqfdzPSkj90E8qHh4eHt5RXvsn/9RDPy8GbWvtH5MReHh4eId4SRlob7eNcfNoeLgceHh4eBd4yd/+TQDRjknlm/JisfDw8PCO8jaP5tujWge23Xh4eHjfzsvD2dl2OQ+Lh5/Cw8PDu8xrG1HttruNGNrCg4eHh3eb91Uem1KxGU7Nxxf+OMfDw8O7wGsfuDl+FhCfjYDx8PDw7vE2N508rGeFJ1+aqLOHh4eHd4GXN5w2owNFRrJop+Hh4eF9Gq+NGDZb8AOjDHh4eHgfw8vDhbaplrySj2rh4eHh3ePNml5tO6qNOfJt9IGsBQ8PDy/mDWe1Rje3H0fYhxd4eHh4C94vU+RzqNZLZh0AAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
