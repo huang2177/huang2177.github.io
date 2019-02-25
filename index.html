@@ -1,2 +1,515 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Bm和弦,15378412400@163.com"><title>Bm和弦的技术博客</title><meta name="description" content="不会弹吉他的程序员不是一个好程序员？"><meta name="keywords" content="Hexo,HTML,Hadoop,Android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/guitar.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/timg.jpg" style="width:140px; height:140px; border-radius: 100px;object-fit: cover;"><h3 title><a href="/">Bm和弦的技术博客</a></h3><div class="description"><p>不会弹吉他的程序员不是一个好程序员？</p></div></div></div><div class="social-links"><li><a href="http://github.com/huangbryant210707" target="_blank"><i class="fa fa-github"></i></a></li><li><a href="https://twitter.com/huangbryant210707" target="_blank"><i class="fa fa-twitter"></i></a></li><li><a href="http://instagram.com/huangbryant210707" target="_blank"><i class="fa fa-instagram"></i></a></li><li><a href="http://weibo.com/huangbryant210707" target="_blank"><i class="fa fa-weibo"></i></a></li><li><a href="http://facebook.com/huangbryant210707" target="_blank"><i class="fa fa-facebook"></i></a></li></div><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a class="current" href="/">Android</a></li><li><a href="/BigData">大数据</a></li><li><a href="/Guitar">吉他</a></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"></a></li></div><div class="avatar"><img src="/images/timg.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/02/22/android-compress/">Android中常用的图片压缩方式</a></h3></div><div class="post-content"><p>图片压缩方式常用的有尺寸压缩、质量压缩、格式变化以及通过JNI调用libjpeg库来进行压缩，下面就先分别介绍下常见的质量压缩和尺寸压缩。（尺寸压缩，质量压缩底层也是通过调用native的方法进行压缩的，而native中的则是通过Skia这个库实现的，但...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-02-22</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/02/22/android-access/">android 7.0以后的popouwindow弹出问题</a></h3></div><div class="post-content"><p>android 7.0以后的popouwindow弹出问题public class CustomPopupWindow extends PopupWindow {
-    public CustomPopupWindow(View contentView...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-02-22</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/02/21/first-blog/">Scala基础语法</a></h3></div><div class="post-content"><p>1、什么是Hive？    是由Facebook开源（后由Apache开发）的一个用来处理结构化数据的分析框架；    是基于hadoop的一个数据仓库工具，可以将结构化数据文件映射为一张表，并提供SQL查询功能；    本质：将HQL（hive的查询语...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-02-21</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2019/02/21/hello-world/">Hello World</a></h3></div><div class="post-content"><p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you ...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-02-21</span><i class="fa fa-tag"></i></div></div></div></div><div class="pagination"><ul class="clearfix"></ul></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+
+    <title>Bm和弦的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="keywords" content="Android、吉他">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.1">
+
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward: false,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts = [];
+    </script>
+
+</head>
+
+
+<body>
+<div id="loading" class="active"></div>
+
+<aside id="menu">
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap">
+
+            <img src="/img/banner.jpg" class="brand-bg">
+
+            <div class="brand">
+                <a href="/" class="avatar waves-effect waves-circle waves-light">
+                    <img src="/img/avatar.jpg">
+                </a>
+                <hgroup class="introduce">
+                    <h5 class="nickname">Bm和弦</h5>
+                    <a href="mailto:277133779@qq.com" title="277133779@qq.com" class="mail">
+
+                        <span>2</span>
+
+                        <span>7</span>
+
+                        <span>7</span>
+
+                        <span>1</span>
+
+                        <span>3</span>
+
+                        <span>3</span>
+
+                        <span>7</span>
+
+                        <span>7</span>
+
+                        <span>9</span>
+
+                        <span>@</span>
+
+                        <span>q</span>
+
+                        <span>q</span>
+
+                        <span>.</span>
+
+                        <span>c</span>
+
+                        <span>o</span>
+
+                        <span>m</span>
+
+                    </a>
+                </hgroup>
+
+                <ul class="menu-link">
+
+                    <li>
+                        <a href="https://github.com/codefine" target="_blank">
+                            <i class="icon icon-lg icon-github"></i>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+
+                <li class=" active">
+                    <a href="/">
+                        <i class="icon icon-lg icon-home"></i>
+                        HOME
+                    </a>
+                </li>
+
+                <li class>
+                    <a href="/categories">
+                        <i class="icon icon-lg icon-th-list"></i>
+                        CATEGORIES
+                    </a>
+                </li>
+
+                <li class>
+                    <a href="/tags">
+                        <i class="icon icon-lg icon-tags"></i>
+                        TAGS
+                    </a>
+                </li>
+
+                <li class>
+                    <a href="/archives">
+                        <i class="icon icon-lg icon-archives"></i>
+                        ARCHIVES
+                    </a>
+                </li>
+
+                <li class>
+                    <a href="/custom">
+                        <i class="icon icon-lg icon-plus-square"></i>
+                        CUSTOM
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</aside>
+
+<main id="main">
+
+    <header class="top-header" id="header">
+        <div class="flex-row clearfix">
+            <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on"
+               id="menu-toggle">
+                <i class="icon icon-lg icon-navicon"></i>
+            </a>
+            <div class="flex-col header-title ellipsis">
+                <span>Bm和弦的技术博客</span>
+
+            </div>
+
+            <a href="javascript:;" id="site_search_btn"
+               class="header-icon pull-right waves-effect waves-circle waves-light">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+
+        </div>
+    </header>
+    <header class="content-header index-header">
+        <img src="/img/banner.jpg" class="header-bg">
+        <div class="container fade-scale">
+            <h1 class="title">Bm和弦的技术博客</h1>
+            <h5 class="subtitle">
+
+
+            </h5>
+
+        </div>
+
+
+    </header>
+
+    <div id="site_search">
+        <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..."
+                   class="form-control pull-left">
+            <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+                <i class="icon icon-lg icon-close"></i>
+            </a>
+        </div>
+        <div id="local-search-result"></div>
+    </div>
+
+    <div class="container body-wrap">
+        <ul class="post-list">
+
+            <li class="post-list-item fade">
+                <article id="post-android-compress" class="article-card article-type-post" itemprop="blogPost">
+
+
+                    <div class="item-thumb">
+                        <a class="thumb-link" href="/2019/02/22/android-compress/"></a>
+                        <div class="thumb-hover">
+                            <span class="icon icon-eye"></span>
+                        </div>
+                        <img src="/img/thumb/4.jpg" alt="图片路径不正确">
+
+
+                        <h3 class="post-title ab-title" itemprop="name">
+                            <a class="post-title-link" href="/2019/02/22/android-compress/">Android中常用的图片压缩方式</a>
+                        </h3>
+
+
+                    </div>
+
+
+                    <div class="post-meta">
+                        <time class="post-time" title="2019-02-22 18:27:17" datetime="2019-02-22T10:27:17.000Z"
+                              itemprop="datePublished">2019-02-22
+                        </time>
+
+
+                    </div>
+
+                    <div class="post-content" id="post-content" itemprop="postContent">
+
+
+                        图片压缩方式常用的有尺寸压缩、质量压缩、格式变化以及通过JNI调用libjpeg库来进行压缩，下面就先分别介绍下常见的质量压缩和尺寸压缩。（尺寸压缩，质量压缩底层也是通过调用native的方法进行压缩的，而native中的则是通过Skia这个库实现的，但是，最终还是调用了libjpeg库进行压缩的。）
+
+                        格式变化现在android支持的图片格式有三种：png、jpeg、webp；
+
+
+                        pn...
+
+                        <a href="/2019/02/22/android-compress/" class="post-more waves-effect waves-button">
+                            more
+                        </a>
+                    </div>
+                </article>
+
+
+            </li>
+
+            <li class="post-list-item fade">
+                <article id="post-android-access" class="article-card article-type-post" itemprop="blogPost">
+
+
+                    <div class="item-thumb">
+                        <a class="thumb-link" href="/2019/02/22/android-access/"></a>
+                        <div class="thumb-hover">
+                            <span class="icon icon-eye"></span>
+                        </div>
+                        <img src="/img/thumb/3.jpg" alt="图片路径不正确">
+
+
+                        <h3 class="post-title ab-title" itemprop="name">
+                            <a class="post-title-link" href="/2019/02/22/android-access/">android
+                                7.0以后的popouwindow弹出问题</a>
+                        </h3>
+
+
+                    </div>
+
+
+                    <div class="post-meta">
+                        <time class="post-time" title="2019-02-22 18:23:57" datetime="2019-02-22T10:23:57.000Z"
+                              itemprop="datePublished">2019-02-22
+                        </time>
+
+
+                    </div>
+
+                    <div class="post-content" id="post-content" itemprop="postContent">
+
+
+                        android 7.0以后的popouwindow弹出问题public class CustomPopupWindow extends PopupWindow {
+                        public CustomPopupWindow(View contentView, int width, int height){
+                        super(contentView,width,height);
+                        ...
+
+                        <a href="/2019/02/22/android-access/" class="post-more waves-effect waves-button">
+                            more
+                        </a>
+                    </div>
+                </article>
+
+
+            </li>
+
+            <li class="post-list-item fade">
+                <article id="post-first-blog" class="article-card article-type-post" itemprop="blogPost">
+
+
+                    <div class="item-thumb">
+                        <a class="thumb-link" href="/2019/02/21/first-blog/"></a>
+                        <div class="thumb-hover">
+                            <span class="icon icon-eye"></span>
+                        </div>
+                        <img src="/img/thumb/2.jpg" alt="图片路径不正确">
+
+
+                        <h3 class="post-title ab-title" itemprop="name">
+                            <a class="post-title-link" href="/2019/02/21/first-blog/">Scala基础语法</a>
+                        </h3>
+
+
+                    </div>
+
+
+                    <div class="post-meta">
+                        <time class="post-time" title="2019-02-21 17:45:51" datetime="2019-02-21T09:45:51.000Z"
+                              itemprop="datePublished">2019-02-21
+                        </time>
+
+
+                    </div>
+
+                    <div class="post-content" id="post-content" itemprop="postContent">
+
+
+                        1、什么是Hive？ 是由Facebook开源（后由Apache开发）的一个用来处理结构化数据的分析框架；
+                        是基于hadoop的一个数据仓库工具，可以将结构化数据文件映射为一张表，并提供SQL查询功能； 本质：将HQL（hive的查询语句）转化为MapReduce程序；
+                        2、Hive特点： 1）hive并不是一个数据存在框架（数据存在HDFS）； 2）hive实...
+
+                        <a href="/2019/02/21/first-blog/" class="post-more waves-effect waves-button">
+                            more
+                        </a>
+                    </div>
+                </article>
+
+
+            </li>
+
+            <li class="post-list-item fade">
+                <article id="post-hello-world" class="article-card article-type-post" itemprop="blogPost">
+
+
+                    <div class="item-thumb">
+                        <a class="thumb-link" href="/2019/02/21/hello-world/"></a>
+                        <div class="thumb-hover">
+                            <span class="icon icon-eye"></span>
+                        </div>
+                        <img src="/img/thumb/1.jpg" alt="图片路径不正确">
+
+
+                        <h3 class="post-title ab-title" itemprop="name">
+                            <a class="post-title-link" href="/2019/02/21/hello-world/">Hello World</a>
+                        </h3>
+
+
+                    </div>
+
+
+                    <div class="post-meta">
+                        <time class="post-time" title="2019-02-21 17:21:42" datetime="2019-02-21T09:21:42.945Z"
+                              itemprop="datePublished">2019-02-21
+                        </time>
+
+
+                    </div>
+
+                    <div class="post-content" id="post-content" itemprop="postContent">
+
+
+                        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any
+                        problems when using Hexo, you can find the answer in troubleshooting or you can ask me on
+                        GitHub.
+                        Qu...
+
+                        <a href="/2019/02/21/hello-world/" class="post-more waves-effect waves-button">
+                            more
+                        </a>
+                    </div>
+                </article>
+
+
+            </li>
+
+        </ul>
+
+    </div>
+
+    <footer class="footer">
+
+        <div class="bottom">
+            <p>
+            <span>
+                Bm和弦 &copy; 2017 - 2019
+            </span>
+
+
+                <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a
+                        href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+
+
+                <span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+                <span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+
+            </p>
+        </div>
+    </footer>
+
+</main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span
+        class="icon icon-lg icon-chevron-up"></span></a>
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+
+        <li>
+            <a class="weibo share-sns" target="_blank"
+               href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/&title=Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg"
+               data-title="微博">
+                <i class="icon icon-weibo"></i>
+            </a>
+        </li>
+
+        <li>
+            <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+                <i class="icon icon-weixin"></i>
+            </a>
+        </li>
+
+        <li>
+            <a class="qq share-sns" target="_blank"
+               href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/&title=Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？"
+               data-title=" QQ">
+                <i class="icon icon-qq"></i>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxUlEQVR42u3aQY6DMBAEQP7/aVba00oRpseDHVYqnyJCSJlDy57xccTj/B3Jt5+f/47P68eKgYuL2+aew5GDxleqE7ucEi4u7kZuEk9PBdb4aTc2XFzcl3Gv7q9Ck2fi4uL+F+74zjEufx24uLjv4SabnwSUb2OW79VwcXEb3GrBdMXnhfVdXFzcIvcsjjyGkmVQ+d9xcXG3cMfLlCRJ8nZsPuGbmMPFxd3ITdoeSQu2RUleCi4u7nZup8lavXPyCi4u7mJuHklzh6vmQu1m24OLi7uF29nA9I9f5AssXFzc/dxqmzPf0jxVcsXFxd3DzZc1k9ETFD6qv8XFxX0Dtx9qedhFEYmLi7ud+2x7NdkU5RPAxcXdw62WOzvTyLdAl3RcXNwt3LkAyksYc6/jpvCKi4u7mJuXOaotk07rBRcX9w3czpGpvKpZfQIuLu53uflIiqF5tBUaq8k6CxcX9yFuNVDyKmw1FufKJbi4uOu4/fDKi6R5kF0GHC4u7kZudTnSP6JRLbPi4uK+kzumP1D4eDbIcHFxv8rNf5s/+dKGi4u7kZvEUzV08phbUhbBxcVtcKsF07nDWHkptr9swsXFbXB/ANkZdp0fcq5aAAAAAElFTkSuQmCC"
+         alt="微信分享二维码">
+</div>
+
+
+<!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.1"></script>
+<script type="text/javascript"
+        src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.1"></script>
+
+<!-- third-party -->
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.1"></script>
+<script type="text/javascript">
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+        search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+
+
+
+
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+
+
+
+
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</body>
+</html>
