@@ -4,10 +4,15 @@
     <meta charset="utf-8">
     
     
-    <title>Android中常用的图片压缩方式 | Bm和弦的技术博客</title>
+    <title>
+        Scala基础语法 |
+        
+        Bm和弦的技术博客
+        
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content>
+    <meta name="keywords" content="scala">
     <link rel="shortcut icon" href="/img/favicon.png">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/style.css?v=1.4.1">
@@ -15,7 +20,7 @@
     <script type="text/javascript">
         // Data Center
         var DC = {
-            reward:	false,
+            reward:    false,
             lv: JSON.parse('{"enable":true,"app_id":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","app_key":"gSa6ktF3wTvzdEIaRVqO9nqp","icon":true}'),
             v: JSON.parse('{"enable":true,"appid":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","appkey":"gSa6ktF3wTvzdEIaRVqO9nqp","notify":false,"verify":false,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
             g: JSON.parse('{"enable":false,"lazy":false,"owner":"huangbryant210707","repo":"MyBlogComment","oauth":{"client_id":"eaaab52b29376fc1c7e3","client_secret":"6b68a84c502f280844289475500ea72e0d9c2a4e"},"perPage":10}'),
@@ -23,7 +28,7 @@
         };
     </script>
     <script type="text/javascript">
-        window.lazyScripts=[];
+        window.lazyScripts = [];
     </script>
     
 </head>
@@ -111,23 +116,16 @@
                 </li>
                 
                 <li class>
-                    <a href="/android">
-                        <i class="icon icon-lg icon-android"></i>
-                        Android
-                    </a>
-                </li>
-                
-                <li class>
-                    <a href="/bigData">
-                        <i class="icon icon-lg icon-line-chart"></i>
-                        大数据
-                    </a>
-                </li>
-                
-                <li class>
                     <a href="/guitar">
                         <i class="icon icon-lg icon-file-image-o"></i>
                         吉他谱
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/tags">
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
                     </a>
                 </li>
                 
@@ -150,7 +148,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>Android中常用的图片压缩方式</span>
+            <span>Scala基础语法</span>
             
         </div>
         
@@ -163,11 +161,11 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">Android中常用的图片压缩方式</h1>
+        <h1 class="title">Scala基础语法</h1>
         <h5 class="subtitle">
             
-                <time datetime="2019-02-22T10:27:17.000Z" itemprop="datePublished" class="page-time">
-  2019-02-22
+                <time datetime="2018-02-21T09:45:51.000Z" itemprop="datePublished" class="page-time">
+  2018-02-21
 </time>
 
 
@@ -194,17 +192,17 @@
 
 
 <div class="container body-wrap">
-    <article id="post-android-compress" class="post-article article-type-post" itemprop="blogPost">
-      <div class="post-card">
-          <h1 class="post-card-title">Android中常用的图片压缩方式</h1>
-          <div class="post-meta">
-              <time class="post-time" title="2019-02-22 18:27:17" datetime="2019-02-22T10:27:17.000Z" itemprop="datePublished">2019-02-22</time>
+    <article id="post-scala01" class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Scala基础语法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-21 17:45:51" datetime="2018-02-21T09:45:51.000Z" itemprop="datePublished">2018-02-21</time>
 
-              
+            
 
 
-              
-	<span id="/2019/02/22/android-compress/" class="leancloud_visitors" data-flag-title="Android中常用的图片压缩方式" title="Android中常用的图片压缩方式">
+            
+	<span id="/2018/02/21/scala01/" class="leancloud_visitors" data-flag-title="Scala基础语法" title="Scala基础语法">
 		
 			<i class="icon icon-eye"></i>
 		
@@ -212,108 +210,43 @@
 	</span>
  
 
-              
+            
     <span class="leancloud-comment">
         <i class="icon icon-comment-o"></i>
-        <a href="/2019/02/22/android-compress/#comment">
-            <span class="valine-comment-count" data-xid="/2019/02/22/android-compress/"></span>
+        <a href="/2018/02/21/scala01/#comment">
+            <span class="valine-comment-count" data-xid="/2018/02/21/scala01/"></span>
         </a>
     </span>
 
 
 
-              
-          </div>
-          <div class="post-content" id="post-content" itemprop="postContent">
-              
-              <p>图片压缩方式常用的有尺寸压缩、质量压缩、格式变化以及通过JNI调用libjpeg库来进行压缩，下面就先分别介绍下常见的质量压缩和尺寸压缩。（尺寸压缩，质量压缩底层也是通过调用native的方法进行压缩的，而native中的则是通过Skia这个库实现的，但是，最终还是调用了libjpeg库进行压缩的。）</p>
-<ol>
-<li>格式变化<br>现在android支持的图片格式有三种：png、jpeg、webp； </li>
-</ol>
-<ul>
-<li>png： 无损图片的压缩类型，能保存透明等图，它同时提供 24位和48位真彩色图像支持以及其他诸多技术性支持。 </li>
-<li>Jpeg：有损图片的压缩类型，有损压缩方式去除冗余的图像和彩色数据，获取得极高的压缩率的同时能展现十分丰富生动的图像，换句话说，就是可以用最少的磁盘空间得到较好的图像质量。但是，bitmap quality属性越小，图片的清晰度越差。 </li>
-<li>WebP：WebP（发音 weppy，项目主页），是谷歌推出的一种支持有损压缩和无损压缩的图片文件格式，派生自图像编码格式 VP8。</li>
-</ul>
-<p>结论：</p>
-<ol start="2">
-<li><p>质量压缩<br>设置bitmap quality属性，降低图片的质量，像素不会减少（就是指bitmap所占的内存大小），第一个参数为需要压缩的bitmap图片对象，第二个参数为压缩后图片保存的位置设置quality属性0-100，来实现压缩。（因为png是无损压缩，所以该属性对png是无效的。）</p>
-<p>`/**</p>
-<ul>
-<li>质量压缩<br>*</li>
-<li>@param format  图片格式   PNG，JPEG，WEBP</li>
-<li>@param quality 图片的质量 1-100<br>*/<br>public void compress(Bitmap.CompressFormat format, int quality) {<br> FileOutputStream fos = null;<br> try {<pre><code>//得到一个储存路径
-File file = new File(Environment.getExternalStorageDirectory(), &quot;test.jpg&quot;);
-//得到一个文件输入流
-fos = new FileOutputStream(file);
-//开始压缩
-Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
-bitmap.compress(format, quality, fos);
-</code></pre> } catch (FileNotFoundException e) {<pre><code>e.printStackTrace();
-</code></pre> } finally {<pre><code>if (fos != null) {
-    try {
-        fos.close();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-}
-</code></pre> }<br>}`</li>
-</ul>
-</li>
-</ol>
-<p>3.尺寸压缩<br>尺寸压缩由于是减小了图片的像素，所以它直接对bitmap产生了影响，当然最终生成的file文件也是相对的变小了；</p>
-<p>通过缩放图片像素来减少图片占用内存大小<br><code>public static void compressBitmapToFile(Bitmap bmp, File file){
-    // 尺寸压缩倍数,值越大，图片尺寸越小
-    int ratio = 2;
-    // 压缩Bitmap到对应尺寸
-    Bitmap result = Bitmap.createBitmap(bmp.getWidth() / ratio, bmp.getHeight() / ratio, Config.ARGB_8888);
-    Canvas canvas = new Canvas(result);
-    Rect rect = new Rect(0, 0, bmp.getWidth() / ratio, bmp.getHeight() / ratio);
-    canvas.drawBitmap(bmp, null, rect, null);
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    // 把压缩后的数据存放到baos中
-    result.compress(Bitmap.CompressFormat.JPEG, 100 ,baos);
-    try {  
-        FileOutputStream fos = new FileOutputStream(file);  
-        fos.write(baos.toByteArray());  
-        fos.flush();  
-        fos.close();  
-    } catch (Exception e) {  
-        e.printStackTrace();  
-    } 
-}</code></p>
-<p>设置图片的采样率，降低图片像素<br><code>public static void compressBitmap(String filePath, File file){
-    // 数值越高，图片像素越低
-    int inSampleSize = 2;
-    BitmapFactory.Options options = new BitmapFactory.Options();
-    //采样率
-    options.inSampleSize = inSampleSize;
-    Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);  
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    // 把压缩后的数据存放到baos中
-    bitmap.compress(Bitmap.CompressFormat.JPEG, 100 ,baos);
-    try {  
-        FileOutputStream fos = new FileOutputStream(file);  
-        fos.write(baos.toByteArray());  
-        fos.flush();  
-        fos.close();  
-    } catch (Exception e) {  
-        e.printStackTrace();  
-    } 
-}</code></p>
-
-          </div>
-          
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>1、什么是Hive？<br>    是由Facebook开源（后由Apache开发）的一个用来处理结构化数据的分析框架；<br>    是基于hadoop的一个数据仓库工具，可以将结构化数据文件映射为一张表，并提供SQL查询功能；<br>    本质：将HQL（hive的查询语句）转化为MapReduce程序；</p>
+<p>2、Hive特点：<br>    1）hive并不是一个数据存在框架（数据存在HDFS）；<br>    2）hive实际上就相当于hadoop的一个客户端，可以执行查询，插入等动作；</p>
+<pre><code>3）延迟比较高（需要转化为MapReduce），适用于实时性的离线数据分析；
+4）不适合处理小数据（基于MapReduce）；
+5）迭代式计算不能表达（相当于多个mr串联，所以并不适合）；
+6）数据挖掘方面不擅长（因为数据挖掘更注重数据的迭代式计算）；
+7）hive的处理能力有限，调优比较困难；
+</code></pre><figure class="image-box">
+                <a rel="Scala基础语法" href="https://i.loli.net/2018/10/08/5bbb657a0fc16.png" title data-fancybox="images"><img src="https://i.loli.net/2018/10/08/5bbb657a0fc16.png" alt title class></a>
+                <p></p>
+            </figure>
+        </div>
+        
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-02-22T10:28:58.864Z" itemprop="dateUpdated">2019-02-22 18:28:58</time>
+    最后更新时间：<time datetime="2019-02-26T02:33:43.366Z" itemprop="dateUpdated">2019-02-26 10:33:43</time>
 </span><br>
 
 
         
-        转载注明出处，原文地址：<a href="/2019/02/22/android-compress/" target="_blank" rel="external">https://huangbryant210707.github.io/2019/02/22/android-compress/</a>
+        转载注明出处，原文地址：<a href="/2018/02/21/scala01/" target="_blank" rel="external">https://huangbryant210707.github.io/2018/02/21/scala01/</a>
         
     </div>
     <footer>
@@ -324,17 +257,19 @@ bitmap.compress(format, quality, fos);
     </footer>
 </blockquote>
 
-          
-          <div class="post-footer">
-              
-              <div class="page-share-wrap">
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+
+            <div class="page-share-wrap">
     
 
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2019/02/22/android-compress/&title=《Android中常用的图片压缩方式》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala基础语法》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -346,7 +281,7 @@ bitmap.compress(format, quality, fos);
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2019/02/22/android-compress/&title=《Android中常用的图片压缩方式》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala基础语法》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -361,35 +296,42 @@ bitmap.compress(format, quality, fos);
     </a>
 </div>
 
-          </div>
-          
-              
+        </div>
+        
+            
     <div id="comment"></div>
 
 
 
-          
-      </div>
-      
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/02/22/android-access/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">android 7.0以后的popouwindow弹出问题</h4>
+      </a>
+    </div>
   
 
   
     <div class="next">
-      <a href="/2019/02/22/android-access/" id="post-next" class="post-nav-link">
+      <a href="/2018/01/25/hello-world/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">android 7.0以后的popouwindow弹出问题</h4>
+        <h4 class="title">Hello World</h4>
       </a>
     </div>
   
 </nav>
 
 
-      
-      
-  </article>
-  
-  
+    
+    
+</article>
+
+
 </div>
 
         <footer class="footer">
@@ -397,17 +339,20 @@ bitmap.compress(format, quality, fos);
     <div class="bottom">
         <p>
             <span>
-                Bm和弦 &copy; 2017 - 2019
+                Bm和弦 &copy;
+                2017 -
+                
+                2019
             </span>
-        		
-           	
+
             
+
             
-            <span>
+                <span>
 	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
             </span>
             
-            
+
             
 
             
@@ -438,7 +383,7 @@ bitmap.compress(format, quality, fos);
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2019/02/22/android-compress/&title=《Android中常用的图片压缩方式》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala基础语法》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -450,7 +395,7 @@ bitmap.compress(format, quality, fos);
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2019/02/22/android-compress/&title=《Android中常用的图片压缩方式》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala基础语法》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -462,8 +407,9 @@ bitmap.compress(format, quality, fos);
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3a0W7jMAwEwPz/T7fAPRVo7CxJMc0Bo6cidWSNA1jCko9HPL7+jZ9//xy/r/n93av/Xl15NR4bAw8PD6+19Pvp7hn3V95fX32s+Zrx8PDwtnn51Mnr/h6ZP7hkhhcWPDw8vD/l3b/o82sm2wAeHh7e/8W7/1ZOmm8beHh4eJ/AS8KI3o2rsWweiBzOWvDw8PAWqkif8/d6fQ8PDw9vUKqvjuodk6U3V4KHh4e3wKs2RVUbsPIHkT+m6qPBw8PD2+Plpaz5t5KYo1p+u/wEDw8P7yiv+oV80dUyWLW9IJoTDw8P7428pLFgo9Wg15RwuUI8PDy8ZV61/D85LudH52qEcbkx4OHh4R3ibZSmqpFrtSEgOUw/mRMPDw/vEC+/cS9KqL7Qe9tPIZ/Gw8PDG/Oqr/58idWGgF44Uv4N8fDw8Ma8auiQbB7VQ3bOKG9FeHh4eGu8PE5NSJND8/1dqkEwHh4e3gav92rOD9nVQtdk0QUYHh4e3oDXO7ZWR++APjnK4+Hh4W3z8tvnDU+9hoPJo3wyJx4eHt4CL49Eq8frXiw7OYK/mBkPDw/vEK9XWKoeu6tbSDJb1EaAh4eHt8Y7UExqLaIaUuQredIZgYeHh3eINxl5tFq9ZY99gISHh4cX83oNVZNQdfJJNcjAw8PD2+BNCvlJoasXf5z6Lx4eHt4GL98YkpE8glONqtFPgoeHh/cWXq8VYLI99Bq/mokyHh4e3oDXe+n3bl9tseqFIy+6cfHw8PDGvMnmMYkz8u1h0oKAh4eHt8frhQtJIDspWfUijBc9uXh4eHhHedXNoLc95MHEJHPAw8PD+zReLzjIGcmmUpgTDw8P7095+aST5qpJ8QwPDw/vnbwEkLdV9QKF+aYyinHx8PDwxs1YpyKGatNArx1hVOXDw8PDS3nf2l+mS4hcL6AAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3aW47CMBAEQO5/afYAkGy3DUi2K18IAnEZaTQPPx7x9Xy57t/PP726//GNCwMDY1nG8/Z6fWR7Z7vo5FlvqBgYGAcwriJYEjpntuMelqwNAwMDIw+OLT4PuBgYGBg5IwmLeTKHgYGB0TKSlC5J3cbu/GktjoGBsSAj77r//vVX5hsYGBhLMZ4T13wYvU80i5VgYGBszWiD4Fi7rW39J+npm+9iYGBsypgZOraBuN2O/HgZBgbGCYy2TszDYrspbbqJgYFxAqM9MJF3uj47DBj8TzAwMDZi5CFvJq3MQ3zbqsPAwNibMRYiZxK+fDtyGAYGxjmM9ufyMWSeYtaFKwYGxgGMmRbbWBXZlsFJWYuBgbE3YyzJm9+n+Xbe5ek2DAyMTRltipbz2qb/xw5bYGBgbMdoE752YDDWbitGDhgYGMcw2sKy5eWdsboBh4GBcQBjrO3VpoPtoY2i6MXAwDiAMTbIbI98JcVw0nQbnMRiYGAsy2ibbvPfTYrSonzFwMA4gDH2yCRc5kfKxpLLywwXAwNjO0a7iKlTZrfPag+Q1bknBgbGsoz58WGyrDwQt4EeAwPjBEY7XMxDbTtUaBNEDAyM0xh5kM0BeTHctuQufw0DA+MARhv4kpCaA9oyuPgAAwPjMMb8MCBv5LXFMAYGBkZbE9eJXRyI/xkPYGBgbM3Ii9i8lZ8vYmyQMFWLY2BgLMUYKx3HitIW9pURJgYGxkqMP8DP9RvyBO8VAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
+
 
 
     

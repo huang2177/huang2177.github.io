@@ -4,7 +4,12 @@
     <meta charset="utf-8">
     
     
-    <title>android 7.0以后的popouwindow弹出问题 | Bm和弦的技术博客</title>
+    <title>
+        android 7.0以后的popouwindow弹出问题 |
+        
+        Bm和弦的技术博客
+        
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="keywords" content="android">
@@ -15,7 +20,7 @@
     <script type="text/javascript">
         // Data Center
         var DC = {
-            reward:	false,
+            reward:    false,
             lv: JSON.parse('{"enable":true,"app_id":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","app_key":"gSa6ktF3wTvzdEIaRVqO9nqp","icon":true}'),
             v: JSON.parse('{"enable":true,"appid":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","appkey":"gSa6ktF3wTvzdEIaRVqO9nqp","notify":false,"verify":false,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
             g: JSON.parse('{"enable":false,"lazy":false,"owner":"huangbryant210707","repo":"MyBlogComment","oauth":{"client_id":"eaaab52b29376fc1c7e3","client_secret":"6b68a84c502f280844289475500ea72e0d9c2a4e"},"perPage":10}'),
@@ -23,7 +28,7 @@
         };
     </script>
     <script type="text/javascript">
-        window.lazyScripts=[];
+        window.lazyScripts = [];
     </script>
     
 </head>
@@ -111,20 +116,6 @@
                 </li>
                 
                 <li class>
-                    <a href="/tags/android">
-                        <i class="icon icon-lg icon-android"></i>
-                        Android
-                    </a>
-                </li>
-                
-                <li class>
-                    <a href="/bigData">
-                        <i class="icon icon-lg icon-line-chart"></i>
-                        大数据
-                    </a>
-                </li>
-                
-                <li class>
                     <a href="/guitar">
                         <i class="icon icon-lg icon-file-image-o"></i>
                         吉他谱
@@ -134,7 +125,7 @@
                 <li class>
                     <a href="/tags">
                         <i class="icon icon-lg icon-tags"></i>
-                        分类
+                        标签
                     </a>
                 </li>
                 
@@ -202,15 +193,15 @@
 
 <div class="container body-wrap">
     <article id="post-android-access" class="post-article article-type-post" itemprop="blogPost">
-      <div class="post-card">
-          <h1 class="post-card-title">android 7.0以后的popouwindow弹出问题</h1>
-          <div class="post-meta">
-              <time class="post-time" title="2018-02-22 18:23:57" datetime="2018-02-22T10:23:57.000Z" itemprop="datePublished">2018-02-22</time>
+    <div class="post-card">
+        <h1 class="post-card-title">android 7.0以后的popouwindow弹出问题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-22 18:23:57" datetime="2018-02-22T10:23:57.000Z" itemprop="datePublished">2018-02-22</time>
 
-              
+            
 
 
-              
+            
 	<span id="/2018/02/22/android-access/" class="leancloud_visitors" data-flag-title="android 7.0以后的popouwindow弹出问题" title="android 7.0以后的popouwindow弹出问题">
 		
 			<i class="icon icon-eye"></i>
@@ -219,7 +210,7 @@
 	</span>
  
 
-              
+            
     <span class="leancloud-comment">
         <i class="icon icon-comment-o"></i>
         <a href="/2018/02/22/android-access/#comment">
@@ -229,44 +220,21 @@
 
 
 
-              
+            
   <span class="music"><i class="icon icon-music"></i></span>
 
-          </div>
-          <div class="post-content" id="post-content" itemprop="postContent">
-              
-              <p><strong>android 7.0以后的popouwindow弹出问题</strong><br><code>public class CustomPopupWindow extends PopupWindow {
-    public CustomPopupWindow(View contentView, int width, int height){
-        super(contentView,width,height);
-    }
-    @Override
-    public void showAsDropDown(View anchor) {
-        if(Build.VERSION.SDK_INT &gt;= 24) {
-            Rect rect = new Rect();
-            anchor.getGlobalVisibleRect(rect);
-            int h = anchor.getResources().getDisplayMetrics().heightPixels - rect.bottom;
-            setHeight(h);
-        }
-        super.showAsDropDown(anchor);
-    }
-    @Override
-    public void showAsDropDown(View anchor, int xoff, int yoff) {
-        if(Build.VERSION.SDK_INT == 24) {
-            Rect rect = new Rect();
-            anchor.getGlobalVisibleRect(rect);
-            int h = anchor.getResources().getDisplayMetrics().heightPixels - rect.bottom;
-            setHeight(h);
-    }
-        super.showAsDropDown(anchor, xoff, yoff);
-}</code></p>
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h2 id="android-7-0以后的popouwindow弹出问题"><a href="#android-7-0以后的popouwindow弹出问题" class="headerlink" title="android 7.0以后的popouwindow弹出问题"></a>android 7.0以后的popouwindow弹出问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class CustomPopupWindow extends PopupWindow &#123;</span><br><span class="line">    public CustomPopupWindow(View contentView, int width, int height)&#123;</span><br><span class="line">        super(contentView,width,height);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void showAsDropDown(View anchor) &#123;</span><br><span class="line">        if(Build.VERSION.SDK_INT &gt;= 24) &#123;</span><br><span class="line">            Rect rect = new Rect();</span><br><span class="line">            anchor.getGlobalVisibleRect(rect);</span><br><span class="line">            int h = anchor.getResources().getDisplayMetrics().heightPixels - rect.bottom;</span><br><span class="line">            setHeight(h);</span><br><span class="line">        &#125;</span><br><span class="line">        super.showAsDropDown(anchor);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void showAsDropDown(View anchor, int xoff, int yoff) &#123;</span><br><span class="line">        if(Build.VERSION.SDK_INT == 24) &#123;</span><br><span class="line">            Rect rect = new Rect();</span><br><span class="line">            anchor.getGlobalVisibleRect(rect);</span><br><span class="line">            int h = anchor.getResources().getDisplayMetrics().heightPixels - rect.bottom;</span><br><span class="line">            setHeight(h);</span><br><span class="line">    &#125;</span><br><span class="line">        super.showAsDropDown(anchor, xoff, yoff);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <iframe type="music" frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=464607112&auto=1&height=66"></iframe>
-          </div>
-          
+        </div>
+        
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-02-25T10:11:40.835Z" itemprop="dateUpdated">2019-02-25 18:11:40</time>
+    最后更新时间：<time datetime="2019-02-26T07:13:53.591Z" itemprop="dateUpdated">2019-02-26 15:13:53</time>
 </span><br>
 
 
@@ -282,12 +250,12 @@
     </footer>
 </blockquote>
 
-          
-          <div class="post-footer">
-              
+        
+        <div class="post-footer">
+            
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
 
-              <div class="page-share-wrap">
+            <div class="page-share-wrap">
     
 
 <div class="page-share" id="pageShare">
@@ -321,16 +289,16 @@
     </a>
 </div>
 
-          </div>
-          
-              
+        </div>
+        
+            
     <div id="comment"></div>
 
 
 
-          
-      </div>
-      
+        
+    </div>
+    
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="prev">
@@ -343,20 +311,28 @@
 
   
     <div class="next">
-      <a href="/2018/01/25/hello-world/" id="post-next" class="post-nav-link">
+      <a href="/2018/02/21/scala01/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Hello World</h4>
+        <h4 class="title">Scala基础语法</h4>
       </a>
     </div>
   
 </nav>
 
 
-      
-      
-  </article>
-  
-  
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#android-7-0以后的popouwindow弹出问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">android 7.0以后的popouwindow弹出问题</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </div></div></aside>
+    
+</article>
+
+
 </div>
 
         <footer class="footer">
@@ -364,17 +340,20 @@
     <div class="bottom">
         <p>
             <span>
-                Bm和弦 &copy; 2017 - 2019
+                Bm和弦 &copy;
+                2017 -
+                
+                2019
             </span>
-        		
-           	
+
             
+
             
-            <span>
+                <span>
 	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
             </span>
             
-            
+
             
 
             
@@ -431,6 +410,7 @@
     <p>扫一扫，分享到微信</p>
     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aUY7CMAxFUfa/6c4CSsN9NkiT+OYLlZbkFMly7LxeeFy3sf726R7y+f7s14YMGTK2ZVzLsZ7g6c70WzLv+jXJkCFjAuMpgj3dQ66QcMzZH+aSIUOGjGW6xifmQ4YMGTI6jPVWky+l/1JkyJAxjZEmcGkx7h/txWXIkLEhoxMEf/35J/0NGTJkbMXobyzTZ8kLilclQ4aMoxk8wKXlsDSIk+vrrbIMGTJOZfDjFKTQxp/ipTrULpUhQ8bRjLSk1Un+0tST4N/8JzJkyDiUkR6S4GG01irgjdI435QhQ8a2jFqCSIplPPjWGqIyZMiYwOgEzfUv8JJcp9gnQ4aMOQweCvtP9ducb67LkCFjDIME0DQRJCE4bTN8aGHKkCHjOEbamEwXUdsMk6WjPFeGDBkHMXjhLD02USvqFQ9byJAhYwDjd8W1zgGL9EXIkCHjPEYttKWNhC+/6fu8MmTIOJrB0zu+XL440mAItrIyZMgYwyAT19JHnobWNsAyZMiYwEiPc6WhubMNRnPJkCFjAGOdotWal7VGQpEqQ4aMAYy4TdgoxqUvpdXTkCFDxuaMKxyczQv96ZFZlNvKkCHjIAYf/Kf7SR5feoyRIUPGtgweZNMwzQ9PoCYlOTkiQ4aMoxlpuT/dcHaaAXFjQIYMGTI6jUZQsCsWAWXIkCEjTBP7TU3eZJUhQ8YcBt+IPgVBvq3tN0RlyJAxjZFuHWsJIt/i1kK/DBkyDmX8AWz/A/G9ZIt4AAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
+
 
 
     
