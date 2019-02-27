@@ -3,142 +3,17 @@
   
     
     <entry>
-      <title><![CDATA[android02]]></title>
-      <url>/2019/02/26/android02/</url>
-      <content type="html"><![CDATA[<figure class="image-box">
-                <img src="https://huangbryant210707.github.io/img/scale.gif" alt title class>
-                <p></p>
-            </figure>]]></content>
-      
-        
-        <tags>
-            
-            <tag> android </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[android01]]></title>
-      <url>/2018/02/25/android01/</url>
-      <content type="html"></content>
-      
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Android中常用的图片压缩方式]]></title>
-      <url>/2018/02/22/android-compress/</url>
-      <content type="html"><![CDATA[<p>图片压缩方式常用的有尺寸压缩、质量压缩、格式变化以及通过JNI调用libjpeg库来进行压缩，下面就先分别介绍下常见的质量压缩和尺寸压缩。（尺寸压缩，质量压缩底层也是通过调用native的方法进行压缩的，而native中的则是通过Skia这个库实现的，但是，最终还是调用了libjpeg库进行压缩的。）</p>
-<ol>
-<li>格式变化<br>现在android支持的图片格式有三种：png、jpeg、webp； </li>
-</ol>
-<ul>
-<li>png： 无损图片的压缩类型，能保存透明等图，它同时提供 24位和48位真彩色图像支持以及其他诸多技术性支持。 </li>
-<li>Jpeg：有损图片的压缩类型，有损压缩方式去除冗余的图像和彩色数据，获取得极高的压缩率的同时能展现十分丰富生动的图像，换句话说，就是可以用最少的磁盘空间得到较好的图像质量。但是，bitmap quality属性越小，图片的清晰度越差。 </li>
-<li>WebP：WebP（发音 weppy，项目主页），是谷歌推出的一种支持有损压缩和无损压缩的图片文件格式，派生自图像编码格式 VP8。</li>
-</ul>
-<p>结论：</p>
-<ol start="2">
-<li><p>质量压缩<br>设置bitmap quality属性，降低图片的质量，像素不会减少（就是指bitmap所占的内存大小），第一个参数为需要压缩的bitmap图片对象，第二个参数为压缩后图片保存的位置设置quality属性0-100，来实现压缩。（因为png是无损压缩，所以该属性对png是无效的。）</p>
-<p>`/**</p>
-<ul>
-<li>质量压缩<br>*</li>
-<li>@param format  图片格式   PNG，JPEG，WEBP</li>
-<li>@param quality 图片的质量 1-100<br>*/<br>public void compress(Bitmap.CompressFormat format, int quality) {<br> FileOutputStream fos = null;<br> try {<pre><code>//得到一个储存路径
-File file = new File(Environment.getExternalStorageDirectory(), &quot;test.jpg&quot;);
-//得到一个文件输入流
-fos = new FileOutputStream(file);
-//开始压缩
-Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);
-bitmap.compress(format, quality, fos);
-</code></pre> } catch (FileNotFoundException e) {<pre><code>e.printStackTrace();
-</code></pre> } finally {<pre><code>if (fos != null) {
-    try {
-        fos.close();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-}
-</code></pre> }<br>}`</li>
-</ul>
-</li>
-</ol>
-<p>3.尺寸压缩<br>尺寸压缩由于是减小了图片的像素，所以它直接对bitmap产生了影响，当然最终生成的file文件也是相对的变小了；</p>
-<p>通过缩放图片像素来减少图片占用内存大小<br><code>public static void compressBitmapToFile(Bitmap bmp, File file){
-    // 尺寸压缩倍数,值越大，图片尺寸越小
-    int ratio = 2;
-    // 压缩Bitmap到对应尺寸
-    Bitmap result = Bitmap.createBitmap(bmp.getWidth() / ratio, bmp.getHeight() / ratio, Config.ARGB_8888);
-    Canvas canvas = new Canvas(result);
-    Rect rect = new Rect(0, 0, bmp.getWidth() / ratio, bmp.getHeight() / ratio);
-    canvas.drawBitmap(bmp, null, rect, null);
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    // 把压缩后的数据存放到baos中
-    result.compress(Bitmap.CompressFormat.JPEG, 100 ,baos);
-    try {  
-        FileOutputStream fos = new FileOutputStream(file);  
-        fos.write(baos.toByteArray());  
-        fos.flush();  
-        fos.close();  
-    } catch (Exception e) {  
-        e.printStackTrace();  
-    } 
-}</code></p>
-<p>设置图片的采样率，降低图片像素<br><code>public static void compressBitmap(String filePath, File file){
-    // 数值越高，图片像素越低
-    int inSampleSize = 2;
-    BitmapFactory.Options options = new BitmapFactory.Options();
-    //采样率
-    options.inSampleSize = inSampleSize;
-    Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);  
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    // 把压缩后的数据存放到baos中
-    bitmap.compress(Bitmap.CompressFormat.JPEG, 100 ,baos);
-    try {  
-        FileOutputStream fos = new FileOutputStream(file);  
-        fos.write(baos.toByteArray());  
-        fos.flush();  
-        fos.close();  
-    } catch (Exception e) {  
-        e.printStackTrace();  
-    } 
-}</code></p>
+      <title><![CDATA[Scala类型约束]]></title>
+      <url>/2018/03/10/scala06/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>在Java中比较两个对象是否相等可以继承Comparable，而在Scala中则继承Ordered。</p>
+</blockquote>
+<h2 id="Java中上界（super-Bounds）、下界（Lower-bounds）："><a href="#Java中上界（super-Bounds）、下界（Lower-bounds）：" class="headerlink" title="Java中上界（super Bounds）、下界（Lower bounds）："></a>Java中上界（super Bounds）、下界（Lower bounds）：</h2><figure class="image-box">
+                <img src="https://app.yinxiang.com/shard/s54/res/b96bd218-9a74-44fe-bb43-f402e012e670/TIM%E5%9B%BE%E7%89%8720190221152148.png" alt="Java中上界、下界" title class>
+                <p>Java中上界、下界</p>
+            </figure>
+<h2 id="Sava中上界（super-Bounds）、下界（Lower-bounds）："><a href="#Sava中上界（super-Bounds）、下界（Lower-bounds）：" class="headerlink" title="Sava中上界（super Bounds）、下界（Lower bounds）："></a>Sava中上界（super Bounds）、下界（Lower bounds）：</h2><p>[_ &lt;: T] 表示上界；[_ &gt;: T]表示下界</p>
 ]]></content>
-      
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[android 7.0以后的popouwindow弹出问题]]></title>
-      <url>/2018/02/22/android-access/</url>
-      <content type="html"><![CDATA[<h2 id="android-7-0以后的popouwindow弹出问题"><a href="#android-7-0以后的popouwindow弹出问题" class="headerlink" title="android 7.0以后的popouwindow弹出问题"></a>android 7.0以后的popouwindow弹出问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class CustomPopupWindow extends PopupWindow &#123;</span><br><span class="line">    public CustomPopupWindow(View contentView, int width, int height)&#123;</span><br><span class="line">        super(contentView,width,height);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void showAsDropDown(View anchor) &#123;</span><br><span class="line">        if(Build.VERSION.SDK_INT &gt;= 24) &#123;</span><br><span class="line">            Rect rect = new Rect();</span><br><span class="line">            anchor.getGlobalVisibleRect(rect);</span><br><span class="line">            int h = anchor.getResources().getDisplayMetrics().heightPixels - rect.bottom;</span><br><span class="line">            setHeight(h);</span><br><span class="line">        &#125;</span><br><span class="line">        super.showAsDropDown(anchor);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void showAsDropDown(View anchor, int xoff, int yoff) &#123;</span><br><span class="line">        if(Build.VERSION.SDK_INT == 24) &#123;</span><br><span class="line">            Rect rect = new Rect();</span><br><span class="line">            anchor.getGlobalVisibleRect(rect);</span><br><span class="line">            int h = anchor.getResources().getDisplayMetrics().heightPixels - rect.bottom;</span><br><span class="line">            setHeight(h);</span><br><span class="line">    &#125;</span><br><span class="line">        super.showAsDropDown(anchor, xoff, yoff);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<iframe type="music" frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=464607112&auto=1&height=66"></iframe>]]></content>
-      
-        
-        <tags>
-            
-            <tag> android </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Scala基础语法]]></title>
-      <url>/2018/02/21/scala01/</url>
-      <content type="html"><![CDATA[<p>1、什么是Hive？<br>    是由Facebook开源（后由Apache开发）的一个用来处理结构化数据的分析框架；<br>    是基于hadoop的一个数据仓库工具，可以将结构化数据文件映射为一张表，并提供SQL查询功能；<br>    本质：将HQL（hive的查询语句）转化为MapReduce程序；</p>
-<p>2、Hive特点：<br>    1）hive并不是一个数据存在框架（数据存在HDFS）；<br>    2）hive实际上就相当于hadoop的一个客户端，可以执行查询，插入等动作；</p>
-<pre><code>3）延迟比较高（需要转化为MapReduce），适用于实时性的离线数据分析；
-4）不适合处理小数据（基于MapReduce）；
-5）迭代式计算不能表达（相当于多个mr串联，所以并不适合）；
-6）数据挖掘方面不擅长（因为数据挖掘更注重数据的迭代式计算）；
-7）hive的处理能力有限，调优比较困难；
-</code></pre><figure class="image-box">
-                <img src="https://i.loli.net/2018/10/08/5bbb657a0fc16.png" alt title class>
-                <p></p>
-            </figure>]]></content>
       
         
         <tags>
@@ -150,23 +25,602 @@ bitmap.compress(format, quality, fos);
     </entry>
     
     <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>/2018/01/25/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+      <title><![CDATA[Scala并发编程模型（AKKA）]]></title>
+      <url>/2018/03/08/scala05/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>Spark底层通信是使用AKKA，而Hadoop则使用rpc。</p>
+</blockquote>
+<h2 id="1）Akka简介"><a href="#1）Akka简介" class="headerlink" title="1）Akka简介"></a>1）Akka简介</h2><p>写并发程序比较难，而Akka帮我们解决了这个问题；<br>Akka构建在JVM上面，是一种高并发、分布式、高容错的应用开发工具包；<br>Akka同时提供了Scala、Java的开发接口；<br>Akka可以开发一些高并发的程序；</p>
+<h2 id="2）Akka的Actor模型"><a href="#2）Akka的Actor模型" class="headerlink" title="2）Akka的Actor模型"></a>2）Akka的Actor模型</h2><p><strong><em>Akka处理并发的方法基于Actor；</em></strong><br><strong><em>在Actor中，所有的事物都是Actor，是一种架构思想；</em></strong><br>在使用Java进行并发编程时需要特别的关注锁和内存原子性等一系列线程问题，而Actor模型内部的状态由它自己维护即它内部数据只能由它自己修改(通过消息传递来进行状态修改)，所以使用Actors模型进行并发编程可以很好地避免这些问题，Actor由<strong>状态(state)</strong>、<strong>行为(Behavior)</strong> 和 <strong>邮箱(mailBox)</strong> 三部分组成</p>
+<p>   <strong>状态(state)</strong><br>   Actor中的状态指的是Actor对象的变量信息，状态由Actor自己管理，避免了并发环境下的锁和内存原子性等问题<br>   <strong>行为(Behavior)</strong><br>   行为指定的是Actor中计算逻辑，通过Actor接收到消息来改变Actor的状态<br>   <strong>邮箱(mailBox)</strong><br>   邮箱是Actor和Actor之间的通信桥梁，邮箱内部通过FIFO消息队列来存储发送方Actor消息，接受方Actor从邮箱队列中获取消息</p>
+<blockquote>
+<p>Actor的基础就是消息传递</p>
+</blockquote>
+<h2 id="3）使用Actor模型的好处："><a href="#3）使用Actor模型的好处：" class="headerlink" title="3）使用Actor模型的好处："></a>3）使用Actor模型的好处：</h2><p><strong>事件模型驱动</strong>–Actor之间的通信是异步的，即使Actor在发送消息后也无需阻塞或者等待就能够处理其他事情</p>
+<p><strong>强隔离性</strong>–Actor中的方法不能由外部直接调用，所有的一切都通过消息传递进行的，从而避免了Actor之间的数据共享，想要观察到另一个Actor的状态变化只能通过消息传递进行询问</p>
+<p><strong>位置透明</strong>–无论Actor地址是在本地还是在远程机上对于代码来说都是一样的</p>
+<p><strong>轻量性</strong>–Actor是非常轻量的计算单机，单个Actor仅占400多字节，只需少量内存就能达到高并发</p>
+<h2 id="4）Actor模型原理"><a href="#4）Actor模型原理" class="headerlink" title="4）Actor模型原理"></a>4）Actor模型原理</h2><figure class="image-box">
+                <img src="https://app.yinxiang.com/shard/s54/res/4a911495-14e3-495a-835a-91b37b93480b/776259-20170725223141419-2138296096.jpg" alt="Actor模型原理" title class>
+                <p>Actor模型原理</p>
+            </figure>
+<p>图解：<br>    学生创建一个ActorSystem<br>    通过ActorSystem创建ActorRef，将QuoteRequest消息发送到ActorRef(教师代理)<br>    ActorRef(教师代理)消息传递到Dispatcher中<br>    Dispatcher依次的将消息发送到TeacherActor的邮箱中<br>    Dispatcher将邮箱推送到一条线程中<br>    邮箱取出一条消息并委派给TeacherActor的receive方法</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> scala </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Scala面向对象]]></title>
+      <url>/2018/03/05/scala04/</url>
+      <content type="html"><![CDATA[<p>我们需要封装对象、定义模板，所以需要面向对象。</p>
+<h2 id="1）Scala单例对象"><a href="#1）Scala单例对象" class="headerlink" title="1）Scala单例对象"></a>1）Scala单例对象</h2><p>Scala中没有static关键，如需要使用静态类则需要使用object关键字；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">object scala01 &#123;</span><br><span class="line">     var a = 10 //在外部类中可以使用scala01.a调用</span><br><span class="line">     // 在外部类中可以使用scala01.test()调用</span><br><span class="line">     def test(): Unit = &#123;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2）Scala构造器"><a href="#2）Scala构造器" class="headerlink" title="2）Scala构造器"></a>2）Scala构造器</h2><figure class="image-box">
+                <img src="https://app.yinxiang.com/shard/s54/res/c669e2b9-5c3f-47ad-aed9-18d54d882836/TIM%E5%9B%BE%E7%89%8720190219153910.png" alt="Scala构造器" title class>
+                <p>Scala构造器</p>
+            </figure>
+<blockquote>
+<p>注意：<br>     1）若变量没有经过var、val修饰，则外部不能访问；<br>     2）如想要主构造器私有化，则需要在类名后加上private关键字；辅助构造器则在def前面加private；<br><figure class="image-box">
+                <img src="https://app.yinxiang.com/shard/s54/res/dc684eac-b278-47e7-a140-983555c52548/TIM%E5%9B%BE%E7%89%8720190219155209.png" alt title class>
+                <p></p>
+            </figure></p>
+</blockquote>
+<h2 id="3）访问权限"><a href="#3）访问权限" class="headerlink" title="3）访问权限"></a>3）访问权限</h2><figure class="image-box">
+                <img src="https://app.yinxiang.com/shard/s54/res/233f6166-c80d-4098-a65d-35adcbc082dd/TIM%E5%9B%BE%E7%89%8720190219160118.png" alt="访问权限" title class>
+                <p>访问权限</p>
+            </figure>
+<h2 id="4）Trait特质（相当于java的接口）"><a href="#4）Trait特质（相当于java的接口）" class="headerlink" title="4）Trait特质（相当于java的接口）"></a>4）Trait特质（相当于java的接口）</h2><figure class="image-box">
+                <img src="https://app.yinxiang.com/shard/s54/res/d37425d8-5635-44a5-8ae8-8f531661efcc/TIM%E5%9B%BE%E7%89%8720190219163131.png" alt="Trait特质" title class>
+                <p>Trait特质</p>
+            </figure>
+<blockquote>
+<p>特质与抽象类的区别：<br>    1）优先使用特质。一个类扩展多个特质是很方便的，但却只能扩展一个抽象类。<br>    2）如果你需要构造函数参数，使用抽象类。因为抽象类可以定义带参数的构造函数，而特质不行。<br>注意：如果要实现多个接口，需要使用with关键字（混入特质），且with必须写在最后；</p>
+</blockquote>
+<h2 id="5）样例类"><a href="#5）样例类" class="headerlink" title="5）样例类"></a>5）样例类</h2><p>（1）支持模式匹配；<br>（2）默认会生成半生对象（即可以直接使用Test(“huang”,26)）；<br>（3）默认会实现toString()、equals()等方法；</p>
+<blockquote>
+<p>case class Test（var name : String,var age : Int）</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> scala </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Scala数组&集合]]></title>
+      <url>/2018/02/27/scala03/</url>
+      <content type="html"><![CDATA[<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h6 id="1）定义："><a href="#1）定义：" class="headerlink" title="1）定义："></a>1）定义：</h6><blockquote>
+<p>var arr1 = new Array<a href="3">int</a><br>     arr1(1) = 1<br>     arr += 2 //此时arr1的长度为4 [Array（1，null，null，2）]<br>     var arr2 = Array(1,2,3,4) //实际上是调用 了Array的apply方法<br>     arr2 += 5 //此时编译报错，这种定义方法实际上已经决定了数组的长度<br>     var array = Array(1,2,3,4)</p>
+</blockquote>
+<h6 id="2）map："><a href="#2）map：" class="headerlink" title="2）map："></a>2）map：</h6><blockquote>
+<p>var array1 = array.map(x =&gt; x <em> 10)<br>     将数组中的每个元素都经过该函数进行处理（x </em> 10），再将结果返回；<br>     array1  —&gt; (10,20,30,40)   </p>
+</blockquote>
+<h6 id="3）flatten（扁平化操作）："><a href="#3）flatten（扁平化操作）：" class="headerlink" title="3）flatten（扁平化操作）："></a>3）flatten（扁平化操作）：</h6><blockquote>
+<p>将一个数组（集合）中有多个数组（集合）全部拆开，并把元素放到一个新的数组（集合中）；<br>     var array = Array(Array(1, 2, 3), Array(10, 20, 30))<br>     array.flatten  —&gt;  Array(1, 2, 3, 10, 20, 30)  </p>
+</blockquote>
+<h6 id="4）flatMap："><a href="#4）flatMap：" class="headerlink" title="4）flatMap："></a>4）flatMap：</h6><p>对一个数组（集合）先执行map操作，在执行flatten操作。</p>
+<h2 id="集合（有两种类型）"><a href="#集合（有两种类型）" class="headerlink" title="集合（有两种类型）"></a>集合（有两种类型）</h2><h6 id="1）immutable（不可变集合）"><a href="#1）immutable（不可变集合）" class="headerlink" title="1）immutable（不可变集合）"></a>1）immutable（不可变集合）</h6>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import scala.collection.immutable._     </span><br><span class="line">val list = List(1,2,3)</span><br><span class="line">    长度不可变： list += 20 //编译器报错</span><br><span class="line">    值不能改变： list(1) = 10 //编译器报错</span><br><span class="line"></span><br><span class="line">val map = Map(0 -&gt; &quot;huang&quot; , 1 -&gt; &quot;hello&quot;)</span><br></pre></td></tr></table></figure>
+<h6 id="2）mutable（可变集合）"><a href="#2）mutable（可变集合）" class="headerlink" title="2）mutable（可变集合）"></a>2）mutable（可变集合）</h6>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import scala.collection.mutable._    </span><br><span class="line">    （1）ArrayBuffer： </span><br><span class="line">         val buff = ArrayBuffer（1,2,3,4）</span><br></pre></td></tr></table></figure>
+<h6 id="3）集合常见操作："><a href="#3）集合常见操作：" class="headerlink" title="3）集合常见操作："></a>3）集合常见操作：</h6><blockquote>
+<p>（1）:: （cons，意为构造），向队列的头部追加数据，创造新的列表。<br>（2）:+和+:  :+方法用于在尾部追加元素，+:方法用于在头部追加元素，和::很类似，但是::可以用于pattern match ，而+:则不行. （关于+:和:+,只要记住冒号永远靠近集合类型就OK了）。<br>（3）++ 该方法用于连接两个集合，list1++list2<br>（4）::: 该方法只能用于连接两个List类型的集合<br>（5）list.head 获取list的头元素<br>（6）list.tail 获取list的尾元素（注意：除了头元素，其他都是尾元素）<br>（7）list.count(x =&gt; x &gt; 4)  //统计符合某条件的集合个数<br>（8）list.filter(x =&gt; x &gt; 4)   //过滤<br>（9）list.fold(2)((x , y) =&gt; x + y) //折叠，加一个初始值2<br>（10）list.aggregate（）：先局部聚合，在全局聚合（结果跟fold一样）<br>（11）list.zip(list1)：拉链，将两个集合的元素以（k，v）形式重组，多余的舍弃<br>（12）reduceLeft 、reduceRight 、foldLeft 、foldRight<br>         println(s”reduceLeft – ${l.reduceLeft(_ - <em>)}”)     // 1-2-3<br>         println(s”reduceRight – ${l.reduceRight(</em> - <em>)}”) // (1-(2-3))<br>         println(s”foldLeft – ${l.foldLeft(0)(</em> - <em>)}”)          // (((0-1)-2)-3)<br>         println(s”foldRight – ${l.foldRight(0)(</em> - _)}”)     // (1-(2-(3-0)))</p>
+</blockquote>
+<h6 id="4）元祖的使用"><a href="#4）元祖的使用" class="headerlink" title="4）元祖的使用"></a>4）元祖的使用</h6>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val array = Array((&quot;huang&quot;, 26), (&quot;zhao&quot;, 25))</span><br><span class="line">println(&quot;reduce --- &quot; + array.map(_._2).sum)</span><br><span class="line">println(&quot;fold --- &quot; + array.foldRight(0)(_._2 + _))</span><br><span class="line">println(&quot;reduce --- &quot; + array.reduce((x, y) =&gt; (&quot;&quot;, x._2 + y._2)))</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> scala </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Scala方法、函数]]></title>
+      <url>/2018/02/24/scala02/</url>
+      <content type="html"><![CDATA[<h2 id="1）传值调用-amp-传名调用"><a href="#1）传值调用-amp-传名调用" class="headerlink" title="1）传值调用&amp;传名调用"></a>1）传值调用&amp;传名调用</h2><p><code>def fun(a : Int) : Int = {
+    a * a
+}</code></p>
+<p>传值调用：将值，方法返回的值作为参数传递到另外一个方法；<br><code>def test(a : Int) : Unit = {
+    a * a 
+}</code><br>test(fun(2))//会先执行fun（只会执行一遍）</p>
+<p>传名调用：直接将一个函数传递到方法内部执行；<br><code>def test(a:Int =&gt; Int) : Int = {
+    a * a
+}</code><br>test(fun(2))//会执行两次fun方法</p>
+<h2 id="2）可变长度参数"><a href="#2）可变长度参数" class="headerlink" title="2）可变长度参数"></a>2）可变长度参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def sum(a : int*) : Int = &#123;</span><br><span class="line">     var sum;</span><br><span class="line">     for(i &lt;- a)&#123;</span><br><span class="line">          sum +=i</span><br><span class="line">    &#125;</span><br><span class="line">     sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>sum(1,2,3,4,5) —&gt; 15</p>
+</blockquote>
+<h2 id="3）柯里化"><a href="#3）柯里化" class="headerlink" title="3）柯里化"></a>3）柯里化</h2><p>将原来接受两个参数的函数编程一个接受一个参数的新函数；</p>
+<blockquote>
+<p>def sum(a : Int,b : Int) = a + b  &lt;====&gt;  def sum(a : Int)(b : Int) = a + b</p>
+</blockquote>
+<h2 id="4）Scala闭包"><a href="#4）Scala闭包" class="headerlink" title="4）Scala闭包"></a>4）Scala闭包</h2><p>闭包是一个函数，返回值依赖于声明在函数外部的一个或多个变量。</p>
+<p>闭包通常来讲可以简单的认为是可以访问一个函数里面局部变量的另外一个函数。</p>
+<blockquote>
+<p>var a = 3  //引入一个变量a<br>val fun = (i:Int) =&gt; i * a //此时函数fun的返回值依赖变量a</p>
+</blockquote>
+<h2 id="5）Scala偏函数"><a href="#5）Scala偏函数" class="headerlink" title="5）Scala偏函数"></a>5）Scala偏函数</h2><p>被包含在{}内，没有match的一组case语句是一个偏函数；常用于模式匹配；<br>PartialFunction[A,B]<br>A：参数类型；<br>B：返回值类型；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def fun:PartialFunction[String,Int] =&#123;</span><br><span class="line">    case &quot;huang&quot; =&gt; 18</span><br><span class="line">    case _ =&gt; 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：使用偏函数必须使用case进行匹配；</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> scala </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Scala简介、基础语法]]></title>
+      <url>/2018/02/21/scala01/</url>
+      <content type="html"><![CDATA[<h2 id="Scala简介"><a href="#Scala简介" class="headerlink" title="Scala简介"></a>Scala简介</h2><h4 id="scala简介"><a href="#scala简介" class="headerlink" title="scala简介"></a>scala简介</h4><p>是一门集合了面向对象、函数式编程等特点的一门高级语言；</p>
+<p>大数据为什么需要学习scala？<br>spark是scala编写。</p>
+<h4 id="scala特点"><a href="#scala特点" class="headerlink" title="scala特点"></a>scala特点</h4><p>1）优雅：<br>     框架设计的时候第一个需要考虑的就是API、精简的封装；代码简洁；</p>
+<p>2）速度快：<br>     scala表达能力强，开发速度块；</p>
+<p>3）能够完美的融合Hadoop生态：<br>    scala是静态编译，表达能力强且代码量少；</p>
+<h2 id="Scala基础语法"><a href="#Scala基础语法" class="headerlink" title="Scala基础语法"></a>Scala基础语法</h2><h4 id="Scala数据类型"><a href="#Scala数据类型" class="headerlink" title="Scala数据类型"></a>Scala数据类型</h4><blockquote>
+<p>Scala与Java一样，有8中数值类型：<br>Byte/Char/Short/Int/Long/Float/Double/Boolean<br>另外还有：<br>Unit（相当于java中的Void）；<br>（注意：Scala中没有包装类型；）</p>
+</blockquote>
+<h4 id="Scala定义变量"><a href="#Scala定义变量" class="headerlink" title="Scala定义变量"></a>Scala定义变量</h4><blockquote>
+<p>var：定义的变量可变；<br>val：定义的变量不可变；<br>（scala能够自定推断类型！）</p>
+</blockquote>
+<p>指定类型：</p>
+<blockquote>
+<p>val str:String = “huang”<br>Any：包含AnyVal和AnyRef；<br>AnyVal：所有的Scala类型；<br>AnyRef：所有的Scala classes与Java classes；<br>（Any其实就相当于Java的Object！）</p>
+</blockquote>
+<h4 id="Scala条件表达式"><a href="#Scala条件表达式" class="headerlink" title="Scala条件表达式"></a>Scala条件表达式</h4><p>1）三目运算符： val a = if(true) 2 else 1<br>                        val b = if(true) 2 else “error”</p>
+<h4 id="Scala块表达式"><a href="#Scala块表达式" class="headerlink" title="Scala块表达式"></a>Scala块表达式</h4><p>Scala中所有使用{}包含的表达式都是块表达式，其最后一行就是返回值；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">val a = &#123;</span><br><span class="line">    if(x &gt; 0)&#123;</span><br><span class="line">         1</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">          -1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Scala循环"><a href="#Scala循环" class="headerlink" title="Scala循环"></a>Scala循环</h4>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">res1 = 1 to 10  --&gt; Range(1,2,3...9,10)</span><br><span class="line">for(i &lt;- res1)&#123;</span><br><span class="line">    println(i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">val arr = Array(1,2,3,4,5)</span><br><span class="line">for(i &lt;- arr)&#123;</span><br><span class="line">    println(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="yield关键字会生成新的集合："><a href="#yield关键字会生成新的集合：" class="headerlink" title="yield关键字会生成新的集合："></a>yield关键字会生成新的集合：</h4>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val arr = for(i &lt;- 1 to 10) yield i * 10</span><br><span class="line">arr --&gt; Vector(10,20,30,40...90,100)</span><br></pre></td></tr></table></figure>
+<h4 id="Scala方法-、函数"><a href="#Scala方法-、函数" class="headerlink" title="Scala方法 、函数"></a>Scala方法 、函数</h4><blockquote>
+<p>def：定义方法的关键字<br>=&gt; ：是函数的标志</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> scala </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[android 使用sharedpreferences 保存对象]]></title>
+      <url>/2017/12/30/android08/</url>
+      <content type="html"><![CDATA[<p>在手机的开发过程中我们可能需要存储对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class SharedUtil &#123;  </span><br><span class="line">    private final static String FILE_NAME = &quot;data_save&quot;; </span><br><span class="line">    private final static String KEY = &quot;data&quot;;  </span><br><span class="line"></span><br><span class="line">      /** </span><br><span class="line">       * desc:保存对象    </span><br><span class="line">       * @param context </span><br><span class="line">       * @param key  </span><br><span class="line">       * @param obj </span><br><span class="line">       * modified:   </span><br><span class="line">       */  </span><br><span class="line">      public static void saveObject(Context context,Object obj)&#123;  </span><br><span class="line">          try &#123;  </span><br><span class="line">              // 保存对象  </span><br><span class="line">              SharedPreferences.Editor sharedata = context.getSharedPreferences(FILENAME, 0).edit();  </span><br><span class="line">              //先将序列化结果写到byte缓存中，其实就分配一个内存空间  </span><br><span class="line">              ByteArrayOutputStream bos=new ByteArrayOutputStream();  </span><br><span class="line">              ObjectOutputStream os=new ObjectOutputStream(bos);  </span><br><span class="line">              //将对象序列化写入byte缓存  </span><br><span class="line">              os.writeObject(obj);  </span><br><span class="line">              //将序列化的数据转为16进制保存  </span><br><span class="line">              String bytesToHexString = bytesToHexString(bos.toByteArray());  </span><br><span class="line">              //保存该16进制数组  </span><br><span class="line">              sharedata.putString(KEY, bytesToHexString);  </span><br><span class="line">              sharedata.commit();  </span><br><span class="line">          &#125; catch (Exception e) &#123;                         </span><br><span class="line">          &#125;  </span><br><span class="line">      &#125;  </span><br><span class="line">      /** </span><br><span class="line">       * desc:将数组转为16进制 </span><br><span class="line">       * @param bArray </span><br><span class="line">       * @return </span><br><span class="line">       * modified:   </span><br><span class="line">       */  </span><br><span class="line">      public static String bytesToHexString(byte[] bArray) &#123;  </span><br><span class="line">          if(bArray == null)&#123;  </span><br><span class="line">              return null;  </span><br><span class="line">          &#125;  </span><br><span class="line">          if(bArray.length == 0)&#123;  </span><br><span class="line">              return &quot;&quot;;  </span><br><span class="line">          &#125;  </span><br><span class="line">          StringBuffer sb = new StringBuffer(bArray.length);  </span><br><span class="line">          String sTemp;  </span><br><span class="line">          for (int i = 0; i &lt; bArray.length; i++) &#123;  </span><br><span class="line">              sTemp = Integer.toHexString(0xFF &amp; bArray[i]);  </span><br><span class="line">              if (sTemp.length() &lt; 2)  </span><br><span class="line">                  sb.append(0);  </span><br><span class="line">              sb.append(sTemp.toUpperCase());  </span><br><span class="line">          &#125;  </span><br><span class="line">          return sb.toString();  </span><br><span class="line">      &#125;  </span><br><span class="line">      /** </span><br><span class="line">       * desc:获取保存的Object对象 </span><br><span class="line">       * @param context </span><br><span class="line">       * @param key </span><br><span class="line">       * @return </span><br><span class="line">       * modified:   </span><br><span class="line">       */  </span><br><span class="line">      public static Object readObject(Context context)&#123;  </span><br><span class="line">          try &#123;  </span><br><span class="line">              SharedPreferences sharedata = context.getSharedPreferences(FILENAME, 0);  </span><br><span class="line">              if (sharedata.contains(KEY)) &#123;  </span><br><span class="line">                   String string = sharedata.getString(KEY, &quot;&quot;);  </span><br><span class="line">                   if(TextUtils.isEmpty(string))&#123;  </span><br><span class="line">                       return null;  </span><br><span class="line">                   &#125;else&#123;  </span><br><span class="line">                       //将16进制的数据转为数组，准备反序列化  </span><br><span class="line">                       byte[] stringToBytes = StringToBytes(string);  </span><br><span class="line">                         ByteArrayInputStream bis=new ByteArrayInputStream(stringToBytes);  </span><br><span class="line">                         ObjectInputStream is=new ObjectInputStream(bis);  </span><br><span class="line">                         //返回反序列化得到的对象  </span><br><span class="line">                         Object readObject = is.readObject();  </span><br><span class="line">                         return readObject;  </span><br><span class="line">                   &#125;  </span><br><span class="line">              &#125;  </span><br><span class="line">          &#125; catch (Exception e) &#123;               </span><br><span class="line">          &#125;  </span><br><span class="line">          //所有异常返回null  </span><br><span class="line">          return null;  </span><br><span class="line"></span><br><span class="line">      &#125;  </span><br><span class="line">      /** </span><br><span class="line">       * desc:将16进制的数据转为数组 </span><br><span class="line">       * &lt;p&gt;创建人：聂旭阳 , 2014-5-25 上午11:08:33&lt;/p&gt; </span><br><span class="line">       * @param data </span><br><span class="line">       * @return </span><br><span class="line">       * modified:   </span><br><span class="line">       */  </span><br><span class="line">      public static byte[] StringToBytes(String data)&#123;  </span><br><span class="line">          String hexString=data.toUpperCase().trim();  </span><br><span class="line">          if (hexString.length()%2!=0) &#123;  </span><br><span class="line">              return null;  </span><br><span class="line">          &#125;  </span><br><span class="line">          byte[] retData=new byte[hexString.length()/2];  </span><br><span class="line">          for(int i=0;i&lt;hexString.length();i++)  </span><br><span class="line">          &#123;  </span><br><span class="line">              int int_ch;  // 两位16进制数转化后的10进制数  </span><br><span class="line">              char hex_char1 = hexString.charAt(i); ////两位16进制数中的第一位(高位*16)  </span><br><span class="line">              int int_ch3;  </span><br><span class="line">              if(hex_char1 &gt;= &apos;0&apos; &amp;&amp; hex_char1 &lt;=&apos;9&apos;)  </span><br><span class="line">                  int_ch3 = (hex_char1-48)*16;   //// 0 的Ascll - 48  </span><br><span class="line">              else if(hex_char1 &gt;= &apos;A&apos; &amp;&amp; hex_char1 &lt;=&apos;F&apos;)  </span><br><span class="line">                  int_ch3 = (hex_char1-55)*16; //// A 的Ascll - 65  </span><br><span class="line">              else  </span><br><span class="line">                  return null;  </span><br><span class="line">              i++;  </span><br><span class="line">              char hex_char2 = hexString.charAt(i); ///两位16进制数中的第二位(低位)  </span><br><span class="line">              int int_ch4;  </span><br><span class="line">              if(hex_char2 &gt;= &apos;0&apos; &amp;&amp; hex_char2 &lt;=&apos;9&apos;)  </span><br><span class="line">                  int_ch4 = (hex_char2-48); //// 0 的Ascll - 48  </span><br><span class="line">              else if(hex_char2 &gt;= &apos;A&apos; &amp;&amp; hex_char2 &lt;=&apos;F&apos;)  </span><br><span class="line">                  int_ch4 = hex_char2-55; //// A 的Ascll - 65  </span><br><span class="line">              else  </span><br><span class="line">                  return null;  </span><br><span class="line">              int_ch = int_ch3+int_ch4;  </span><br><span class="line">              retData[i/2]=(byte) int_ch;//将转化后的数放入Byte里  </span><br><span class="line">          &#125;  </span><br><span class="line">          return retData;  </span><br><span class="line">    &#125; </span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[android改变光标的颜色及样式]]></title>
+      <url>/2017/12/27/android07/</url>
+      <content type="html"><![CDATA[<p>有些时候为了和主体颜色保持一致，可能我们需要更换系统的输入法光标颜色；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;EditText</span><br><span class="line">            android:id=&quot;@+id/find_edit&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:layout_marginLeft=&quot;10dp&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:background=&quot;@drawable/corner_titlebar&quot;</span><br><span class="line">            android:drawableLeft=&quot;@drawable/icon_search&quot;</span><br><span class="line">            android:hint=&quot;搜你想搜的&quot;</span><br><span class="line">            android:imeOptions=&quot;actionSearch&quot;</span><br><span class="line">            android:paddingLeft=&quot;5dp&quot;</span><br><span class="line">            android:singleLine=&quot;true&quot;</span><br><span class="line">            android:textColor=&quot;#3b3a3a&quot;</span><br><span class="line">            android:textCursorDrawable=&quot;@drawable/text_cursor_shape&quot;//设置光标颜色</span><br><span class="line">            android:textSelectHandle=&quot;@drawable/textselecthandle&quot; //设置光标拖动球的样式  UI给一张图片即可!</span><br><span class="line">            android:textSelectHandleLeft=&quot;@drawable/textselecthandle&quot;</span><br><span class="line">            android:textSelectHandleRight=&quot;@drawable/textselecthandle&quot;</span><br><span class="line">            android:textSize=&quot;14.0sp&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>在drawable文件夹下建立 text_cursor_shape：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:shape=&quot;rectangle&quot;&gt;</span><br><span class="line">    &lt;size android:width=&quot;2dp&quot; /&gt;</span><br><span class="line">    &lt;solid android:color=&quot;#494a49&quot; /&gt;</span><br><span class="line">&lt;/shape&gt;</span><br></pre></td></tr></table></figure>
+<p>@column-3{</p>
+<p>@card{</p>
+<figure class="image-box">
+                <img src="https://img-blog.csdn.net/20170717155713162?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHVhbmdicnlhbnQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="改变光标的颜色及样式" title class>
+                <p>改变光标的颜色及样式</p>
+            </figure>
+<p>}</p>
+<p>}</p>
 ]]></content>
       
         
         <tags>
             
             <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android 实现不同通知栏]]></title>
+      <url>/2017/10/27/android06/</url>
+      <content type="html"><![CDATA[<h4 id="获取系统的通知管理器实例"><a href="#获取系统的通知管理器实例" class="headerlink" title="获取系统的通知管理器实例"></a>获取系统的通知管理器实例</h4><p><code>NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);</code></p>
+<ul>
+<li><p>普通通知栏<br><img src="https://img-blog.csdn.net/20170717191856486?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHVhbmdicnlhbnQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="普通通知栏"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Notification.Builder builder=new Notification.Builder(this);</span><br><span class="line">          Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(&quot;http://www.jianshu.com/p/82e249713f1b&quot;));</span><br><span class="line">          PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,0);</span><br><span class="line">          builder.setContentIntent(pendingIntent);</span><br><span class="line">          builder.setSmallIcon(R.mipmap.ic_launcher);</span><br><span class="line">          builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher));</span><br><span class="line">          builder.setAutoCancel(true);</span><br><span class="line">          builder.setContentTitle(&quot;普通通知栏&quot;);</span><br><span class="line">          mNotificationManager.notify(1, builder.build());</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>自定义布局通知栏<br><img src="https://img-blog.csdn.net/20170717192426967?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHVhbmdicnlhbnQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="自定义布局通知栏"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">notification.bigContentView=remoteViews;</span><br><span class="line">notification.contentView=remoteViews;</span><br><span class="line">Notification.Builder builder2=new Notification.Builder(this);</span><br><span class="line">          Intent intent2=new Intent(Intent.ACTION_VIEW, Uri.parse(&quot;http://www.jianshu.com/p/82e249713f1b&quot;));</span><br><span class="line">          PendingIntent pendingIntent2=PendingIntent.getActivity(this,0,intent2,0);</span><br><span class="line">          builder2.setContentIntent(pendingIntent2);</span><br><span class="line">          builder2.setSmallIcon(R.mipmap.ic_launcher);</span><br><span class="line">          builder2.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher));</span><br><span class="line">          builder2.setAutoCancel(true);</span><br><span class="line">          builder2.setContentTitle(&quot;折叠通知&quot;);</span><br><span class="line">          RemoteViews remoteViews=new RemoteViews(getPackageName(),R.layout.layout_view);</span><br><span class="line">          Notification  notification=builder2.build();</span><br><span class="line">          notification.bigContentView=remoteViews;</span><br><span class="line">          mNotificationManager.notify(1,notification);</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[文件操作、Android清除缓存]]></title>
+      <url>/2017/10/25/android05/</url>
+      <content type="html"><![CDATA[<h4 id="文件操作的工具类"><a href="#文件操作的工具类" class="headerlink" title="文件操作的工具类"></a>文件操作的工具类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br></pre></td><td class="code"><pre><span class="line">public class SDCardHelper &#123;</span><br><span class="line">    // 判断SD卡是否被挂载</span><br><span class="line">    public static boolean isSDCardMounted() &#123;</span><br><span class="line">        // return Environment.getExternalStorageState().equals(&quot;mounted&quot;);</span><br><span class="line">        return Environment.getExternalStorageState().equals(</span><br><span class="line">                Environment.MEDIA_MOUNTED);</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡的根目录</span><br><span class="line">    public static String getSDCardBaseDir() &#123;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            return Environment.getExternalStorageDirectory().getAbsolutePath();</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡的完整空间大小，返回MB</span><br><span class="line">    public static long getSDCardSize() &#123;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            StatFs fs = new StatFs(getSDCardBaseDir());</span><br><span class="line">            long count = fs.getBlockCountLong();</span><br><span class="line">            long size = fs.getBlockSizeLong();</span><br><span class="line">            return count * size / 1024 / 1024;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡的剩余空间大小</span><br><span class="line">    public static long getSDCardFreeSize() &#123;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            StatFs fs = new StatFs(getSDCardBaseDir());</span><br><span class="line">            long count = fs.getFreeBlocksLong();</span><br><span class="line">            long size = fs.getBlockSizeLong();</span><br><span class="line">            return count * size / 1024 / 1024;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡的可用空间大小</span><br><span class="line">    public static long getSDCardAvailableSize() &#123;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            StatFs fs = new StatFs(getSDCardBaseDir());</span><br><span class="line">            long count = fs.getAvailableBlocksLong();</span><br><span class="line">            long size = fs.getBlockSizeLong();</span><br><span class="line">            return count * size / 1024 / 1024;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    // 往SD卡的公有目录下保存文件</span><br><span class="line">    public static boolean saveFileToSDCardPublicDir(byte[] data, String type,</span><br><span class="line">            String fileName) &#123;</span><br><span class="line">        BufferedOutputStream bos = null;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            File file = Environment.getExternalStoragePublicDirectory(type);</span><br><span class="line">            try &#123;</span><br><span class="line">                bos = new BufferedOutputStream(new FileOutputStream(new File(</span><br><span class="line">                        file, fileName)));</span><br><span class="line">                bos.write(data);</span><br><span class="line">                bos.flush();</span><br><span class="line">                return true;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    bos.close();</span><br><span class="line">                &#125; catch (IOException e) &#123;</span><br><span class="line">                    // TODO Auto-generated catch block</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    // 往SD卡的自定义目录下保存文件</span><br><span class="line">    public static boolean saveFileToSDCardCustomDir(byte[] data, String dir,</span><br><span class="line">            String fileName) &#123;</span><br><span class="line">        BufferedOutputStream bos = null;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            File file = new File(getSDCardBaseDir() + File.separator + dir);</span><br><span class="line">            if (!file.exists()) &#123;</span><br><span class="line">                file.mkdirs();// 递归创建自定义目录</span><br><span class="line">            &#125;</span><br><span class="line">            try &#123;</span><br><span class="line">                bos = new BufferedOutputStream(new FileOutputStream(new File(</span><br><span class="line">                        file, fileName)));</span><br><span class="line">                bos.write(data);</span><br><span class="line">                bos.flush();</span><br><span class="line">                return true;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    bos.close();</span><br><span class="line">                &#125; catch (IOException e) &#123;</span><br><span class="line">                    // TODO Auto-generated catch block</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    // 往SD卡的私有Files目录下保存文件</span><br><span class="line">    public static boolean saveFileToSDCardPrivateFilesDir(byte[] data,</span><br><span class="line">            String type, String fileName, Context context) &#123;</span><br><span class="line">        BufferedOutputStream bos = null;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            File file = context.getExternalFilesDir(type);</span><br><span class="line">            try &#123;</span><br><span class="line">                bos = new BufferedOutputStream(new FileOutputStream(new File(</span><br><span class="line">                        file, fileName)));</span><br><span class="line">                bos.write(data);</span><br><span class="line">                bos.flush();</span><br><span class="line">                return true;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    bos.close();</span><br><span class="line">                &#125; catch (IOException e) &#123;</span><br><span class="line">                    // TODO Auto-generated catch block</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    // 往SD卡的私有Cache目录下保存文件</span><br><span class="line">    public static boolean saveFileToSDCardPrivateCacheDir(byte[] data,</span><br><span class="line">            String fileName, Context context) &#123;</span><br><span class="line">        BufferedOutputStream bos = null;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            File file = context.getExternalCacheDir();</span><br><span class="line">            try &#123;</span><br><span class="line">                bos = new BufferedOutputStream(new FileOutputStream(new File(</span><br><span class="line">                        file, fileName)));</span><br><span class="line">                bos.write(data);</span><br><span class="line">                bos.flush();</span><br><span class="line">                return true;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    bos.close();</span><br><span class="line">                &#125; catch (IOException e) &#123;</span><br><span class="line">                    // TODO Auto-generated catch block</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    // 保存bitmap图片到SDCard的私有Cache目录</span><br><span class="line">    public static boolean saveBitmapToSDCardPrivateCacheDir(Bitmap bitmap,</span><br><span class="line">            String fileName, Context context) &#123;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            BufferedOutputStream bos = null;</span><br><span class="line">            // 获取私有的Cache缓存目录</span><br><span class="line">            File file = context.getExternalCacheDir();</span><br><span class="line">            try &#123;</span><br><span class="line">                bos = new BufferedOutputStream(new FileOutputStream(new File(</span><br><span class="line">                        file, fileName)));</span><br><span class="line">                if (fileName != null</span><br><span class="line">                        &amp;&amp; (fileName.contains(&quot;.png&quot;) || fileName</span><br><span class="line">                                .contains(&quot;.PNG&quot;))) &#123;</span><br><span class="line">                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);</span><br><span class="line">                &#125;</span><br><span class="line">                bos.flush();</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                if (bos != null) &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        bos.close();</span><br><span class="line">                    &#125; catch (IOException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 从SD卡获取文件</span><br><span class="line">    public static byte[] loadFileFromSDCard(String fileDir) &#123;</span><br><span class="line">        BufferedInputStream bis = null;</span><br><span class="line">        ByteArrayOutputStream baos = new ByteArrayOutputStream();</span><br><span class="line">        try &#123;</span><br><span class="line">            bis = new BufferedInputStream(</span><br><span class="line">                    new FileInputStream(new File(fileDir)));</span><br><span class="line">            byte[] buffer = new byte[8 * 1024];</span><br><span class="line">            int c = 0;</span><br><span class="line">            while ((c = bis.read(buffer)) != -1) &#123;</span><br><span class="line">                baos.write(buffer, 0, c);</span><br><span class="line">                baos.flush();</span><br><span class="line">            &#125;</span><br><span class="line">            return baos.toByteArray();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                baos.close();</span><br><span class="line">                bis.close();</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    // 从SDCard中寻找指定目录下的文件，返回Bitmap</span><br><span class="line">    public Bitmap loadBitmapFromSDCard(String filePath) &#123;</span><br><span class="line">        byte[] data = loadFileFromSDCard(filePath);</span><br><span class="line">        if (data != null) &#123;</span><br><span class="line">            Bitmap bm = BitmapFactory.decodeByteArray(data, 0, data.length);</span><br><span class="line">            if (bm != null) &#123;</span><br><span class="line">                return bm;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡公有目录的路径</span><br><span class="line">    public static String getSDCardPublicDir(String type) &#123;</span><br><span class="line">        return Environment.getExternalStoragePublicDirectory(type).toString();</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡私有Cache目录的路径</span><br><span class="line">    public static String getSDCardPrivateCacheDir(Context context) &#123;</span><br><span class="line">        return context.getExternalCacheDir().getAbsolutePath();</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡私有Files目录的路径</span><br><span class="line">    public static String getSDCardPrivateFilesDir(Context context, String type) &#123;</span><br><span class="line">        return context.getExternalFilesDir(type).getAbsolutePath();</span><br><span class="line">    &#125;</span><br><span class="line">    public static boolean isFileExist(String filePath) &#123;</span><br><span class="line">        File file = new File(filePath);</span><br><span class="line">        return file.isFile();</span><br><span class="line">    &#125;</span><br><span class="line">    // 从sdcard中删除文件</span><br><span class="line">    public static boolean removeFileFromSDCard(String filePath) &#123;</span><br><span class="line">        File file = new File(filePath);</span><br><span class="line">        if (file.exists()) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                file.delete();</span><br><span class="line">                return true;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Android-清除缓存的方法"><a href="#Android-清除缓存的方法" class="headerlink" title="Android 清除缓存的方法"></a>Android 清除缓存的方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">//获取缓存大小</span><br><span class="line"></span><br><span class="line">public  String getTotalCacheSize() &#123;</span><br><span class="line">        long cacheSize = getFileSize(getCacheDir());</span><br><span class="line">        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) &#123;</span><br><span class="line">            cacheSize += getFileSize(getExternalCacheDir());</span><br><span class="line">        &#125;</span><br><span class="line">        return getFormatSize(cacheSize);</span><br><span class="line">    &#125;</span><br><span class="line">    /**</span><br><span class="line">     * 获取指定文件大小</span><br><span class="line">     *</span><br><span class="line">     * @param</span><br><span class="line">     * @return</span><br><span class="line">     * @throws Exception</span><br><span class="line">     */</span><br><span class="line">    public long getFileSize(File file) &#123;</span><br><span class="line">        long size = 0;</span><br><span class="line">        try &#123;</span><br><span class="line">            File[] fileList = file.listFiles();</span><br><span class="line">            int size2 = 0;</span><br><span class="line">            if (fileList != null) &#123;</span><br><span class="line">                size2 = fileList.length;</span><br><span class="line">                for (int i = 0; i &lt; size2; i++) &#123;</span><br><span class="line">                    // 如果下面还有文件</span><br><span class="line">                    if (fileList[i].isDirectory()) &#123;</span><br><span class="line">                        size = size + getFileSize(fileList[i]);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        size = size + fileList[i].length();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return size;</span><br><span class="line">    &#125;</span><br><span class="line">    public static String getFormatSize(double size) &#123;</span><br><span class="line">        double kiloByte = size / 1024;</span><br><span class="line">        if (kiloByte &lt; 1) &#123;</span><br><span class="line">            // return size + &quot;Byte&quot;;</span><br><span class="line">            return &quot;0K&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        double megaByte = kiloByte / 1024;</span><br><span class="line">        if (megaByte &lt; 1) &#123;</span><br><span class="line">            BigDecimal result1 = new BigDecimal(Double.toString(kiloByte));</span><br><span class="line">            return result1.setScale(2, BigDecimal.ROUND_HALF_UP)</span><br><span class="line">                    .toPlainString() + &quot;KB&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        double gigaByte = megaByte / 1024;</span><br><span class="line">        if (gigaByte &lt; 1) &#123;</span><br><span class="line">            BigDecimal result2 = new BigDecimal(Double.toString(megaByte));</span><br><span class="line">            return result2.setScale(2, BigDecimal.ROUND_HALF_UP)</span><br><span class="line">                    .toPlainString() + &quot;MB&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        double teraBytes = gigaByte / 1024;</span><br><span class="line">        if (teraBytes &lt; 1) &#123;</span><br><span class="line">            BigDecimal result3 = new BigDecimal(Double.toString(gigaByte));</span><br><span class="line">            return result3.setScale(2, BigDecimal.ROUND_HALF_UP)</span><br><span class="line">                    .toPlainString() + &quot;GB&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        BigDecimal result4 = new BigDecimal(teraBytes);</span><br><span class="line">        return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString()</span><br><span class="line">                + &quot;TB&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> /**</span><br><span class="line">     * @param context</span><br><span class="line">     *            删除缓存</span><br><span class="line">     */</span><br><span class="line">    public static void clearAllCache(Context context) &#123;</span><br><span class="line">        deleteDir(context.getCacheDir());</span><br><span class="line">        if (Environment.getExternalStorageState().equals(</span><br><span class="line">                Environment.MEDIA_MOUNTED)) &#123;</span><br><span class="line">            deleteDir(context.getExternalCacheDir());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private static boolean deleteDir(File dir) &#123;</span><br><span class="line">        if (dir != null &amp;&amp; dir.isDirectory()) &#123;</span><br><span class="line">            String[] children = dir.list();</span><br><span class="line">            int size = 0;</span><br><span class="line">            if (children != null) &#123;</span><br><span class="line">                size = children.length;</span><br><span class="line">                for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">                    boolean success = deleteDir(new File(dir, children[i]));</span><br><span class="line">                    if (!success) &#123;</span><br><span class="line">                        return false;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (dir == null) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return dir.delete();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[android 7.0以后的popouwindow弹出问题]]></title>
+      <url>/2017/09/22/android03/</url>
+      <content type="html"><![CDATA[<h2 id="android-7-0以后的popouwindow弹出问题"><a href="#android-7-0以后的popouwindow弹出问题" class="headerlink" title="android 7.0以后的popouwindow弹出问题"></a>android 7.0以后的popouwindow弹出问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class CustomPopupWindow extends PopupWindow &#123;</span><br><span class="line">    public CustomPopupWindow(View contentView, int width, int height)&#123;</span><br><span class="line">        super(contentView,width,height);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void showAsDropDown(View anchor) &#123;</span><br><span class="line">        if(Build.VERSION.SDK_INT &gt;= 24) &#123;</span><br><span class="line">            Rect rect = new Rect();</span><br><span class="line">            anchor.getGlobalVisibleRect(rect);</span><br><span class="line">            int h = anchor.getResources().getDisplayMetrics().heightPixels - rect.bottom;</span><br><span class="line">            setHeight(h);</span><br><span class="line">        &#125;</span><br><span class="line">        super.showAsDropDown(anchor);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void showAsDropDown(View anchor, int xoff, int yoff) &#123;</span><br><span class="line">        if(Build.VERSION.SDK_INT == 24) &#123;</span><br><span class="line">            Rect rect = new Rect();</span><br><span class="line">            anchor.getGlobalVisibleRect(rect);</span><br><span class="line">            int h = anchor.getResources().getDisplayMetrics().heightPixels - rect.bottom;</span><br><span class="line">            setHeight(h);</span><br><span class="line">    &#125;</span><br><span class="line">        super.showAsDropDown(anchor, xoff, yoff);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[PopouWindow弹出动画]]></title>
+      <url>/2017/08/26/android02/</url>
+      <content type="html"><![CDATA[<h3 id="进入屏幕的动画anim-in-xml"><a href="#进入屏幕的动画anim-in-xml" class="headerlink" title="进入屏幕的动画anim_in.xml"></a>进入屏幕的动画anim_in.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;scale xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">       android:duration=&quot;300&quot;</span><br><span class="line">       android:fromXScale=&quot;0.0&quot;</span><br><span class="line">       android:fromYScale=&quot;0.0&quot;</span><br><span class="line">       android:pivotX=&quot;50&quot;</span><br><span class="line">       android:pivotY=&quot;50&quot;</span><br><span class="line">       android:toXScale=&quot;1.0&quot;</span><br><span class="line">       android:toYScale=&quot;1.0&quot;/&gt;</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+<h3 id="进入屏幕的动画anim-in-xml-1"><a href="#进入屏幕的动画anim-in-xml-1" class="headerlink" title="进入屏幕的动画anim_in.xml"></a>进入屏幕的动画anim_in.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;scale xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">       android:duration=&quot;300&quot;</span><br><span class="line">       android:fromXScale=&quot;0.0&quot;</span><br><span class="line">       android:fromYScale=&quot;0.0&quot;</span><br><span class="line">       android:pivotX=&quot;50&quot;</span><br><span class="line">       android:pivotY=&quot;50&quot;</span><br><span class="line">       android:toXScale=&quot;1.0&quot;</span><br><span class="line">       android:toYScale=&quot;1.0&quot;/&gt;</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+<h3 id="建立样式-myanimstyle"><a href="#建立样式-myanimstyle" class="headerlink" title="建立样式 myanimstyle"></a>建立样式 myanimstyle</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;style name=&quot;my_anim_popou&quot; parent=&quot;@android:style/Animation&quot;&gt;</span><br><span class="line">    &lt;item name=&quot;android:windowEnterAnimation&quot;&gt;@anim/myanim_popou_out&lt;/item&gt;</span><br><span class="line">    &lt;item name=&quot;android:windowExitAnimation&quot;&gt;@anim/myanim_popou_in&lt;/item&gt;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="在代码中设置"><a href="#在代码中设置" class="headerlink" title="在代码中设置"></a>在代码中设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dialogWindow.setWindowAnimations(R.style.my_anim_out_in); // 添加动画</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="image-box">
+                <img src="https://img-blog.csdn.net/20170822100030874?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHVhbmdicnlhbnQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="popouwindow弹出动画" title class>
+                <p>popouwindow弹出动画</p>
+            </figure>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android中常用的图片压缩方式]]></title>
+      <url>/2017/08/22/android04/</url>
+      <content type="html"><![CDATA[<p>图片压缩方式常用的有尺寸压缩、质量压缩、格式变化以及通过JNI调用libjpeg库来进行压缩，下面就先分别介绍下常见的质量压缩和尺寸压缩。（尺寸压缩，质量压缩底层也是通过调用native的方法进行压缩的，而native中的则是通过Skia这个库实现的，但是，最终还是调用了libjpeg库进行压缩的。）</p>
+<h4 id="格式变化"><a href="#格式变化" class="headerlink" title="格式变化"></a>格式变化</h4><p>现在android支持的图片格式有三种：png、jpeg、webp； </p>
+<ul>
+<li>png： 无损图片的压缩类型，能保存透明等图，它同时提供 24位和48位真彩色图像支持以及其他诸多技术性支持。 </li>
+<li>Jpeg：有损图片的压缩类型，有损压缩方式去除冗余的图像和彩色数据，获取得极高的压缩率的同时能展现十分丰富生动的图像，换句话说，就是可以用最少的磁盘空间得到较好的图像质量。但是，bitmap quality属性越小，图片的清晰度越差。 </li>
+<li>WebP：WebP（发音 weppy，项目主页），是谷歌推出的一种支持有损压缩和无损压缩的图片文件格式，派生自图像编码格式 VP8。</li>
+</ul>
+<h4 id="质量压缩"><a href="#质量压缩" class="headerlink" title="质量压缩"></a>质量压缩</h4><p>设置bitmap quality属性，降低图片的质量，像素不会减少（就是指bitmap所占的内存大小），第一个参数为需要压缩的bitmap图片对象，第二个参数为压缩后图片保存的位置设置quality属性0-100，来实现压缩。（因为png是无损压缩，所以该属性对png是无效的。）</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">/**</span><br><span class="line"> * 质量压缩</span><br><span class="line"> *</span><br><span class="line"> * @param format  图片格式   PNG，JPEG，WEBP</span><br><span class="line"> * @param quality 图片的质量 1-100</span><br><span class="line"> */</span><br><span class="line">public void compress(Bitmap.CompressFormat format, int quality) &#123;</span><br><span class="line">    FileOutputStream fos = null;</span><br><span class="line">    try &#123;</span><br><span class="line">        //得到一个储存路径</span><br><span class="line">        File file = new File(Environment.getExternalStorageDirectory(), &quot;test.jpg&quot;);</span><br><span class="line">        //得到一个文件输入流</span><br><span class="line">        fos = new FileOutputStream(file);</span><br><span class="line">        //开始压缩</span><br><span class="line">        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_icon);</span><br><span class="line">        bitmap.compress(format, quality, fos);</span><br><span class="line">    &#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        if (fos != null) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                fos.close();</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br></pre></td></tr></table></figure>   
+<h4 id="尺寸压缩"><a href="#尺寸压缩" class="headerlink" title="尺寸压缩"></a>尺寸压缩</h4><p>尺寸压缩由于是减小了图片的像素，所以它直接对bitmap产生了影响，当然最终生成的file文件也是相对的变小了；</p>
+<ul>
+<li><p>通过缩放图片像素来减少图片占用内存大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">public static void compressBitmapToFile(Bitmap bmp, File file)&#123;</span><br><span class="line">    // 尺寸压缩倍数,值越大，图片尺寸越小</span><br><span class="line">    int ratio = 2;</span><br><span class="line">    // 压缩Bitmap到对应尺寸</span><br><span class="line">    Bitmap result = Bitmap.createBitmap(bmp.getWidth() / ratio</span><br><span class="line">    , bmp.getHeight() / ratio</span><br><span class="line">    , Config.ARGB_8888);</span><br><span class="line">    Canvas canvas = new Canvas(result);</span><br><span class="line">    Rect rect = new Rect(0, 0, bmp.getWidth() / ratio, bmp.getHeight() / ratio);</span><br><span class="line">    canvas.drawBitmap(bmp, null, rect, null);</span><br><span class="line">    ByteArrayOutputStream baos = new ByteArrayOutputStream();</span><br><span class="line">    // 把压缩后的数据存放到baos中</span><br><span class="line">    result.compress(Bitmap.CompressFormat.JPEG, 100 ,baos);</span><br><span class="line">    try &#123;  </span><br><span class="line">        FileOutputStream fos = new FileOutputStream(file);  </span><br><span class="line">        fos.write(baos.toByteArray());  </span><br><span class="line">        fos.flush();  </span><br><span class="line">        fos.close();  </span><br><span class="line">    &#125; catch (Exception e) &#123;  </span><br><span class="line">        e.printStackTrace();  </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>   
+</li>
+<li><p>设置图片的采样率，降低图片像素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">public static void compressBitmap(String filePath, File file)&#123;</span><br><span class="line">    // 数值越高，图片像素越低</span><br><span class="line">    int inSampleSize = 2;</span><br><span class="line">    BitmapFactory.Options options = new BitmapFactory.Options();</span><br><span class="line">    //采样率</span><br><span class="line">    options.inSampleSize = inSampleSize;</span><br><span class="line">    Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);  </span><br><span class="line">    ByteArrayOutputStream baos = new ByteArrayOutputStream();</span><br><span class="line">    // 把压缩后的数据存放到baos中</span><br><span class="line">    bitmap.compress(Bitmap.CompressFormat.JPEG, 100 ,baos);</span><br><span class="line">    try &#123;  </span><br><span class="line">        FileOutputStream fos = new FileOutputStream(file);  </span><br><span class="line">        fos.write(baos.toByteArray());  </span><br><span class="line">        fos.flush();  </span><br><span class="line">        fos.close();  </span><br><span class="line">    &#125; catch (Exception e) &#123;  </span><br><span class="line">        e.printStackTrace();  </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  </li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[android中的单例模式]]></title>
+      <url>/2017/06/25/android01/</url>
+      <content type="html"><![CDATA[<h4 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h4><p>优点：在需要的时候才去加载<br>缺点：在多线程的环境下，会出现线性不安全的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    private static Singleton instance = null;  </span><br><span class="line">    private Singleton() &#123;  </span><br><span class="line">    &#125;    </span><br><span class="line">    public static Singleton getInstance() &#123;  </span><br><span class="line">        if (instance == null) &#123;  </span><br><span class="line">            instance = new Singleton();  </span><br><span class="line">          &#125;  </span><br><span class="line">        return instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h4><p>优点：饿汉式在类创建的同时就已经创建好一个静态的对象供系统使用，以后不再改变，所以天生是线程安全的</p>
+<p>//饿汉式单例类.在类初始化时，已经自行实例化<br>public class Singleton {<br>    //static修饰的静态变量在内存中一旦创建，便永久存在<br>    private static Singleton instance = new Singleton();<br>    private Singleton (){}<br>    public static Singleton getInstance() {<br>    return instance;<br>    }<br>} </p>
+<h4 id="加双重锁"><a href="#加双重锁" class="headerlink" title="加双重锁"></a>加双重锁</h4><p>优点：在并发量不高、安全性不高的情况下可以很好的运行<br>缺点：在不同的编译环境下可能出现不同的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">publci static synchronized Singleton getInstance()&#123;</span><br><span class="line">    if(instance == null)&#123;</span><br><span class="line">        synchronized(Object)&#123;</span><br><span class="line">            if(instance == null)&#123;</span><br><span class="line">                instance = new Singleton();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h4><p>优点：延迟加载、线性安全、减少内存消耗</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    /** </span><br><span class="line">     * 私有的构造器</span><br><span class="line">     */  </span><br><span class="line">    private Singleton() &#123;  </span><br><span class="line">    &#125; </span><br><span class="line">    /** </span><br><span class="line">     * 内部类实现单例模式 </span><br><span class="line">     * 延迟加载，减少内存开销 </span><br><span class="line">     *  </span><br><span class="line">     */  </span><br><span class="line">    private static class SingletonInner &#123;  </span><br><span class="line">        private static Singleton instance = new Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    public static Singleton getInstance() &#123;  </span><br><span class="line">        return SingletonInner.instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[sql优化]]></title>
+      <url>/2017/03/07/mysql05/</url>
+      <content type="html"><![CDATA[<h2 id="sql优化原则："><a href="#sql优化原则：" class="headerlink" title="sql优化原则："></a>sql优化原则：</h2><ul>
+<li><p>选择需要优化的SQL，不是所有的SQL都需要优化在优化的过程中,首选更要优化的SQL;</p>
+<p><strong>怎么选择？</strong></p>
+<ul>
+<li>1小时谓求1W次，1次10个10；</li>
+<li>1小时请求10次，1次1W个10；</li>
+</ul>
+<p><strong>思考：</strong></p>
+<ul>
+<li>从里位时间产生的IO来说，是相同的；<br>针对第一个SQL如累我能把lO个IO变成7个IO，一小时滅少3W个IO；<br>针对第二个SQL如果能把1W个IO变成7K个IO，—小时滅少3W个10；</li>
+<li>从优化难度上1W-&gt;7K难的多；</li>
+<li>从整体性能上来说第一个SQL的优化能够极大的提升系统整体的性能，第二个SQL慢一点,无非也就是SlO个连接査询慢一点；</li>
+</ul>
+</li>
+<li>定位性能瓶SQL<ul>
+<li>SQL运行较慢有两个原因，IO和CPU，明确性能瓶颈所在；</li>
+<li>明确优化目标；</li>
+<li>优先选择优化高并发低消耗的sql。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[查看mysql的执行计划（explain ）和执行明细状态（profiling）]]></title>
+      <url>/2017/03/04/mysql04/</url>
+      <content type="html"><![CDATA[<h1 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h1><p> 能够看到mysql在执行一条sql的时候所选择的执行计划；</p>
+<blockquote>
+<p>explain [需要执行的sql语句]</p>
+</blockquote>
+<p><strong>table</strong>：表名<br><strong>id</strong>：SELECT识别符。这是SELECT的查询序列号。<br><strong>select_type</strong>：SELECT类型。</p>
+<ul>
+<li>SIMPLE： 简单SELECT(不使用UNION或子查询)</li>
+<li>PRIMARY： 最外面的SELECT</li>
+<li>UNION：UNION中的第二个或后面的SELECT语句</li>
+<li>DEPENDENT UNION：UNION中的第二个或后面的SELECT语句，取决于外面的查询</li>
+<li>UNION RESULT：UNION的结果</li>
+<li>SUBQUERY：子查询中的第一个SELECT</li>
+<li>DEPENDENT SUBQUERY：子查询中的第一个SELECT，取决于外面的查询</li>
+<li>DERIVED：导出表的SELECT(FROM子句的子查询)</li>
+</ul>
+<p><strong>type</strong>：联接类型</p>
+<ul>
+<li>system：表仅有一行(=系统表)。这是const联接类型的一个特例。</li>
+<li>const：表最多有一个匹配行，它将在查询开始时被读取。因为仅有一行，在这行的列值可被优化器剩余部分认为是常数。const用于用常数值比较PRIMARY KEY或UNIQUE索引的所有部分时。</li>
+<li>eq_ref：对于每个来自于前面的表的行组合，从该表中读取一行。这可能是最好的联接类型，除了const类型。它用在一个索引的所有部分被联接使用并且索引是UNIQUE或PRIMARY KEY。eq_ref可以用于使用= 操作符比较的带索引的列。比较值可以为常量或一个使用在该表前面所读取的表的列的表达式。</li>
+<li>ref：简单来说，就是表示该sql使用了索引；</li>
+<li>ref_or_null：该联接类型如同ref，但是添加了MySQL可以专门搜索包含NULL值的行。在解决子查询中经常使用该联接类型的优化。</li>
+<li>index_merge：该联接类型表示使用了索引合并优化方法。在这种情况下，key列包含了使用的索引的清单，key_len包含了使用的索引的最长的关键元素。</li>
+<li>unique_subquery：该类型替换了下面形式的IN子查询的ref：value IN (SELECT primary_key FROMsingle_table WHERE some_expr);unique_subquery是一个索引查找函数，可以完全替换子查询，效率更高。</li>
+<li>index_subquery：该联接类型类似于unique_subquery。可以替换IN子查询，但只适合下列形式的子查询中的非唯一索引：value IN (SELECT key_column FROM single_table WHERE some_expr)</li>
+<li>range：只检索给定范围的行，使用一个索引来选择行。key列显示使用了哪个索引。key_len包含所使用索引的最长关键元素。在该类型中ref列为NULL。当使用=、&lt;&gt;、&gt;、&gt;=、&lt;、&lt;=、IS NULL、&lt;=&gt;、BETWEEN或者IN操作符，用常量比较关键字列时，可以使用range</li>
+<li>index：该联接类型与ALL相同，除了只有索引树被扫描。这通常比ALL快，因为索引文件通常比数据文件小。</li>
+<li>all：全表扫描。</li>
+</ul>
+<p><strong>possible_keys</strong>：possible_keys列指出MySQL能使用哪个索引在该表中找到行。<br><strong>key</strong>：key列显示MySQL实际决定使用的键(索引)。如果没有选择索引，键是NULL。<br><strong>key_len</strong>：key_len列显示MySQL决定使用的键长度。如果键是NULL，则长度为NULL。注意通过key_len值我们可以确定MySQL将实际使用一个多部关键字的几个部分。<br><strong>ref</strong>：sql过滤的方式，const（常量）、column（列）、fun（函数）。<br><strong>rows</strong>：rows列显示MySQL认为它执行查询时必须检查的行数。<br><strong>Extra</strong>：该列包含MySQL解决查询的详细信息。</p>
+<ul>
+<li>Distinct：MySQL发现第1个匹配行后，停止为当前的行组合搜索更多的行。</li>
+<li>Not exists：MySQL能够对查询进行LEFT JOIN优化，发现1个匹配LEFT JOIN标准的行后，不再为前面的的行组合在该表内检查更多的行。</li>
+<li>range checked for each record (index map: #)：MySQL没有发现好的可以使用的索引，但发现如果来自前面的表的列值已知，可能部分索引可以使用。对前面的表的每个行组合，MySQL检查是否可以使用range或index_merge访问方法来索取行。</li>
+<li>Using filesort：MySQL需要额外的一次传递，以找出如何按排序顺序检索行。通过根据联接类型浏览所有行并为所有匹配WHERE子句的行保存排序关键字和行的指针来完成排序。然后关键字被排序，并按排序顺序检索行。</li>
+<li>Using index：从只使用索引树中的信息而不需要进一步搜索读取实际的行来检索表中的列信息。当查询只使用作为单一索引一部分的列时，可以使用该策略。</li>
+<li>Using temporary：为了解决查询，MySQL需要创建一个临时表来容纳结果。典型情况如查询包含可以按不同情况列出列的GROUP BY和ORDER BY子句时。</li>
+<li>Using where：WHERE子句用于限制哪一个行匹配下一个表或发送到客户。除非你专门从表中索取或检查所有行，如果Extra值不为Using where并且表联接类型为ALL或index，查询可能会有一些错误。</li>
+<li>Using sort_union(…), Using union(…), Using intersect(…)：这些函数说明如何为index_merge联接类型合并索引扫描。</li>
+<li>Using index for group-by：类似于访问表的Using index方式，Using index for group-by表示MySQL发现了一个索引，可以用来查询GROUP BY或DISTINCT查询的所有列，而不要额外搜索硬盘访问实际的表。并且，按最有效的方式使用索引，以便对于每个组，只读取少量索引条目。</li>
+</ul>
+<h1 id="profiling"><a href="#profiling" class="headerlink" title="profiling"></a>profiling</h1><p>可以准确定位一条sq真正的性能瓶颈；</p>
+<blockquote>
+<p>set profiling=1;<br>         执行sql；<br>         set profiling=0；<br>         show profiles；<br>         show profile for query =1；</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[sql索引]]></title>
+      <url>/2017/02/27/mysql03/</url>
+      <content type="html"><![CDATA[<h2 id="索引的过程（实际上group-by也是会经历这样一个过程）"><a href="#索引的过程（实际上group-by也是会经历这样一个过程）" class="headerlink" title="索引的过程（实际上group by也是会经历这样一个过程）"></a>索引的过程（实际上group by也是会经历这样一个过程）</h2><p>@card{</p>
+<figure class="image-box">
+                <img src="https://app.yinxiang.com/shard/s54/res/e1d2aeff-81a8-4dd8-abe3-ddd9041026c2/TIM%E5%9B%BE%E7%89%8720181213141725.png" alt="索引的过程" title class>
+                <p>索引的过程</p>
+            </figure>
+<p>}</p>
+<blockquote>
+<p><strong>问题：select * from user where cno = 3-245;</strong></p>
+<ul>
+<li>如果没有索引的时候，步骤：<ul>
+<li>遍历整个表的内容，比较cno是否为3-245；</li>
+<li>如果为3-245，就把数据放在内存的结果集中；</li>
+<li>这样的话，会把表中的所有数据都查询一遍（IO多）；</li>
+</ul>
+</li>
+<li>如果有索引：<ul>
+<li>会在cno这一列建立一个索引，把数据按照cno进行排序，并把结果变成一个倒序表；</li>
+<li>查询的时候在表中查询cno为3-245的那条记录，并把结果放到结果集中；</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="索引的好处"><a href="#索引的好处" class="headerlink" title="索引的好处"></a>索引的好处</h2><ul>
+<li>提高检索效率；</li>
+<li>如果在查询的时候，查询列==排序列（并且该列建立了索引），会大大提高排序效率；</li>
+<li>如果分组的条件也是索引列的话，也会提高效率；</li>
+</ul>
+<h2 id="索引的弊端"><a href="#索引的弊端" class="headerlink" title="索引的弊端"></a>索引的弊端</h2><p>会需要额外的成本去维护索引；因为索引文件是单独存在的，对数据的增、删、改、查都会造成索引文件额外的io。</p>
+<h2 id="怎样创建合适的索引？"><a href="#怎样创建合适的索引？" class="headerlink" title="怎样创建合适的索引？"></a>怎样创建合适的索引？</h2><ul>
+<li>较频繁的查询字段应该建立索引；</li>
+<li>唯一性差的字段不适合单独作为索引字段，即使查询频繁；<br>  解读：如果作为索引的列不能够有效的区分数据，就不适合作为索引列；例如：性别（只有两种可能性）；</li>
+<li>更新非常频繁的字段不适合作为索引列；</li>
+<li>索引不是越多越好；<ul>
+<li>不管有多少个索引，一次查询只会使用一个索引（mysql引入复合索引）；</li>
+<li>每个索引之间都是都是独立，数据的增、删、改、查都会造成每个索引文件的单独维护；</li>
+</ul>
+</li>
+</ul>
+<h2 id="索引的使用限制"><a href="#索引的使用限制" class="headerlink" title="索引的使用限制"></a>索引的使用限制</h2><ul>
+<li>Blob和Text只能创建前缀索引；</li>
+<li>mysql目前不支持函数索引（索引值是原始的值（birthday），函数作用（year（birthday）后无效）；    </li>
+<li>在mysql中，使用了!= &lt;&gt;不能使用索引；</li>
+<li>使用like匹配时：<ul>
+<li>字符串是可以用来作为索引的，按照字母顺序排序；</li>
+<li>‘h_’ 、 ‘h%’ 是可以使用索引的；</li>
+<li>‘_h’ 、’%h’不可以使用索引；</li>
+</ul>
+</li>
+</ul>
+<h2 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h2><ul>
+<li><p>概念：就是多列的值组合成的索引，并且，多列的索引是有序的；原理：类似order by（order by age,name）。例如：</p>
+<blockquote>
+<p>select <em> from user where age &lt; 30 ； 可以使用age+height的复合索引；<br>   select </em> from user where age &lt; 30 and height &lt;170; 可以使用age+height的复合索引；<br>   select <em> from user where height &lt;170; 不能使用age+height的复合索引；<br>   select </em> from user where height &lt;170 and age &lt; 30; 不能使用age+height的复合索引（但是mysql会优化，交换两者位置）；</p>
+</blockquote>
+</li>
+<li><p>复合索引在查询的时候，遵循向左原则，只要是在查询过程中，是从左向右的执行，不管查询条件是否完全满足复合索引的列，都可以使用部分的复合索引；例如：<br>  现有复合索引：ABCD；如果where后面条件为：</p>
+<ul>
+<li>AB –&gt; 可以使用；</li>
+<li>2）AC –&gt; 可以使用（只是使用A）；</li>
+<li>3）BC –&gt; 不可以；</li>
+</ul>
+</li>
+<li>实际开发中，基本都使用复合索引；</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Sql基本命令]]></title>
+      <url>/2016/11/29/mysql02/</url>
+      <content type="html"><![CDATA[<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><h3 id="1、启动-停止mqsql的命令："><a href="#1、启动-停止mqsql的命令：" class="headerlink" title="1、启动/停止mqsql的命令："></a>1、启动/停止mqsql的命令：</h3><blockquote>
+<p>net start/stop mysql     </p>
+</blockquote>
+<h3 id="2、登录mysql的命令："><a href="#2、登录mysql的命令：" class="headerlink" title="2、登录mysql的命令："></a>2、登录mysql的命令：</h3><blockquote>
+<p>mysql -h 127.0.0.1 -u root -p<br>    -h：登录的主机名；<br>    -u：登录的用户名；<br>    -p：密码</p>
+</blockquote>
+<h3 id="3、展示表结构："><a href="#3、展示表结构：" class="headerlink" title="3、展示表结构："></a>3、展示表结构：</h3><blockquote>
+<p>desc table_name;</p>
+</blockquote>
+<h3 id="4、修改某一个字段名称："><a href="#4、修改某一个字段名称：" class="headerlink" title="4、修改某一个字段名称："></a>4、修改某一个字段名称：</h3><blockquote>
+<p>alter table table_name change （原字段）（新字段） （字段类型）；</p>
+</blockquote>
+<h3 id="5、将某个字段放到第一个，保留原完整性约束条件"><a href="#5、将某个字段放到第一个，保留原完整性约束条件" class="headerlink" title="5、将某个字段放到第一个，保留原完整性约束条件"></a>5、将某个字段放到第一个，保留原完整性约束条件</h3><blockquote>
+<p>ALTER TABLE table_name modify test CHAR(32) NOT NULL DEFAULT ‘123’ FIRST;</p>
+</blockquote>
+<h3 id="6、修改某一个字段为主键（如果已有主键，先删除）："><a href="#6、修改某一个字段为主键（如果已有主键，先删除）：" class="headerlink" title="6、修改某一个字段为主键（如果已有主键，先删除）："></a>6、修改某一个字段为主键（如果已有主键，先删除）：</h3><blockquote>
+<p>alter table table_name drop primary key;（删除已有主键）<br>    alter table table_name modify id int not null primary key auto_increment;</p>
+</blockquote>
+<h3 id="7、删除某个字段："><a href="#7、删除某个字段：" class="headerlink" title="7、删除某个字段："></a>7、删除某个字段：</h3><blockquote>
+<p>alter table table_name drop （字段名），drop（字段名）;</p>
+</blockquote>
+<h3 id="8、删除某个库下所有表数据："><a href="#8、删除某个库下所有表数据：" class="headerlink" title="8、删除某个库下所有表数据："></a>8、删除某个库下所有表数据：</h3><blockquote>
+<p>select CONCAT(‘delete from  ‘,table_name,’;’) from information_schema.tables where TABLE_SCHEMA = ‘库名’;</p>
+</blockquote>
+<h3 id="9、union合并两个或多个表结果集：（union不允许重复值，union-all允许重复值）"><a href="#9、union合并两个或多个表结果集：（union不允许重复值，union-all允许重复值）" class="headerlink" title="9、union合并两个或多个表结果集：（union不允许重复值，union all允许重复值）"></a>9、union合并两个或多个表结果集：（union不允许重复值，union all允许重复值）</h3><blockquote>
+<p>select sname, ssex, sbirthday from students<br>union [all]<br>select tname, tsex, tbirthdayfrom teachers;</p>
+</blockquote>
+<h3 id="10、本地操作的权限"><a href="#10、本地操作的权限" class="headerlink" title="10、本地操作的权限"></a>10、本地操作的权限</h3><blockquote>
+<p>grant all privileges on <em>.</em> to root@’%’ indentified by ‘root’;</p>
+</blockquote>
+<h2 id="where-group-by-having的用法和区别"><a href="#where-group-by-having的用法和区别" class="headerlink" title="where, group by, having的用法和区别"></a>where, group by, having的用法和区别</h2><h3 id="1）where"><a href="#1）where" class="headerlink" title="1）where"></a>1）where</h3><p>   数据库中常用的是where关键字，用于在初始表中筛选查询。它是一个约束声明，用于约束数据，在返回结果集之前起作用。如下面这个例子，从user表中查询出userDepartmentId等于2的数据<br>select * from dbo.user where userDepartmentId=2</p>
+<h3 id="2）group-by"><a href="#2）group-by" class="headerlink" title="2）group by"></a>2）group by</h3><p>   对select查询出来的结果集按照某个字段或者表达式进行分组，获得一组组的集合，然后从每组中取出一个指定字段或者表达式的值。<br>     在说group by的时候，我们还需要了解聚合函数，聚合函数是SQL语言中一种特殊的函数。例如：<br>count(<em>)：获取数量<br>sum()：求和（通过isnull(xxx,0)将null的值赋为0）<br>avg()：求平均数<br>max()：求最大值<br>min()：求最小值<br>     这些函数和其它函数的根本区别就是它们一般作用在多条记录上。<br>我们需要注意的是：在使用group by的SQL语句中，select中返回的字段，必须满足以下两个条件之一：<br>     <strong>（1）包含在group by语句的后面，作为分组的依据；<br>     （2）这些字段包含在聚合函数中。</strong><br>     从刚才的那个例子中，我们查询出每个城市，相同年龄的员工数量：<br>select city, count(</em>),age from dbo.user where departmentID=2 group by city,age</p>
+<h3 id="3）having：用于对where和group-by查询出来的分组经行过滤，查出满足条件的分组结果。它是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作。"><a href="#3）having：用于对where和group-by查询出来的分组经行过滤，查出满足条件的分组结果。它是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作。" class="headerlink" title="3）having：用于对where和group by查询出来的分组经行过滤，查出满足条件的分组结果。它是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作。"></a>3）having：用于对where和group by查询出来的分组经行过滤，查出满足条件的分组结果。它是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作。</h3><p>所以having的使用需要注意以下几点：<br><strong>having只能用于group by（分组统计语句中）<br>where 是用于在初始表中筛选查询，having用于在where和group by 结果分组中查询<br>having 子句中的每一个元素也必须出现在select列表中<br>having语句可以使用聚合函数，而where不使用。</strong></p>
+<p>还是刚才的例子，我们进一步整理，查询员工数量大于20的城市和年龄段<br>select city, count(*),age from dbo.user where departmentID=2 group by city,age having age &gt;40</p>
+<blockquote>
+<p>需要注意的是，<br>having 子句中的每一个元素也必须出现在select列表中。有些数据库例外，如oracle.<br>having子句和where子句都可以用来设定限制条件以使查询结果满足一定的条件限制。<br>having子句限制的是组，而不是行。where子句中不能使用聚集函数，而having子句中可以。</p>
+</blockquote>
+<blockquote>
+<p>当加上其他sql语句时，执行顺序如下：<br>S-F-W-G-H-O 组合<br>select –&gt;where –&gt; group by–&gt; having–&gt;order by<br>顺序是不能改变的</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[sql执行流程]]></title>
+      <url>/2016/11/27/mysql01/</url>
+      <content type="html"><![CDATA[<h3 id="mysql常用引擎："><a href="#mysql常用引擎：" class="headerlink" title="mysql常用引擎："></a>mysql常用引擎：</h3><blockquote>
+<p>InnoDB（行锁，性能更高）、myISAM（表锁），Mysql在V5.1之前默认存储引擎是MyISAM；在此之后默认存储引擎是InnoDB；</p>
+</blockquote>
+<h3 id="sql执行过程"><a href="#sql执行过程" class="headerlink" title="sql执行过程"></a>sql执行过程</h3><p>@card{</p>
+<figure class="image-box">
+                <img src="https://app.yinxiang.com/shard/s54/res/a9b52c9e-10ba-47f8-8063-243d147fcb01/sql%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" alt="sql执行过程" title class>
+                <p>sql执行过程</p>
+            </figure>
+<p>}</p>
+<p>SQL的执行过程：<br>1 .客户端发送一条查询给服务器；<br>2 .服务器通过权限检查之后，先会检查查询缓存，如果命中了缓存，则立即返回存储在缓存中的结果，否则进入下一阶段；<br>3 .服务器端进行sQL解析、预处理，再由优化器根据该sql所涉及到的数据表的统计信息进行计算，生成对应的执行计划；<br>4 . MySQL根据优化器生成的执行计划，调用存储引擎API来执行查询；<br>5 .将结果返回给客户端。</p>
+<blockquote>
+<p><strong>sql执行的最大瓶颈在于磁盘的IO</strong>，即数据的读取不同sQL的写法，会造成不同的执行计划的执行，而不同的执行计划在旧的上面临完全不一样的数量级，从而造成性能的差距；<br>所以，优化SQL，其实就是让充询优化器根据程序员的计划选择匹配的执行计划，来<strong>减少查询中产生的IO</strong>。  </p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> mysql </tag>
             
         </tags>
         

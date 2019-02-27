@@ -5,7 +5,7 @@
     
     
     <title>
-        Scala基础语法 |
+        Scala简介、基础语法 |
         
         Bm和弦的技术博客
         
@@ -116,13 +116,6 @@
                 </li>
                 
                 <li class>
-                    <a href="/guitar">
-                        <i class="icon icon-lg icon-file-image-o"></i>
-                        吉他谱
-                    </a>
-                </li>
-                
-                <li class>
                     <a href="/tags">
                         <i class="icon icon-lg icon-tags"></i>
                         标签
@@ -133,6 +126,13 @@
                     <a href="/archives">
                         <i class="icon icon-lg icon-archives"></i>
                         归档
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/guitar">
+                        <i class="icon icon-lg icon-file-image-o"></i>
+                        吉他谱
                     </a>
                 </li>
                 
@@ -148,7 +148,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>Scala基础语法</span>
+            <span>Scala简介、基础语法</span>
             
         </div>
         
@@ -161,7 +161,7 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">Scala基础语法</h1>
+        <h1 class="title">Scala简介、基础语法</h1>
         <h5 class="subtitle">
             
                 <time datetime="2018-02-21T09:45:51.000Z" itemprop="datePublished" class="page-time">
@@ -194,7 +194,7 @@
 <div class="container body-wrap">
     <article id="post-scala01" class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">Scala基础语法</h1>
+        <h1 class="post-card-title">Scala简介、基础语法</h1>
         <div class="post-meta">
             <time class="post-time" title="2018-02-21 17:45:51" datetime="2018-02-21T09:45:51.000Z" itemprop="datePublished">2018-02-21</time>
 
@@ -202,7 +202,7 @@
 
 
             
-	<span id="/2018/02/21/scala01/" class="leancloud_visitors" data-flag-title="Scala基础语法" title="Scala基础语法">
+	<span id="/2018/02/21/scala01/" class="leancloud_visitors" data-flag-title="Scala简介、基础语法" title="Scala简介、基础语法">
 		
 			<i class="icon icon-eye"></i>
 		
@@ -224,24 +224,36 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <p>1、什么是Hive？<br>    是由Facebook开源（后由Apache开发）的一个用来处理结构化数据的分析框架；<br>    是基于hadoop的一个数据仓库工具，可以将结构化数据文件映射为一张表，并提供SQL查询功能；<br>    本质：将HQL（hive的查询语句）转化为MapReduce程序；</p>
-<p>2、Hive特点：<br>    1）hive并不是一个数据存在框架（数据存在HDFS）；<br>    2）hive实际上就相当于hadoop的一个客户端，可以执行查询，插入等动作；</p>
-<pre><code>3）延迟比较高（需要转化为MapReduce），适用于实时性的离线数据分析；
-4）不适合处理小数据（基于MapReduce）；
-5）迭代式计算不能表达（相当于多个mr串联，所以并不适合）；
-6）数据挖掘方面不擅长（因为数据挖掘更注重数据的迭代式计算）；
-7）hive的处理能力有限，调优比较困难；
-</code></pre><figure class="image-box">
-                <a rel="Scala基础语法" href="https://i.loli.net/2018/10/08/5bbb657a0fc16.png" title data-fancybox="images"><img src="https://i.loli.net/2018/10/08/5bbb657a0fc16.png" alt title class></a>
-                <p></p>
-            </figure>
+            <h2 id="Scala简介"><a href="#Scala简介" class="headerlink" title="Scala简介"></a>Scala简介</h2><h4 id="scala简介"><a href="#scala简介" class="headerlink" title="scala简介"></a>scala简介</h4><p>是一门集合了面向对象、函数式编程等特点的一门高级语言；</p>
+<p>大数据为什么需要学习scala？<br>spark是scala编写。</p>
+<h4 id="scala特点"><a href="#scala特点" class="headerlink" title="scala特点"></a>scala特点</h4><p>1）优雅：<br>     框架设计的时候第一个需要考虑的就是API、精简的封装；代码简洁；</p>
+<p>2）速度快：<br>     scala表达能力强，开发速度块；</p>
+<p>3）能够完美的融合Hadoop生态：<br>    scala是静态编译，表达能力强且代码量少；</p>
+<h2 id="Scala基础语法"><a href="#Scala基础语法" class="headerlink" title="Scala基础语法"></a>Scala基础语法</h2><h4 id="Scala数据类型"><a href="#Scala数据类型" class="headerlink" title="Scala数据类型"></a>Scala数据类型</h4><blockquote>
+<p>Scala与Java一样，有8中数值类型：<br>Byte/Char/Short/Int/Long/Float/Double/Boolean<br>另外还有：<br>Unit（相当于java中的Void）；<br>（注意：Scala中没有包装类型；）</p>
+</blockquote>
+<h4 id="Scala定义变量"><a href="#Scala定义变量" class="headerlink" title="Scala定义变量"></a>Scala定义变量</h4><blockquote>
+<p>var：定义的变量可变；<br>val：定义的变量不可变；<br>（scala能够自定推断类型！）</p>
+</blockquote>
+<p>指定类型：</p>
+<blockquote>
+<p>val str:String = “huang”<br>Any：包含AnyVal和AnyRef；<br>AnyVal：所有的Scala类型；<br>AnyRef：所有的Scala classes与Java classes；<br>（Any其实就相当于Java的Object！）</p>
+</blockquote>
+<h4 id="Scala条件表达式"><a href="#Scala条件表达式" class="headerlink" title="Scala条件表达式"></a>Scala条件表达式</h4><p>1）三目运算符： val a = if(true) 2 else 1<br>                        val b = if(true) 2 else “error”</p>
+<h4 id="Scala块表达式"><a href="#Scala块表达式" class="headerlink" title="Scala块表达式"></a>Scala块表达式</h4><p>Scala中所有使用{}包含的表达式都是块表达式，其最后一行就是返回值；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">val a = &#123;</span><br><span class="line">    if(x &gt; 0)&#123;</span><br><span class="line">         1</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">          -1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Scala循环"><a href="#Scala循环" class="headerlink" title="Scala循环"></a>Scala循环</h4>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">res1 = 1 to 10  --&gt; Range(1,2,3...9,10)</span><br><span class="line">for(i &lt;- res1)&#123;</span><br><span class="line">    println(i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">val arr = Array(1,2,3,4,5)</span><br><span class="line">for(i &lt;- arr)&#123;</span><br><span class="line">    println(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="yield关键字会生成新的集合："><a href="#yield关键字会生成新的集合：" class="headerlink" title="yield关键字会生成新的集合："></a>yield关键字会生成新的集合：</h4>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val arr = for(i &lt;- 1 to 10) yield i * 10</span><br><span class="line">arr --&gt; Vector(10,20,30,40...90,100)</span><br></pre></td></tr></table></figure>
+<h4 id="Scala方法-、函数"><a href="#Scala方法-、函数" class="headerlink" title="Scala方法 、函数"></a>Scala方法 、函数</h4><blockquote>
+<p>def：定义方法的关键字<br>=&gt; ：是函数的标志</p>
+</blockquote>
+
         </div>
         
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-02-26T02:33:43.366Z" itemprop="dateUpdated">2019-02-26 10:33:43</time>
+    最后更新时间：<time datetime="2019-02-27T05:05:45.753Z" itemprop="dateUpdated">2019-02-27 13:05:45</time>
 </span><br>
 
 
@@ -269,7 +281,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala基础语法》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala简介、基础语法》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -281,7 +293,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala基础语法》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala简介、基础语法》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -309,18 +321,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="prev">
-      <a href="/2018/02/22/android-access/" id="post-prev" class="post-nav-link">
+      <a href="/2018/02/24/scala02/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">android 7.0以后的popouwindow弹出问题</h4>
+        <h4 class="title">Scala方法、函数</h4>
       </a>
     </div>
   
 
   
     <div class="next">
-      <a href="/2018/01/25/hello-world/" id="post-next" class="post-nav-link">
+      <a href="/2017/12/30/android08/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Hello World</h4>
+        <h4 class="title">android 使用sharedpreferences 保存对象</h4>
       </a>
     </div>
   
@@ -328,6 +340,14 @@
 
 
     
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Scala简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">Scala简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#scala简介"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">scala简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#scala特点"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">scala特点</span></a></li></ol></li></ol><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Scala基础语法"><span class="post-toc-number">2.</span> <span class="post-toc-text">Scala基础语法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Scala数据类型"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">Scala数据类型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Scala定义变量"><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">Scala定义变量</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Scala条件表达式"><span class="post-toc-number">2.0.3.</span> <span class="post-toc-text">Scala条件表达式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Scala块表达式"><span class="post-toc-number">2.0.4.</span> <span class="post-toc-text">Scala块表达式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Scala循环"><span class="post-toc-number">2.0.5.</span> <span class="post-toc-text">Scala循环</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#yield关键字会生成新的集合："><span class="post-toc-number">2.0.6.</span> <span class="post-toc-text">yield关键字会生成新的集合：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Scala方法-、函数"><span class="post-toc-number">2.0.7.</span> <span class="post-toc-text">Scala方法 、函数</span></a></li></ol></li>
+            </nav>
+            <div class="toc-bar"><div>
+        </div></div></aside>
     
 </article>
 
@@ -383,7 +403,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala基础语法》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala简介、基础语法》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -395,7 +415,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala基础语法》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/02/21/scala01/&title=《Scala简介、基础语法》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
