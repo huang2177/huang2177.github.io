@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    
+    
+    <title>
+        azkaban安装 |
+        
+        Bm和弦的技术博客
+        
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="azkaban">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:    false,
+            lv: JSON.parse('{"enable":true,"app_id":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","app_key":"gSa6ktF3wTvzdEIaRVqO9nqp","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","appkey":"gSa6ktF3wTvzdEIaRVqO9nqp","notify":false,"verify":false,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":false,"owner":"huangbryant210707","repo":"MyBlogComment","oauth":{"client_id":"eaaab52b29376fc1c7e3","client_secret":"6b68a84c502f280844289475500ea72e0d9c2a4e"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts = [];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap">
+            
+            <div class="brand">
+                <!--  <a href="/" class="avatar waves-effect waves-circle waves-light">
+                </a>-->
+                <img src="/img/avatar.jpg" class="avatar waves-effect waves-circle waves-light">
+                <hgroup class="introduce">
+                    <h5 class="nickname">Bm和弦</h5>
+                    <a href="mailto:15378412400@163.com" title="15378412400@163.com" class="mail">
+                        
+                            <span>1</span>
+                        
+                            <span>5</span>
+                        
+                            <span>3</span>
+                        
+                            <span>7</span>
+                        
+                            <span>8</span>
+                        
+                            <span>4</span>
+                        
+                            <span>1</span>
+                        
+                            <span>2</span>
+                        
+                            <span>4</span>
+                        
+                            <span>0</span>
+                        
+                            <span>0</span>
+                        
+                            <span>@</span>
+                        
+                            <span>1</span>
+                        
+                            <span>6</span>
+                        
+                            <span>3</span>
+                        
+                            <span>.</span>
+                        
+                            <span>c</span>
+                        
+                            <span>o</span>
+                        
+                            <span>m</span>
+                        
+                    </a>
+                </hgroup>
+                
+                    <ul class="menu-link">
+                        
+                        <li>
+                            <a href="https://github.com/huangbryant210707" target="_blank">
+                                <i class="icon icon-lg icon-github"></i>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class>
+                    <a href="/">
+                        <i class="icon icon-lg icon-home"></i>
+                        首页
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/tags">
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/archives">
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/guitar">
+                        <i class="icon icon-lg icon-file-image-o"></i>
+                        吉他谱
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>azkaban安装</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">azkaban安装</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-29T12:29:15.000Z" itemprop="datePublished" class="page-time">
+  2017-12-29
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left">
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-hadoop/azkaban/azkaban03" class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">azkaban安装</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-29 20:29:15" datetime="2017-12-29T12:29:15.000Z" itemprop="datePublished">2017-12-29</time>
+
+            
+
+
+            
+	<span id="/2017/12/29/hadoop/azkaban/azkaban03/" class="leancloud_visitors" data-flag-title="azkaban安装" title="azkaban安装">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2017/12/29/hadoop/azkaban/azkaban03/#comment">
+            <span class="valine-comment-count" data-xid="/2017/12/29/hadoop/azkaban/azkaban03/"></span>
+        </a>
+    </span>
+
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h3 id="上传安装包，并解压"><a href="#上传安装包，并解压" class="headerlink" title="上传安装包，并解压"></a>上传安装包，并解压</h3><blockquote>
+<p>azkaban-executor-server-2.5.0.tar.gz<br>    azkaban-sql-script-2.5.0.tar.gz<br>    azkaban-web-server-2.5.0.tar.gz</p>
+</blockquote>
+<h3 id="解压后将sql的模板导入mysql（前提是需要安装mysql）"><a href="#解压后将sql的模板导入mysql（前提是需要安装mysql）" class="headerlink" title="解压后将sql的模板导入mysql（前提是需要安装mysql）"></a>解压后将sql的模板导入mysql（前提是需要安装mysql）</h3><blockquote>
+<p>source /root/hadoop/azkaban/azkaban-2.5.0/create-all-sql-2.5.0.sql</p>
+</blockquote>
+<h3 id="生成安全连接证书（需要在server根目录下生成）"><a href="#生成安全连接证书（需要在server根目录下生成）" class="headerlink" title="生成安全连接证书（需要在server根目录下生成）"></a>生成安全连接证书（需要在server根目录下生成）</h3><blockquote>
+<p>keytool -keystore keystore -alias jetty -genkey -keyalg RSA</p>
+</blockquote>
+<h3 id="时间同步设置"><a href="#时间同步设置" class="headerlink" title="时间同步设置"></a>时间同步设置</h3><blockquote>
+<p>1）设置统一时区文件（tzselect）<br>    2）拷贝时区文件<br>cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<br>    3）集群时间同步（打开交互窗口 发送）<br>date -s ‘2018-12-29 21:51:00’</p>
+</blockquote>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><blockquote>
+<p>1）修改azkaban/server/azkaban.properties<br>    2）修改azkaban/excutor/azkaban.properties</p>
+</blockquote>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><blockquote>
+<p>1）启动web服务器： bin/azkaban-web-start.sh<br>    2）启动执行器：bin/azkaban-executor-start.sh</p>
+</blockquote>
+<h3 id="web界面"><a href="#web界面" class="headerlink" title="web界面"></a>web界面</h3><blockquote>
+<p><a href="https://192.168.81.128:8443" target="_blank" rel="noopener">web界面</a></p>
+</blockquote>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-02-27T09:38:19.540Z" itemprop="dateUpdated">2019-02-27 17:38:19</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2017/12/29/hadoop/azkaban/azkaban03/" target="_blank" rel="external">https://huangbryant210707.github.io/2017/12/29/hadoop/azkaban/azkaban03/</a>
+        
+    </div>
+    <footer>
+        <a href="https://huangbryant210707.github.io">
+            <img src="/img/avatar.jpg" alt="Bm和弦">
+            Bm和弦
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/azkaban/">azkaban</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2017/12/29/hadoop/azkaban/azkaban03/&title=《azkaban安装》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2017/12/29/hadoop/azkaban/azkaban03/&title=《azkaban安装》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+    <div id="comment"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2017/12/29/hadoop/azkaban/azkaban04/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Azkaban小案例--脚本</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2017/12/29/hadoop/azkaban/azkaban02/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">azkaban与oozie比较</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上传安装包，并解压"><span class="post-toc-number">1.</span> <span class="post-toc-text">上传安装包，并解压</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解压后将sql的模板导入mysql（前提是需要安装mysql）"><span class="post-toc-number">2.</span> <span class="post-toc-text">解压后将sql的模板导入mysql（前提是需要安装mysql）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成安全连接证书（需要在server根目录下生成）"><span class="post-toc-number">3.</span> <span class="post-toc-text">生成安全连接证书（需要在server根目录下生成）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#时间同步设置"><span class="post-toc-number">4.</span> <span class="post-toc-text">时间同步设置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改配置文件"><span class="post-toc-number">5.</span> <span class="post-toc-text">修改配置文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启动"><span class="post-toc-number">6.</span> <span class="post-toc-text">启动</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#web界面"><span class="post-toc-number">7.</span> <span class="post-toc-text">web界面</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </div></div></aside>
+    
+</article>
+
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                Bm和弦 &copy;
+                2017 -
+                
+                2019
+            </span>
+
+            
+
+            
+                <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2017/12/29/hadoop/azkaban/azkaban03/&title=《azkaban安装》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2017/12/29/hadoop/azkaban/azkaban03/&title=《azkaban安装》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3aQW7jMBAEQP//07vXBIHt7hky6wVKJyFRJBYP5KQ5j0d8/flxff35z/tnv83f8PrJwxceHh7eeujPXv36mdew9r6drKfjwcPDw7vG2w/x9YKeTEr7zuRv8fDw8D6BlyzW7VLesvHw8PD+L14+oDwr2AcfeHh4eL/PS8KIvGhuY9w8eriYteDh4eFNqtZo+f6E+yvne3h4eHjrU/VNTNAu07PY4s1o8fDw8C7w8gU3KYXzorltqMonCw8PD+82bxiMrhsLZk0GebCLh4eHd5uXNDnl5fKmyeD1++ugFg8PD+8Cb9MokN8n07FvU3jzDB4eHt4h3irDiBf0WbQxK+jPRTR4eHh4KS/55OyMPi/Nk99GmxYeHh7eBd5+4d63BeQBbrJVRCPEw8PDu8DbhxSbg6u2yaDeGPDw8PDWvDYISD6TL/F5RJuHEXh4eHi/yWuL6U1g0bYXtOU1Hh4e3j1eG+CeOuLafLE+eMPDw8M7xJsFAe3H2pnOn38zNjw8PLwLvE3QcK9pIG/2Gpb4eHh4eId47aKfX3VwELcdFKEwHh4e3lFe3lNQHDvFS3YbBLfvx8PDw7vHa0OEtjjOi+bZ1vJmY8DDw8M7xDsVkiYbxiy2SL7y9Ot4eHh4F3jt8X9eqebtArODtPaIDg8PD+8sr8h6y2h11uC1KcfrJBgPDw9vwWsP+9tmrEd8JeC8NMfDw8O7zZsdNc3igDxu2EwNHh4e3lnerH2qDWdn28OsNv52j4eHh3eBt3l1nhAn4UU76AMHYHh4eHgLXj70WXl9ltG2eeHh4eHd47WtVPkbViFsGWo83Rjw8PDw/imvHUq+5eTUvL0ADw8P79N4STCxKc3zBq9jJTUeHh5ezGsj2qQpatOIMJuIVYyLh4eHN6lUp//wBwHEfhuYFfR4eHh4R3l/Ab6wc6gSX+hSAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.1"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.1"></script>
+
+<!-- third-party -->
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?295530ec02";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.4.1"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.1"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

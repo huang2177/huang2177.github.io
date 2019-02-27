@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    
+    
+    <title>
+        zookeeper运行机制及目录结构 |
+        
+        Bm和弦的技术博客
+        
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="zookeeper">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:    false,
+            lv: JSON.parse('{"enable":true,"app_id":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","app_key":"gSa6ktF3wTvzdEIaRVqO9nqp","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","appkey":"gSa6ktF3wTvzdEIaRVqO9nqp","notify":false,"verify":false,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":false,"owner":"huangbryant210707","repo":"MyBlogComment","oauth":{"client_id":"eaaab52b29376fc1c7e3","client_secret":"6b68a84c502f280844289475500ea72e0d9c2a4e"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts = [];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap">
+            
+            <div class="brand">
+                <!--  <a href="/" class="avatar waves-effect waves-circle waves-light">
+                </a>-->
+                <img src="/img/avatar.jpg" class="avatar waves-effect waves-circle waves-light">
+                <hgroup class="introduce">
+                    <h5 class="nickname">Bm和弦</h5>
+                    <a href="mailto:15378412400@163.com" title="15378412400@163.com" class="mail">
+                        
+                            <span>1</span>
+                        
+                            <span>5</span>
+                        
+                            <span>3</span>
+                        
+                            <span>7</span>
+                        
+                            <span>8</span>
+                        
+                            <span>4</span>
+                        
+                            <span>1</span>
+                        
+                            <span>2</span>
+                        
+                            <span>4</span>
+                        
+                            <span>0</span>
+                        
+                            <span>0</span>
+                        
+                            <span>@</span>
+                        
+                            <span>1</span>
+                        
+                            <span>6</span>
+                        
+                            <span>3</span>
+                        
+                            <span>.</span>
+                        
+                            <span>c</span>
+                        
+                            <span>o</span>
+                        
+                            <span>m</span>
+                        
+                    </a>
+                </hgroup>
+                
+                    <ul class="menu-link">
+                        
+                        <li>
+                            <a href="https://github.com/huangbryant210707" target="_blank">
+                                <i class="icon icon-lg icon-github"></i>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class>
+                    <a href="/">
+                        <i class="icon icon-lg icon-home"></i>
+                        首页
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/tags">
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/archives">
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/guitar">
+                        <i class="icon icon-lg icon-file-image-o"></i>
+                        吉他谱
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>zookeeper运行机制及目录结构</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">zookeeper运行机制及目录结构</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-27T08:00:39.000Z" itemprop="datePublished" class="page-time">
+  2017-11-27
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left">
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-hadoop/zk/zookeeper02" class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">zookeeper运行机制及目录结构</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-27 16:00:39" datetime="2017-11-27T08:00:39.000Z" itemprop="datePublished">2017-11-27</time>
+
+            
+
+
+            
+	<span id="/2017/11/27/hadoop/zk/zookeeper02/" class="leancloud_visitors" data-flag-title="zookeeper运行机制及目录结构" title="zookeeper运行机制及目录结构">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2017/11/27/hadoop/zk/zookeeper02/#comment">
+            <span class="valine-comment-count" data-xid="/2017/11/27/hadoop/zk/zookeeper02/"></span>
+        </a>
+    </span>
+
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h3 id="1）zookeeper运行机制："><a href="#1）zookeeper运行机制：" class="headerlink" title="1）zookeeper运行机制："></a>1）zookeeper运行机制：</h3><div class="card">
+<figure class="image-box">
+                <a rel="zookeeper运行机制及目录结构" href="https://app.yinxiang.com/shard/s54/res/1d1c3599-312f-406e-bcc7-a36e2cc7f843/zk%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6.png" title="zookeeper运行机制" data-fancybox="images"><img src="https://app.yinxiang.com/shard/s54/res/1d1c3599-312f-406e-bcc7-a36e2cc7f843/zk%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6.png" alt="zookeeper运行机制" title class></a>
+                <p>zookeeper运行机制</p>
+            </figure>
+</div>
+<h3 id="2）zookeeper目录结构："><a href="#2）zookeeper目录结构：" class="headerlink" title="2）zookeeper目录结构："></a>2）zookeeper目录结构：</h3><figure class="image-box">
+                <a rel="zookeeper运行机制及目录结构" href="https://app.yinxiang.com/shard/s54/res/1726daec-3599-42fa-837a-f13748f590b2/zookeeper%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" title="zookeeper目录结构" data-fancybox="images"><img src="https://app.yinxiang.com/shard/s54/res/1726daec-3599-42fa-837a-f13748f590b2/zookeeper%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" alt="zookeeper目录结构" title class></a>
+                <p>zookeeper目录结构</p>
+            </figure>
+<blockquote>
+<p>注意：<br>         （1）znode的默认大小是1M；<br>         （2）节点数量应该是奇数，3,5,7是最典型的节点数量；<br>         （3）随着节点数量的增加，写入性能会降低，因为需要写入到更多的服务器中；</p>
+</blockquote>
+<h3 id="3）zookeeper应用场景："><a href="#3）zookeeper应用场景：" class="headerlink" title="3）zookeeper应用场景："></a>3）zookeeper应用场景：</h3><ul>
+<li><p>数据发布与订阅：发布与订阅即所谓的配置管理，顾名思义就是将数据发布到zk节点上，供订阅者动态获取数据，实现配置信息的集中式管理和动态更新。例如全局的配置信息，地址列表等就非常适合使用。</p>
+</li>
+<li><p>NameService：作为分布式命名服务，通过调用zk的create node api，能够很容易创建一个全局唯一的path，这个path就可以作为一个名称。</p>
+</li>
+<li><p>分布通知/协调：ZooKeeper 中特有watcher注册与异步通知机制，能够很好的实现分布式环境下不同系统之间的通知与协调，实现对数据变更的实时处理。使用方法通常是不同系统都对 ZK上同一个znode进行注册，监听znode的变化（包括znode本身内容及子节点的），其中一个系统update了znode，那么另一个系统能 够收到通知，并作出相应处理。使用zookeeper来进行分布式通知和协调能够大大降低系统之间的耦合。</p>
+</li>
+<li><p>分布式锁：主要得益于ZooKeeper为我们保证了数据的强一致性，即用户只要完全相信每时每刻，zk集群中任意节点（一个zk server）上的相同znode的数据是一定是相同的。锁服务可以分为两类，一个是保持独占，另一个是控制时序。控制时序中Zk的父节点（/distribute_lock）维持一份sequence,保证子节点创建的时序性，从而也形成了每个客户端的全局时序。</p>
+</li>
+<li><p>集群管理：</p>
+<ul>
+<li>集群监控：<br>客户端在节点 x 上注册一个Watcher，那么如果x的子节点变化了，会通知该客户端。                                            b. 创建EPHEMERAL类型的节点，一旦客户端和服务器的会话结束或过期，该节点就会消失。      </li>
+<li>Master选举：<br>利用ZooKeeper的强一致性，能够保证在分布式高并发情况下节点创建的全局唯一性，即：同时有多个客户端请求创建 /currentMaster 节点，最终一定只有一个客户端请求能够创建成功。</li>
+</ul>
+</li>
+<li><p>分布式队列：一种常规先进先出,另一种待队列成员集齐后执行。</p>
+</li>
+<li><p>负载均衡（不过zk不擅长负载均衡，Nginx或许能更好的实现）</p>
+</li>
+</ul>
+<h3 id="4）zookeeper实际应用案例："><a href="#4）zookeeper实际应用案例：" class="headerlink" title="4）zookeeper实际应用案例："></a>4）zookeeper实际应用案例：</h3><ul>
+<li><p>HDFS HA(QJM)<br>Hadoop 2.x之前的版本，HDFS集群中Namenode是整个集群的中央元数据存储和服务节点，它存在SPOF的问题。在2.x版本中，提出了各种HA方案，避免Namenode的SPOF问题，其中基于QJM（Quorum Journal Manager）的方案可以解决这个问题：使用QJM的方案中，HDFS集群中存在两类节点：</p>
+<ul>
+<li>一类是Namenode节点（包括Active状态的Namenode，和Standby状态的Namenode）；</li>
+<li>另一类是JournalNode，进行容错。当Active状态的Namenode元数据发生改变时，通过JournalNode进程（ZooKeeper集群中）来监视这种变化，然后同步到Standby状态的Namenode节点（实际上同步的是EditLog镜像文件内容的变更）。 当Active状态的节点发生故障后，Standby节点的Namenode自动切换，并接管HDFS集群中Active状态Namenode的服务，用来向客户端提供元数据服务。</li>
+</ul>
+</li>
+<li><p>HBase<br>HBase是一个基于Hadoop平台的开源NoSQL数据库，它使用ZooKeeper主要实现如下功能：</p>
+<ul>
+<li>Master选举：HBase基于Master-Slave模式架构，可以有多个HMaster，使用ZooKeeper实现了SPOF下Master的选举</li>
+<li>租约管理：客户端与RegionServer交互时，会生成租约，该租约对象具有有效期</li>
+<li>表元数据管理：HBase中包括用户表及其两个特殊的表：-ROOT-表和.META.表（例如，管理-ROOT-表中location信息，一个-ROOT-表只有一个Region，它保存了RegionServer的地址信息。）</li>
+<li>协调RegionServer节点：数据变更会通过ZooKeeper同步复制到其他节点</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-02-27T09:52:03.798Z" itemprop="dateUpdated">2019-02-27 17:52:03</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2017/11/27/hadoop/zk/zookeeper02/" target="_blank" rel="external">https://huangbryant210707.github.io/2017/11/27/hadoop/zk/zookeeper02/</a>
+        
+    </div>
+    <footer>
+        <a href="https://huangbryant210707.github.io">
+            <img src="/img/avatar.jpg" alt="Bm和弦">
+            Bm和弦
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2017/11/27/hadoop/zk/zookeeper02/&title=《zookeeper运行机制及目录结构》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2017/11/27/hadoop/zk/zookeeper02/&title=《zookeeper运行机制及目录结构》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+    <div id="comment"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2017/11/28/hadoop/zk/zookeeper03/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">zookeeper选举机制</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2017/11/27/hadoop/zk/zookeeper01/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">zookeeper简介</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1）zookeeper运行机制："><span class="post-toc-number">1.</span> <span class="post-toc-text">1）zookeeper运行机制：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2）zookeeper目录结构："><span class="post-toc-number">2.</span> <span class="post-toc-text">2）zookeeper目录结构：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3）zookeeper应用场景："><span class="post-toc-number">3.</span> <span class="post-toc-text">3）zookeeper应用场景：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4）zookeeper实际应用案例："><span class="post-toc-number">4.</span> <span class="post-toc-text">4）zookeeper实际应用案例：</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </div></div></aside>
+    
+</article>
+
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                Bm和弦 &copy;
+                2017 -
+                
+                2019
+            </span>
+
+            
+
+            
+                <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2017/11/27/hadoop/zk/zookeeper02/&title=《zookeeper运行机制及目录结构》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2017/11/27/hadoop/zk/zookeeper02/&title=《zookeeper运行机制及目录结构》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3aQW7jQAwEwPz/01lgT9mDlW5yJs4CpZNhOSOVDiLTnI+P+Pj8e3z9/PWb/G+T1V6dza9YH3h4eHijW391JJf5jI9ncLvC82/w8PDwbvOSYtAunTyg56s/30NShPDw8PDey5vdyqkGHQ8PD+9/5yVtcfIg2iKEh4eH93t4eXzwfHN5Cz6LOS5mLXh4eHgxbzYAe+/n6/M9PDw8vNFUfTbQmkUYpwZs/6yAh4eHd4HXbnLKG+X8XT1roIv4GA8PD+9HeG2IkAS1+82ps+AYDw8P7x4vWW52to1u89Wi9h0PDw/vR3jtkD4fj82KTV6KXoYReHh4eId4eaBwKvBN3tj7eDc7jYeHhzfnbRrf5Oy9jQLDfBoPDw9vzcsb6E2kmwS+qzLQZsZ4eHh482l+EebOGLPNWHlkHP0GDw8P7xBvdpnZBoL8FjdbB17GuHh4eHhHeflLud0ylYcdddDQZi14eHh4h3jJZU5thGrBsy0FdWONh4eHV/LysX2y3GzrwKz81C01Hh4e3iHeBpYXlZbx/PjarQl4eHh4N3jtT5PWdo9vm/hvroWHh4d3lNduuto8ms2gaxig4OHh4R3lJa/XNnTIG9+kjV49Yjw8PLwLvCSWnQUWm1KU17TifwU8PDy8Q7y8MOSv6fwxtbz6Gzw8PLwLvCQknV1yFgTnv3kuWnh4eHj3eO1LfB8itBu2csw3WQseHh7eId7Z0dRs81bbcCfBxDC9wMPDwwt4n+XRPoK8LW574KiA4eHh4V3g5cdsuSgFKQORzf3g4eHhneJtikE76JoVm1UjjoeHh3eNNysGeUudlIe2kBSFAQ8PD++tvNmga7ada7+pCw8PD++9vHYDwWaENhuJvcyq8fDw8C7wNmFEGz3sB1r5anh4eHg3eLMB2KzB3ZSBupnGw8PDO7/aH15jVhrpSos3AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.1"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.1"></script>
+
+<!-- third-party -->
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?295530ec02";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.4.1"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.1"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>
