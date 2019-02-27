@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    
+    
+    <title>
+        sqoop相关命令 |
+        
+        Bm和弦的技术博客
+        
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="sqoop">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:    false,
+            lv: JSON.parse('{"enable":true,"app_id":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","app_key":"gSa6ktF3wTvzdEIaRVqO9nqp","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","appkey":"gSa6ktF3wTvzdEIaRVqO9nqp","notify":false,"verify":false,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":false,"owner":"huangbryant210707","repo":"MyBlogComment","oauth":{"client_id":"eaaab52b29376fc1c7e3","client_secret":"6b68a84c502f280844289475500ea72e0d9c2a4e"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts = [];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap">
+            
+            <div class="brand">
+                <!--  <a href="/" class="avatar waves-effect waves-circle waves-light">
+                </a>-->
+                <img src="/img/avatar.jpg" class="avatar waves-effect waves-circle waves-light">
+                <hgroup class="introduce">
+                    <h5 class="nickname">Bm和弦</h5>
+                    <a href="mailto:15378412400@163.com" title="15378412400@163.com" class="mail">
+                        
+                            <span>1</span>
+                        
+                            <span>5</span>
+                        
+                            <span>3</span>
+                        
+                            <span>7</span>
+                        
+                            <span>8</span>
+                        
+                            <span>4</span>
+                        
+                            <span>1</span>
+                        
+                            <span>2</span>
+                        
+                            <span>4</span>
+                        
+                            <span>0</span>
+                        
+                            <span>0</span>
+                        
+                            <span>@</span>
+                        
+                            <span>1</span>
+                        
+                            <span>6</span>
+                        
+                            <span>3</span>
+                        
+                            <span>.</span>
+                        
+                            <span>c</span>
+                        
+                            <span>o</span>
+                        
+                            <span>m</span>
+                        
+                    </a>
+                </hgroup>
+                
+                    <ul class="menu-link">
+                        
+                        <li>
+                            <a href="https://github.com/huangbryant210707" target="_blank">
+                                <i class="icon icon-lg icon-github"></i>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class>
+                    <a href="/">
+                        <i class="icon icon-lg icon-home"></i>
+                        首页
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/tags">
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/archives">
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/guitar">
+                        <i class="icon icon-lg icon-file-image-o"></i>
+                        吉他谱
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>sqoop相关命令</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">sqoop相关命令</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-23T01:09:02.000Z" itemprop="datePublished" class="page-time">
+  2017-12-23
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left">
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-hadoop/sqoop/sqoop02" class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">sqoop相关命令</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-23 09:09:02" datetime="2017-12-23T01:09:02.000Z" itemprop="datePublished">2017-12-23</time>
+
+            
+
+
+            
+	<span id="/2017/12/23/hadoop/sqoop/sqoop02/" class="leancloud_visitors" data-flag-title="sqoop相关命令" title="sqoop相关命令">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2017/12/23/hadoop/sqoop/sqoop02/#comment">
+            <span class="valine-comment-count" data-xid="/2017/12/23/hadoop/sqoop/sqoop02/"></span>
+        </a>
+    </span>
+
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h2 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h2><h3 id="mysql-gt-hdfs"><a href="#mysql-gt-hdfs" class="headerlink" title="mysql -&gt; hdfs"></a>mysql -&gt; hdfs</h3><blockquote>
+<p>bin/sqoop import \<br>–connect jdbc:mysql://192.168.127.81:3306/sqoop_db \<br>–username root \<br>–password root \<br>–table user \<br>–target-dir /sqoop/datas \<br>–delete-target-dir \<br>–num-mappers 1 \<br>–fields-terminated-by “\t”</p>
+</blockquote>
+<blockquote>
+<p>注意：<strong>需要给与本地操作的权限：<br>grant all privileges on <em>.</em> to root@’%’ indentified by ‘root’;</strong></p>
+</blockquote>
+<h3 id="mysql-gt-hive"><a href="#mysql-gt-hive" class="headerlink" title="mysql -&gt; hive"></a>mysql -&gt; hive</h3><blockquote>
+<p>bin/sqoop import \<br>–connect jdbc:mysql://192.168.81.128:3306/sqoop_db \<br>–username root \<br>–password root \<br>–table user \<br>–num-mappers 1 \<br>–hive-import \<br>–fields-terminated-by “\t” \<br>–hive-overwrite \<br>–hive-table sqoop_db</p>
+</blockquote>
+<blockquote>
+<p>注意：<br><strong>1）必须先创建hive表；<br>2）需要配置环境变量（HADOOP_CLASSPATH）,因为sqoop也是mr程序；~/.bash_profile中增加:<br>export HADOOP_CLASSPATH = $HADOOP_CLASSPATH:/root/hadoop/hive/lib/*</strong></p>
+</blockquote>
+<h2 id="部分导入"><a href="#部分导入" class="headerlink" title="部分导入"></a>部分导入</h2><h3 id="使用query（mysql-gt-hdfs）"><a href="#使用query（mysql-gt-hdfs）" class="headerlink" title="使用query（mysql -&gt; hdfs）"></a>使用query（mysql -&gt; hdfs）</h3><blockquote>
+<p>bin/sqoop import \<br>–connect jdbc:mysql://192.168.127.81:3306/sqoop_db \<br>–username root \<br>–password root \<br>–target-dir /sqoop/datas \<br>–delete-target-dir \<br>–num-mappers 1 \<br>–fields-terminated-by “\t” \<br>–query ‘select * from user where id &lt; 1 and $CONDITIONS’</p>
+</blockquote>
+<p>CONDITIONS解释：<br>    1）是Linux的一个系统变量，在实际执行过程中被替换成（1=0）；<br>    2）如果希望并行导入查询的结果，则每个映射任务都需要执行查询的副本，结果由Sqoop推断的边界条件划分。查询必须包括令牌$CONDITIONS。</p>
+<blockquote>
+<p>注意：<strong>–query不能与–table一起使用，但是两者必须得有一个。</strong></p>
+</blockquote>
+<h3 id="使用–where（mysql-gt-hdfs）"><a href="#使用–where（mysql-gt-hdfs）" class="headerlink" title="使用–where（mysql -&gt; hdfs）"></a>使用–where（mysql -&gt; hdfs）</h3><blockquote>
+<p>bin/sqoop import \<br>–connect jdbc:mysql://192.168.127.81:3306/sqoop_db \<br>–username root \<br>–password root \<br>–table user \<br>–target-dir /sqoop/datas \<br>–delete-target-dir \<br>–num-mappers 1 \<br>–fields-terminated-by “\t” \<br>–where id &lt; 1’</p>
+</blockquote>
+<blockquote>
+<p>注意：<strong>–where可以不加conditions，但是使用–query时则必须加。使用where时需指定–table</strong>。</p>
+</blockquote>
+<h2 id="导出命令"><a href="#导出命令" class="headerlink" title="导出命令"></a>导出命令</h2><blockquote>
+<p>bin/sqoop export \<br>–connect jdbc:mysql://192.168.127.81:3306/sqoop_db \<br>–username root \<br>–password root \<br>–table user \<br>–num-mappers 1 \<br>–export-dir /sqoop/hive/user \<br>–input-fields-terminated-by “\t”</p>
+</blockquote>
+<blockquote>
+<p>注意：<strong>要先创建mysql表（user）</strong>；</p>
+</blockquote>
+<h2 id="sqoop其他常用命令"><a href="#sqoop其他常用命令" class="headerlink" title="sqoop其他常用命令"></a>sqoop其他常用命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>import</td>
+<td style="text-align:center">导入</td>
+</tr>
+<tr>
+<td>export</td>
+<td style="text-align:center">导出</td>
+</tr>
+<tr>
+<td>codegen</td>
+<td style="text-align:center">生成Javabean,并打包jar</td>
+</tr>
+<tr>
+<td>create-hive-table</td>
+<td style="text-align:center">创建hive表</td>
+</tr>
+<tr>
+<td>import-all-tables</td>
+<td style="text-align:center">导入某个数据库下面的所有表</td>
+</tr>
+<tr>
+<td>list-tables</td>
+<td style="text-align:center">列出某个数据库下所有表</td>
+</tr>
+<tr>
+<td>merge</td>
+<td style="text-align:center">将hdfs中不同目录下的数据合并在一起</td>
+</tr>
+<tr>
+<td>help</td>
+<td style="text-align:center">查看帮助</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sqoop常用参数"><a href="#sqoop常用参数" class="headerlink" title="sqoop常用参数"></a>sqoop常用参数</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–connect</td>
+<td style="text-align:center">连接关系型数据库</td>
+</tr>
+<tr>
+<td>–connect-manager</td>
+<td style="text-align:center">连接指定管理类</td>
+</tr>
+<tr>
+<td>–driver</td>
+<td style="text-align:center">jdbc的driver class</td>
+</tr>
+<tr>
+<td>–verbose</td>
+<td style="text-align:center">在控制台打印数据</td>
+</tr>
+<tr>
+<td>–hive-import</td>
+<td style="text-align:center">将关系型数据库导入hive表</td>
+</tr>
+<tr>
+<td>–hive-overwrite</td>
+<td style="text-align:center">覆盖hive中存在的数据</td>
+</tr>
+<tr>
+<td>–create-hive-table</td>
+<td style="text-align:center">创建hive表</td>
+</tr>
+<tr>
+<td>–hive-table</td>
+<td style="text-align:center">接入hive表</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-02-27T08:27:52.409Z" itemprop="dateUpdated">2019-02-27 16:27:52</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2017/12/23/hadoop/sqoop/sqoop02/" target="_blank" rel="external">https://huangbryant210707.github.io/2017/12/23/hadoop/sqoop/sqoop02/</a>
+        
+    </div>
+    <footer>
+        <a href="https://huangbryant210707.github.io">
+            <img src="/img/avatar.jpg" alt="Bm和弦">
+            Bm和弦
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqoop/">sqoop</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2017/12/23/hadoop/sqoop/sqoop02/&title=《sqoop相关命令》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2017/12/23/hadoop/sqoop/sqoop02/&title=《sqoop相关命令》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+    <div id="comment"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2017/12/24/hadoop/sqoop/sqoop03/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">sqoop脚本执行</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2017/12/22/hadoop/sqoop/sqoop01/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Sqoop简介、安装</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#导入数据"><span class="post-toc-number">1.</span> <span class="post-toc-text">导入数据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#mysql-gt-hdfs"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">mysql -&gt; hdfs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#mysql-gt-hive"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">mysql -&gt; hive</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#部分导入"><span class="post-toc-number">2.</span> <span class="post-toc-text">部分导入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用query（mysql-gt-hdfs）"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">使用query（mysql -&gt; hdfs）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用–where（mysql-gt-hdfs）"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">使用–where（mysql -&gt; hdfs）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#导出命令"><span class="post-toc-number">3.</span> <span class="post-toc-text">导出命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#sqoop其他常用命令"><span class="post-toc-number">4.</span> <span class="post-toc-text">sqoop其他常用命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#sqoop常用参数"><span class="post-toc-number">5.</span> <span class="post-toc-text">sqoop常用参数</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </div></div></aside>
+    
+</article>
+
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                Bm和弦 &copy;
+                2017 -
+                
+                2019
+            </span>
+
+            
+
+            
+                <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2017/12/23/hadoop/sqoop/sqoop02/&title=《sqoop相关命令》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2017/12/23/hadoop/sqoop/sqoop02/&title=《sqoop相关命令》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwklEQVR42u3awW4bMQwE0P7/T7fXAsF6Z0gJdYG3p8Dx2noKsFSG/PUrvn7/dT399uc789c/f2/yztWFh4eHt1h6srjPX/xzEe1dT1v5ebMe/wB4eHh413j5Q/nzxz298rKIxXa8WPDw8PC+gJfc255s82KAh4eH9z/ykgN0wv5Myg/xeHh4eP+Kl4QR+UM/jw+SMCIJhQ9kLXh4eHgxLz8Qf8/PV/p7eHh4eEcDgqRBtY8qZqt6XC0eHh7eBV6+iDYaaMcO2kN2EXDg4eHhHeW1g02zQDZnJ+Di8I2Hh4d3gZfc1n5x3k5ry8AwqMXDw8M7ypuNPSUFoGXvY9zH/xXw8PDwjvLa4HU49hST2o2rG2N4eHh4l3nJUTuJEvK4oQ046hExPDw8vAu85MFdtO3LBW3KQBFV4OHh4a15s3GrPMw99c6kFL00wPDw8PAO8ZJAIT8cJ1vQVq2k2BSBCB4eHt6aN2vq5yNZm+Agh73UPTw8PLxDvE0T6+zhuJ0UizYXDw8P7xovjxvygLX9zDaASO7Cw8PDu8HbPOjbFtqpBtiqy4eHh4d3iLeJVpNi0B7fZwXmsfDg4eHhXeO1j/72UJuUilkxqIeu8PDw8Ba8ZHH5Y3p2OB527YLxBTw8PLwbvPaqp7c2R+GjW4CHh4d3j9cOReXFI1nKLOAo4mY8PDy8Q7xZk37YvB8NFuTbUew9Hh4e3jXevsG/GX7NRxBeUmo8PDy8a7xZs2qDaUvUsQQFDw8PbwHLr7xgtJ+Qv1406vDw8PAu8GbP2PYj2oGDz++50t/Dw8PDK3mzj26D3bzwtGNeL9uNh4eHd423aYzNwotocaPCg4eHh/dtvHbYdFZy8tHVl9fx8PDwvobXkvICM4uGjx2p8fDw8GJecnNbKja/zY/p0dAVHh4e3lHefkDqXvs/2egDFx4eHl7K+wPsMxbbnBvAUQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.1"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.1"></script>
+
+<!-- third-party -->
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?295530ec02";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.4.1"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.1"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

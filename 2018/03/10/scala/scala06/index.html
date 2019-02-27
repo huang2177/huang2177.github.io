@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    
+    
+    <title>
+        Scala类型约束 |
+        
+        Bm和弦的技术博客
+        
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="scala">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:    false,
+            lv: JSON.parse('{"enable":true,"app_id":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","app_key":"gSa6ktF3wTvzdEIaRVqO9nqp","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","appkey":"gSa6ktF3wTvzdEIaRVqO9nqp","notify":false,"verify":false,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":false,"owner":"huangbryant210707","repo":"MyBlogComment","oauth":{"client_id":"eaaab52b29376fc1c7e3","client_secret":"6b68a84c502f280844289475500ea72e0d9c2a4e"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts = [];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap">
+            
+            <div class="brand">
+                <!--  <a href="/" class="avatar waves-effect waves-circle waves-light">
+                </a>-->
+                <img src="/img/avatar.jpg" class="avatar waves-effect waves-circle waves-light">
+                <hgroup class="introduce">
+                    <h5 class="nickname">Bm和弦</h5>
+                    <a href="mailto:15378412400@163.com" title="15378412400@163.com" class="mail">
+                        
+                            <span>1</span>
+                        
+                            <span>5</span>
+                        
+                            <span>3</span>
+                        
+                            <span>7</span>
+                        
+                            <span>8</span>
+                        
+                            <span>4</span>
+                        
+                            <span>1</span>
+                        
+                            <span>2</span>
+                        
+                            <span>4</span>
+                        
+                            <span>0</span>
+                        
+                            <span>0</span>
+                        
+                            <span>@</span>
+                        
+                            <span>1</span>
+                        
+                            <span>6</span>
+                        
+                            <span>3</span>
+                        
+                            <span>.</span>
+                        
+                            <span>c</span>
+                        
+                            <span>o</span>
+                        
+                            <span>m</span>
+                        
+                    </a>
+                </hgroup>
+                
+                    <ul class="menu-link">
+                        
+                        <li>
+                            <a href="https://github.com/huangbryant210707" target="_blank">
+                                <i class="icon icon-lg icon-github"></i>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class>
+                    <a href="/">
+                        <i class="icon icon-lg icon-home"></i>
+                        首页
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/tags">
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/archives">
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/guitar">
+                        <i class="icon icon-lg icon-file-image-o"></i>
+                        吉他谱
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Scala类型约束</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Scala类型约束</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-10T09:21:42.000Z" itemprop="datePublished" class="page-time">
+  2018-03-10
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left">
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-scala/scala06" class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Scala类型约束</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-10 17:21:42" datetime="2018-03-10T09:21:42.000Z" itemprop="datePublished">2018-03-10</time>
+
+            
+
+
+            
+	<span id="/2018/03/10/scala/scala06/" class="leancloud_visitors" data-flag-title="Scala类型约束" title="Scala类型约束">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/03/10/scala/scala06/#comment">
+            <span class="valine-comment-count" data-xid="/2018/03/10/scala/scala06/"></span>
+        </a>
+    </span>
+
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <blockquote>
+<p>在Java中比较两个对象是否相等可以继承Comparable，而在Scala中则继承Ordered。</p>
+</blockquote>
+<h2 id="Java中上界（super-Bounds）、下界（Lower-bounds）："><a href="#Java中上界（super-Bounds）、下界（Lower-bounds）：" class="headerlink" title="Java中上界（super Bounds）、下界（Lower bounds）："></a>Java中上界（super Bounds）、下界（Lower bounds）：</h2><figure class="image-box">
+                <a rel="Scala类型约束" href="https://app.yinxiang.com/shard/s54/res/b96bd218-9a74-44fe-bb43-f402e012e670/TIM%E5%9B%BE%E7%89%8720190221152148.png" title="Java中上界、下界" data-fancybox="images"><img src="https://app.yinxiang.com/shard/s54/res/b96bd218-9a74-44fe-bb43-f402e012e670/TIM%E5%9B%BE%E7%89%8720190221152148.png" alt="Java中上界、下界" title class></a>
+                <p>Java中上界、下界</p>
+            </figure>
+<h2 id="Sava中上界（super-Bounds）、下界（Lower-bounds）："><a href="#Sava中上界（super-Bounds）、下界（Lower-bounds）：" class="headerlink" title="Sava中上界（super Bounds）、下界（Lower bounds）："></a>Sava中上界（super Bounds）、下界（Lower bounds）：</h2><p>[_ &lt;: T] 表示上界；[_ &gt;: T]表示下界</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-02-27T05:49:15.045Z" itemprop="dateUpdated">2019-02-27 13:49:15</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/03/10/scala/scala06/" target="_blank" rel="external">https://huangbryant210707.github.io/2018/03/10/scala/scala06/</a>
+        
+    </div>
+    <footer>
+        <a href="https://huangbryant210707.github.io">
+            <img src="/img/avatar.jpg" alt="Bm和弦">
+            Bm和弦
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/03/10/scala/scala06/&title=《Scala类型约束》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/03/10/scala/scala06/&title=《Scala类型约束》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+    <div id="comment"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/02/27/hadoop/hive/hive01/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">hive01</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/03/08/scala/scala05/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Scala并发编程模型（AKKA）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Java中上界（super-Bounds）、下界（Lower-bounds）："><span class="post-toc-number">1.</span> <span class="post-toc-text">Java中上界（super Bounds）、下界（Lower bounds）：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Sava中上界（super-Bounds）、下界（Lower-bounds）："><span class="post-toc-number">2.</span> <span class="post-toc-text">Sava中上界（super Bounds）、下界（Lower bounds）：</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </div></div></aside>
+    
+</article>
+
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                Bm和弦 &copy;
+                2017 -
+                
+                2019
+            </span>
+
+            
+
+            
+                <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/03/10/scala/scala06/&title=《Scala类型约束》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/03/10/scala/scala06/&title=《Scala类型约束》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQW7DMAwEwP7/0+mlhwBtnKUoFxAzPgWJHXt8ILQUv77i4/F0PH+TnPn7/OvPr/55w4GBgXEs43F5JOdckxLe2n0xMDA+jZE8RF5S8wftlHUMDAyMNUZyVV6+MTAwMPqMtcXcdUzFwMDA6ITYvNPVL8E3ZnEMDIwDGXnX/f8/37K/gYGBcRSjEyyri8U7gu7PtRgYGKMZeYGrLhY3B9RkpAMDA2MoozokkUfKvMhWR8r++AYDA2M04+7ymv/z9YtbxGBgYIxgVMNqP5RWm27R8hEDA2M0I7ng+oHygFpdVubLRAwMjNmMtS2BJF7mgxHV5hoGBgZG/+H625M59WWIxcDAGMfIG2G7hifWCm60hYmBgTGUsesG1X/oLzp74R0DA+MMRh4ak7JbLcpvyujeYQsMDIxjGWujXVVS3hmrxuPy0hADA+NARjWUdsYpWo+YD1tgYGCMY0TrxMbN8uVmaxQDAwNjNOOW+r1UZPPIGr0+DAyMcYwkguZ9u7XGXDUGv1kgYmBgDGVUB1jzKLtrgKO8PYCBgTGOsTYM0W/VVQc7ouCKgYExiPEoHrt4+fnRfTEwMEYzqlsCa42zZANgrSiXMRgYGMcyqkW2eoP+Zmdh5AIDA2M0oxpi8wZc9dfqwAcGBgZGdVuxf21hM6DfNcTAwBjK6BTHtTydNOMwMDA+gbE2Cp+XyP7w2ZuXgoGBMZrRL53Ji8i3J+8o/RgYGMcyvgGz5dsZ08E/kAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.1"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.1"></script>
+
+<!-- third-party -->
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?295530ec02";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.4.1"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.1"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

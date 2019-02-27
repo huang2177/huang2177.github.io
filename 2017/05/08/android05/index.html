@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    
+    
+    <title>
+        文件操作、Android清除缓存 |
+        
+        Bm和弦的技术博客
+        
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="android">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:    false,
+            lv: JSON.parse('{"enable":true,"app_id":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","app_key":"gSa6ktF3wTvzdEIaRVqO9nqp","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","appkey":"gSa6ktF3wTvzdEIaRVqO9nqp","notify":false,"verify":false,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":false,"owner":"huangbryant210707","repo":"MyBlogComment","oauth":{"client_id":"eaaab52b29376fc1c7e3","client_secret":"6b68a84c502f280844289475500ea72e0d9c2a4e"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts = [];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap">
+            
+            <div class="brand">
+                <!--  <a href="/" class="avatar waves-effect waves-circle waves-light">
+                </a>-->
+                <img src="/img/avatar.jpg" class="avatar waves-effect waves-circle waves-light">
+                <hgroup class="introduce">
+                    <h5 class="nickname">Bm和弦</h5>
+                    <a href="mailto:15378412400@163.com" title="15378412400@163.com" class="mail">
+                        
+                            <span>1</span>
+                        
+                            <span>5</span>
+                        
+                            <span>3</span>
+                        
+                            <span>7</span>
+                        
+                            <span>8</span>
+                        
+                            <span>4</span>
+                        
+                            <span>1</span>
+                        
+                            <span>2</span>
+                        
+                            <span>4</span>
+                        
+                            <span>0</span>
+                        
+                            <span>0</span>
+                        
+                            <span>@</span>
+                        
+                            <span>1</span>
+                        
+                            <span>6</span>
+                        
+                            <span>3</span>
+                        
+                            <span>.</span>
+                        
+                            <span>c</span>
+                        
+                            <span>o</span>
+                        
+                            <span>m</span>
+                        
+                    </a>
+                </hgroup>
+                
+                    <ul class="menu-link">
+                        
+                        <li>
+                            <a href="https://github.com/huangbryant210707" target="_blank">
+                                <i class="icon icon-lg icon-github"></i>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class>
+                    <a href="/">
+                        <i class="icon icon-lg icon-home"></i>
+                        首页
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/tags">
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/archives">
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/guitar">
+                        <i class="icon icon-lg icon-file-image-o"></i>
+                        吉他谱
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>文件操作、Android清除缓存</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">文件操作、Android清除缓存</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-08T10:06:46.000Z" itemprop="datePublished" class="page-time">
+  2017-05-08
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left">
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-android05" class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">文件操作、Android清除缓存</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-08 18:06:46" datetime="2017-05-08T10:06:46.000Z" itemprop="datePublished">2017-05-08</time>
+
+            
+
+
+            
+	<span id="/2017/05/08/android05/" class="leancloud_visitors" data-flag-title="文件操作、Android清除缓存" title="文件操作、Android清除缓存">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2017/05/08/android05/#comment">
+            <span class="valine-comment-count" data-xid="/2017/05/08/android05/"></span>
+        </a>
+    </span>
+
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h4 id="文件操作的工具类"><a href="#文件操作的工具类" class="headerlink" title="文件操作的工具类"></a>文件操作的工具类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br></pre></td><td class="code"><pre><span class="line">public class SDCardHelper &#123;</span><br><span class="line">    // 判断SD卡是否被挂载</span><br><span class="line">    public static boolean isSDCardMounted() &#123;</span><br><span class="line">        // return Environment.getExternalStorageState().equals(&quot;mounted&quot;);</span><br><span class="line">        return Environment.getExternalStorageState().equals(</span><br><span class="line">                Environment.MEDIA_MOUNTED);</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡的根目录</span><br><span class="line">    public static String getSDCardBaseDir() &#123;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            return Environment.getExternalStorageDirectory().getAbsolutePath();</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡的完整空间大小，返回MB</span><br><span class="line">    public static long getSDCardSize() &#123;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            StatFs fs = new StatFs(getSDCardBaseDir());</span><br><span class="line">            long count = fs.getBlockCountLong();</span><br><span class="line">            long size = fs.getBlockSizeLong();</span><br><span class="line">            return count * size / 1024 / 1024;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡的剩余空间大小</span><br><span class="line">    public static long getSDCardFreeSize() &#123;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            StatFs fs = new StatFs(getSDCardBaseDir());</span><br><span class="line">            long count = fs.getFreeBlocksLong();</span><br><span class="line">            long size = fs.getBlockSizeLong();</span><br><span class="line">            return count * size / 1024 / 1024;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡的可用空间大小</span><br><span class="line">    public static long getSDCardAvailableSize() &#123;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            StatFs fs = new StatFs(getSDCardBaseDir());</span><br><span class="line">            long count = fs.getAvailableBlocksLong();</span><br><span class="line">            long size = fs.getBlockSizeLong();</span><br><span class="line">            return count * size / 1024 / 1024;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    // 往SD卡的公有目录下保存文件</span><br><span class="line">    public static boolean saveFileToSDCardPublicDir(byte[] data, String type,</span><br><span class="line">            String fileName) &#123;</span><br><span class="line">        BufferedOutputStream bos = null;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            File file = Environment.getExternalStoragePublicDirectory(type);</span><br><span class="line">            try &#123;</span><br><span class="line">                bos = new BufferedOutputStream(new FileOutputStream(new File(</span><br><span class="line">                        file, fileName)));</span><br><span class="line">                bos.write(data);</span><br><span class="line">                bos.flush();</span><br><span class="line">                return true;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    bos.close();</span><br><span class="line">                &#125; catch (IOException e) &#123;</span><br><span class="line">                    // TODO Auto-generated catch block</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    // 往SD卡的自定义目录下保存文件</span><br><span class="line">    public static boolean saveFileToSDCardCustomDir(byte[] data, String dir,</span><br><span class="line">            String fileName) &#123;</span><br><span class="line">        BufferedOutputStream bos = null;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            File file = new File(getSDCardBaseDir() + File.separator + dir);</span><br><span class="line">            if (!file.exists()) &#123;</span><br><span class="line">                file.mkdirs();// 递归创建自定义目录</span><br><span class="line">            &#125;</span><br><span class="line">            try &#123;</span><br><span class="line">                bos = new BufferedOutputStream(new FileOutputStream(new File(</span><br><span class="line">                        file, fileName)));</span><br><span class="line">                bos.write(data);</span><br><span class="line">                bos.flush();</span><br><span class="line">                return true;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    bos.close();</span><br><span class="line">                &#125; catch (IOException e) &#123;</span><br><span class="line">                    // TODO Auto-generated catch block</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    // 往SD卡的私有Files目录下保存文件</span><br><span class="line">    public static boolean saveFileToSDCardPrivateFilesDir(byte[] data,</span><br><span class="line">            String type, String fileName, Context context) &#123;</span><br><span class="line">        BufferedOutputStream bos = null;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            File file = context.getExternalFilesDir(type);</span><br><span class="line">            try &#123;</span><br><span class="line">                bos = new BufferedOutputStream(new FileOutputStream(new File(</span><br><span class="line">                        file, fileName)));</span><br><span class="line">                bos.write(data);</span><br><span class="line">                bos.flush();</span><br><span class="line">                return true;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    bos.close();</span><br><span class="line">                &#125; catch (IOException e) &#123;</span><br><span class="line">                    // TODO Auto-generated catch block</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    // 往SD卡的私有Cache目录下保存文件</span><br><span class="line">    public static boolean saveFileToSDCardPrivateCacheDir(byte[] data,</span><br><span class="line">            String fileName, Context context) &#123;</span><br><span class="line">        BufferedOutputStream bos = null;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            File file = context.getExternalCacheDir();</span><br><span class="line">            try &#123;</span><br><span class="line">                bos = new BufferedOutputStream(new FileOutputStream(new File(</span><br><span class="line">                        file, fileName)));</span><br><span class="line">                bos.write(data);</span><br><span class="line">                bos.flush();</span><br><span class="line">                return true;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    bos.close();</span><br><span class="line">                &#125; catch (IOException e) &#123;</span><br><span class="line">                    // TODO Auto-generated catch block</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    // 保存bitmap图片到SDCard的私有Cache目录</span><br><span class="line">    public static boolean saveBitmapToSDCardPrivateCacheDir(Bitmap bitmap,</span><br><span class="line">            String fileName, Context context) &#123;</span><br><span class="line">        if (isSDCardMounted()) &#123;</span><br><span class="line">            BufferedOutputStream bos = null;</span><br><span class="line">            // 获取私有的Cache缓存目录</span><br><span class="line">            File file = context.getExternalCacheDir();</span><br><span class="line">            try &#123;</span><br><span class="line">                bos = new BufferedOutputStream(new FileOutputStream(new File(</span><br><span class="line">                        file, fileName)));</span><br><span class="line">                if (fileName != null</span><br><span class="line">                        &amp;&amp; (fileName.contains(&quot;.png&quot;) || fileName</span><br><span class="line">                                .contains(&quot;.PNG&quot;))) &#123;</span><br><span class="line">                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);</span><br><span class="line">                &#125;</span><br><span class="line">                bos.flush();</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                if (bos != null) &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        bos.close();</span><br><span class="line">                    &#125; catch (IOException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 从SD卡获取文件</span><br><span class="line">    public static byte[] loadFileFromSDCard(String fileDir) &#123;</span><br><span class="line">        BufferedInputStream bis = null;</span><br><span class="line">        ByteArrayOutputStream baos = new ByteArrayOutputStream();</span><br><span class="line">        try &#123;</span><br><span class="line">            bis = new BufferedInputStream(</span><br><span class="line">                    new FileInputStream(new File(fileDir)));</span><br><span class="line">            byte[] buffer = new byte[8 * 1024];</span><br><span class="line">            int c = 0;</span><br><span class="line">            while ((c = bis.read(buffer)) != -1) &#123;</span><br><span class="line">                baos.write(buffer, 0, c);</span><br><span class="line">                baos.flush();</span><br><span class="line">            &#125;</span><br><span class="line">            return baos.toByteArray();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                baos.close();</span><br><span class="line">                bis.close();</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    // 从SDCard中寻找指定目录下的文件，返回Bitmap</span><br><span class="line">    public Bitmap loadBitmapFromSDCard(String filePath) &#123;</span><br><span class="line">        byte[] data = loadFileFromSDCard(filePath);</span><br><span class="line">        if (data != null) &#123;</span><br><span class="line">            Bitmap bm = BitmapFactory.decodeByteArray(data, 0, data.length);</span><br><span class="line">            if (bm != null) &#123;</span><br><span class="line">                return bm;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡公有目录的路径</span><br><span class="line">    public static String getSDCardPublicDir(String type) &#123;</span><br><span class="line">        return Environment.getExternalStoragePublicDirectory(type).toString();</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡私有Cache目录的路径</span><br><span class="line">    public static String getSDCardPrivateCacheDir(Context context) &#123;</span><br><span class="line">        return context.getExternalCacheDir().getAbsolutePath();</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取SD卡私有Files目录的路径</span><br><span class="line">    public static String getSDCardPrivateFilesDir(Context context, String type) &#123;</span><br><span class="line">        return context.getExternalFilesDir(type).getAbsolutePath();</span><br><span class="line">    &#125;</span><br><span class="line">    public static boolean isFileExist(String filePath) &#123;</span><br><span class="line">        File file = new File(filePath);</span><br><span class="line">        return file.isFile();</span><br><span class="line">    &#125;</span><br><span class="line">    // 从sdcard中删除文件</span><br><span class="line">    public static boolean removeFileFromSDCard(String filePath) &#123;</span><br><span class="line">        File file = new File(filePath);</span><br><span class="line">        if (file.exists()) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                file.delete();</span><br><span class="line">                return true;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Android-清除缓存的方法"><a href="#Android-清除缓存的方法" class="headerlink" title="Android 清除缓存的方法"></a>Android 清除缓存的方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">//获取缓存大小</span><br><span class="line"></span><br><span class="line">public  String getTotalCacheSize() &#123;</span><br><span class="line">        long cacheSize = getFileSize(getCacheDir());</span><br><span class="line">        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) &#123;</span><br><span class="line">            cacheSize += getFileSize(getExternalCacheDir());</span><br><span class="line">        &#125;</span><br><span class="line">        return getFormatSize(cacheSize);</span><br><span class="line">    &#125;</span><br><span class="line">    /**</span><br><span class="line">     * 获取指定文件大小</span><br><span class="line">     *</span><br><span class="line">     * @param</span><br><span class="line">     * @return</span><br><span class="line">     * @throws Exception</span><br><span class="line">     */</span><br><span class="line">    public long getFileSize(File file) &#123;</span><br><span class="line">        long size = 0;</span><br><span class="line">        try &#123;</span><br><span class="line">            File[] fileList = file.listFiles();</span><br><span class="line">            int size2 = 0;</span><br><span class="line">            if (fileList != null) &#123;</span><br><span class="line">                size2 = fileList.length;</span><br><span class="line">                for (int i = 0; i &lt; size2; i++) &#123;</span><br><span class="line">                    // 如果下面还有文件</span><br><span class="line">                    if (fileList[i].isDirectory()) &#123;</span><br><span class="line">                        size = size + getFileSize(fileList[i]);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        size = size + fileList[i].length();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return size;</span><br><span class="line">    &#125;</span><br><span class="line">    public static String getFormatSize(double size) &#123;</span><br><span class="line">        double kiloByte = size / 1024;</span><br><span class="line">        if (kiloByte &lt; 1) &#123;</span><br><span class="line">            // return size + &quot;Byte&quot;;</span><br><span class="line">            return &quot;0K&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        double megaByte = kiloByte / 1024;</span><br><span class="line">        if (megaByte &lt; 1) &#123;</span><br><span class="line">            BigDecimal result1 = new BigDecimal(Double.toString(kiloByte));</span><br><span class="line">            return result1.setScale(2, BigDecimal.ROUND_HALF_UP)</span><br><span class="line">                    .toPlainString() + &quot;KB&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        double gigaByte = megaByte / 1024;</span><br><span class="line">        if (gigaByte &lt; 1) &#123;</span><br><span class="line">            BigDecimal result2 = new BigDecimal(Double.toString(megaByte));</span><br><span class="line">            return result2.setScale(2, BigDecimal.ROUND_HALF_UP)</span><br><span class="line">                    .toPlainString() + &quot;MB&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        double teraBytes = gigaByte / 1024;</span><br><span class="line">        if (teraBytes &lt; 1) &#123;</span><br><span class="line">            BigDecimal result3 = new BigDecimal(Double.toString(gigaByte));</span><br><span class="line">            return result3.setScale(2, BigDecimal.ROUND_HALF_UP)</span><br><span class="line">                    .toPlainString() + &quot;GB&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        BigDecimal result4 = new BigDecimal(teraBytes);</span><br><span class="line">        return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString()</span><br><span class="line">                + &quot;TB&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> /**</span><br><span class="line">     * @param context</span><br><span class="line">     *            删除缓存</span><br><span class="line">     */</span><br><span class="line">    public static void clearAllCache(Context context) &#123;</span><br><span class="line">        deleteDir(context.getCacheDir());</span><br><span class="line">        if (Environment.getExternalStorageState().equals(</span><br><span class="line">                Environment.MEDIA_MOUNTED)) &#123;</span><br><span class="line">            deleteDir(context.getExternalCacheDir());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private static boolean deleteDir(File dir) &#123;</span><br><span class="line">        if (dir != null &amp;&amp; dir.isDirectory()) &#123;</span><br><span class="line">            String[] children = dir.list();</span><br><span class="line">            int size = 0;</span><br><span class="line">            if (children != null) &#123;</span><br><span class="line">                size = children.length;</span><br><span class="line">                for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">                    boolean success = deleteDir(new File(dir, children[i]));</span><br><span class="line">                    if (!success) &#123;</span><br><span class="line">                        return false;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (dir == null) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return dir.delete();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-02-27T07:56:41.520Z" itemprop="dateUpdated">2019-02-27 15:56:41</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2017/05/08/android05/" target="_blank" rel="external">https://huangbryant210707.github.io/2017/05/08/android05/</a>
+        
+    </div>
+    <footer>
+        <a href="https://huangbryant210707.github.io">
+            <img src="/img/avatar.jpg" alt="Bm和弦">
+            Bm和弦
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2017/05/08/android05/&title=《文件操作、Android清除缓存》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2017/05/08/android05/&title=《文件操作、Android清除缓存》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+    <div id="comment"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2017/05/22/android03/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">android 7.0以后的popouwindow弹出问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2017/04/29/android04/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android中常用的图片压缩方式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#文件操作的工具类"><span class="post-toc-number">1.</span> <span class="post-toc-text">文件操作的工具类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Android-清除缓存的方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">Android 清除缓存的方法</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </div></div></aside>
+    
+</article>
+
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                Bm和弦 &copy;
+                2017 -
+                
+                2019
+            </span>
+
+            
+
+            
+                <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2017/05/08/android05/&title=《文件操作、Android清除缓存》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2017/05/08/android05/&title=《文件操作、Android清除缓存》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aS26EMBAFQO5/abIdCYFetyGS7fIqIsC4WLTcn+OI1/mzfq9c/3u98+7+5/ccXywMDIxpGefjSjaaXL9uuvfmWyoGBsYGjLsI9nxP/p7njebs2+sYGBgYxaCZHx9zJAYGBkYv4CZpZzUpxcDAwBhJYkfCaPXZD3NxDAyMCRkjQfDrvz/pb2BgYEzF6CWWIwW15AOVd4WBgbE0o1r0TwYp3mokVIc/MDAwVmWMDFVUS3XJ+FfzM2FgYGzAyJPVXtrZ+zT5SBkGBsbajORY1guveQCtPhsdHzEwMBZljATf3nBGckAsp8cYGBiLMoYidHCY++79GBgY+zCqG6oW0artyRdaCBgYGMsx8h/uBeukVFdlFDqxGBgYkzPywFcdFOslxvnWbzuxGBgYyzGqj701WvHysAUGBsZmjF4amQxb9JLk/GNhYGDswMhr7OMpa689MHI/BgbGvIy8TP8/SWxzFAMDA2NpRi+BfH6qmppWU9bm5AgGBsbkjPLQVVBEGx/ayFNiDAyMfRi9klZeSsuT2GojAQMDY09G8lg+7NUbtsjLeRgYGGszzuLK8XngTo6Y5bMtBgbGQoxeIzMvt+VpbS8oD/VjMTAwpmJUf6zXKugV8vIUGgMDYwdGoQQftBt7x8HqQBgGBgZGEnCr200+RHP4AwMDAyNOTZNt9VoCUXsAAwNjaUZe3B9pG+TbLQd6DAyMpRnV1LFXdBtJYl9rZGJgYMzH+ANbdtsZabGyqAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.1"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.1"></script>
+
+<!-- third-party -->
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?295530ec02";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.4.1"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.1"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

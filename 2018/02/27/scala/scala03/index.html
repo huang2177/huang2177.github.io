@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    
+    
+    <title>
+        Scala数组&amp;集合 |
+        
+        Bm和弦的技术博客
+        
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="scala">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:    false,
+            lv: JSON.parse('{"enable":true,"app_id":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","app_key":"gSa6ktF3wTvzdEIaRVqO9nqp","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","appkey":"gSa6ktF3wTvzdEIaRVqO9nqp","notify":false,"verify":false,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":false,"owner":"huangbryant210707","repo":"MyBlogComment","oauth":{"client_id":"eaaab52b29376fc1c7e3","client_secret":"6b68a84c502f280844289475500ea72e0d9c2a4e"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts = [];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap">
+            
+            <div class="brand">
+                <!--  <a href="/" class="avatar waves-effect waves-circle waves-light">
+                </a>-->
+                <img src="/img/avatar.jpg" class="avatar waves-effect waves-circle waves-light">
+                <hgroup class="introduce">
+                    <h5 class="nickname">Bm和弦</h5>
+                    <a href="mailto:15378412400@163.com" title="15378412400@163.com" class="mail">
+                        
+                            <span>1</span>
+                        
+                            <span>5</span>
+                        
+                            <span>3</span>
+                        
+                            <span>7</span>
+                        
+                            <span>8</span>
+                        
+                            <span>4</span>
+                        
+                            <span>1</span>
+                        
+                            <span>2</span>
+                        
+                            <span>4</span>
+                        
+                            <span>0</span>
+                        
+                            <span>0</span>
+                        
+                            <span>@</span>
+                        
+                            <span>1</span>
+                        
+                            <span>6</span>
+                        
+                            <span>3</span>
+                        
+                            <span>.</span>
+                        
+                            <span>c</span>
+                        
+                            <span>o</span>
+                        
+                            <span>m</span>
+                        
+                    </a>
+                </hgroup>
+                
+                    <ul class="menu-link">
+                        
+                        <li>
+                            <a href="https://github.com/huangbryant210707" target="_blank">
+                                <i class="icon icon-lg icon-github"></i>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class>
+                    <a href="/">
+                        <i class="icon icon-lg icon-home"></i>
+                        首页
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/tags">
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/archives">
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/guitar">
+                        <i class="icon icon-lg icon-file-image-o"></i>
+                        吉他谱
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Scala数组&amp;集合</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Scala数组&amp;集合</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-27T07:11:44.000Z" itemprop="datePublished" class="page-time">
+  2018-02-27
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left">
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-scala/scala03" class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Scala数组&集合</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-27 15:11:44" datetime="2018-02-27T07:11:44.000Z" itemprop="datePublished">2018-02-27</time>
+
+            
+
+
+            
+	<span id="/2018/02/27/scala/scala03/" class="leancloud_visitors" data-flag-title="Scala数组&集合" title="Scala数组&集合">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/02/27/scala/scala03/#comment">
+            <span class="valine-comment-count" data-xid="/2018/02/27/scala/scala03/"></span>
+        </a>
+    </span>
+
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h6 id="1）定义："><a href="#1）定义：" class="headerlink" title="1）定义："></a>1）定义：</h6><blockquote>
+<p>var arr1 = new Array<a href="3">int</a><br>     arr1(1) = 1<br>     arr += 2 //此时arr1的长度为4 [Array（1，null，null，2）]<br>     var arr2 = Array(1,2,3,4) //实际上是调用 了Array的apply方法<br>     arr2 += 5 //此时编译报错，这种定义方法实际上已经决定了数组的长度<br>     var array = Array(1,2,3,4)</p>
+</blockquote>
+<h6 id="2）map："><a href="#2）map：" class="headerlink" title="2）map："></a>2）map：</h6><blockquote>
+<p>var array1 = array.map(x =&gt; x <em> 10)<br>     将数组中的每个元素都经过该函数进行处理（x </em> 10），再将结果返回；<br>     array1  —&gt; (10,20,30,40)   </p>
+</blockquote>
+<h6 id="3）flatten（扁平化操作）："><a href="#3）flatten（扁平化操作）：" class="headerlink" title="3）flatten（扁平化操作）："></a>3）flatten（扁平化操作）：</h6><blockquote>
+<p>将一个数组（集合）中有多个数组（集合）全部拆开，并把元素放到一个新的数组（集合中）；<br>     var array = Array(Array(1, 2, 3), Array(10, 20, 30))<br>     array.flatten  —&gt;  Array(1, 2, 3, 10, 20, 30)  </p>
+</blockquote>
+<h6 id="4）flatMap："><a href="#4）flatMap：" class="headerlink" title="4）flatMap："></a>4）flatMap：</h6><p>对一个数组（集合）先执行map操作，在执行flatten操作。</p>
+<h2 id="集合（有两种类型）"><a href="#集合（有两种类型）" class="headerlink" title="集合（有两种类型）"></a>集合（有两种类型）</h2><h6 id="1）immutable（不可变集合）"><a href="#1）immutable（不可变集合）" class="headerlink" title="1）immutable（不可变集合）"></a>1）immutable（不可变集合）</h6>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import scala.collection.immutable._     </span><br><span class="line">val list = List(1,2,3)</span><br><span class="line">    长度不可变： list += 20 //编译器报错</span><br><span class="line">    值不能改变： list(1) = 10 //编译器报错</span><br><span class="line"></span><br><span class="line">val map = Map(0 -&gt; &quot;huang&quot; , 1 -&gt; &quot;hello&quot;)</span><br></pre></td></tr></table></figure>
+<h6 id="2）mutable（可变集合）"><a href="#2）mutable（可变集合）" class="headerlink" title="2）mutable（可变集合）"></a>2）mutable（可变集合）</h6>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import scala.collection.mutable._    </span><br><span class="line">    （1）ArrayBuffer： </span><br><span class="line">         val buff = ArrayBuffer（1,2,3,4）</span><br></pre></td></tr></table></figure>
+<h6 id="3）集合常见操作："><a href="#3）集合常见操作：" class="headerlink" title="3）集合常见操作："></a>3）集合常见操作：</h6><blockquote>
+<p>（1）:: （cons，意为构造），向队列的头部追加数据，创造新的列表。<br>（2）:+和+:  :+方法用于在尾部追加元素，+:方法用于在头部追加元素，和::很类似，但是::可以用于pattern match ，而+:则不行. （关于+:和:+,只要记住冒号永远靠近集合类型就OK了）。<br>（3）++ 该方法用于连接两个集合，list1++list2<br>（4）::: 该方法只能用于连接两个List类型的集合<br>（5）list.head 获取list的头元素<br>（6）list.tail 获取list的尾元素（注意：除了头元素，其他都是尾元素）<br>（7）list.count(x =&gt; x &gt; 4)  //统计符合某条件的集合个数<br>（8）list.filter(x =&gt; x &gt; 4)   //过滤<br>（9）list.fold(2)((x , y) =&gt; x + y) //折叠，加一个初始值2<br>（10）list.aggregate（）：先局部聚合，在全局聚合（结果跟fold一样）<br>（11）list.zip(list1)：拉链，将两个集合的元素以（k，v）形式重组，多余的舍弃<br>（12）reduceLeft 、reduceRight 、foldLeft 、foldRight<br>         println(s”reduceLeft – ${l.reduceLeft(_ - <em>)}”)     // 1-2-3<br>         println(s”reduceRight – ${l.reduceRight(</em> - <em>)}”) // (1-(2-3))<br>         println(s”foldLeft – ${l.foldLeft(0)(</em> - <em>)}”)          // (((0-1)-2)-3)<br>         println(s”foldRight – ${l.foldRight(0)(</em> - _)}”)     // (1-(2-(3-0)))</p>
+</blockquote>
+<h6 id="4）元祖的使用"><a href="#4）元祖的使用" class="headerlink" title="4）元祖的使用"></a>4）元祖的使用</h6>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val array = Array((&quot;huang&quot;, 26), (&quot;zhao&quot;, 25))</span><br><span class="line">println(&quot;reduce --- &quot; + array.map(_._2).sum)</span><br><span class="line">println(&quot;fold --- &quot; + array.foldRight(0)(_._2 + _))</span><br><span class="line">println(&quot;reduce --- &quot; + array.reduce((x, y) =&gt; (&quot;&quot;, x._2 + y._2)))</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-02-27T05:20:53.585Z" itemprop="dateUpdated">2019-02-27 13:20:53</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/02/27/scala/scala03/" target="_blank" rel="external">https://huangbryant210707.github.io/2018/02/27/scala/scala03/</a>
+        
+    </div>
+    <footer>
+        <a href="https://huangbryant210707.github.io">
+            <img src="/img/avatar.jpg" alt="Bm和弦">
+            Bm和弦
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/02/27/scala/scala03/&title=《Scala数组&集合》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/02/27/scala/scala03/&title=《Scala数组&集合》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+    <div id="comment"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/03/02/spark/spark01/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">spark01</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/02/24/scala/scala02/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Scala方法、函数</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数组"><span class="post-toc-number">1.</span> <span class="post-toc-text">数组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#集合（有两种类型）"><span class="post-toc-number">2.</span> <span class="post-toc-text">集合（有两种类型）</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </div></div></aside>
+    
+</article>
+
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                Bm和弦 &copy;
+                2017 -
+                
+                2019
+            </span>
+
+            
+
+            
+                <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huangbryant210707.github.io/2018/02/27/scala/scala03/&title=《Scala数组&集合》 — Bm和弦的技术博客&pic=https://huangbryant210707.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huangbryant210707.github.io/2018/02/27/scala/scala03/&title=《Scala数组&集合》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aS27DMAwFwNz/0ummiwBtlEfSLWBpvAoM+TNeMKTIxyM+ni/H65lk5c/169/v7nzBgYGBcVvGc3kka9ak9YeYPBcDA+M0RvIS+frkM+XU6FkYGBgYy3St+op5+MbAwMC4KuD2Er71R8HAwMDoFbHVMjXfXPvXWhwDA+OGjHzX/f9//0l/AwMD41aMSWE53+ifF7rf12JgYGzNyANc8kKTwJ0U1R9GOjAwMDZlVEvT5Py8Mbm+2y9nMDAwtmZMCtdexdxrdo4wGBgYN2dUC85qMP2LNsPb/w0MDIxNGXl5mReW6zskzcg86cTAwDiBkTcUc1h1MKK6uYaBgXEmoxcErx0C61GjTiwGBsYWjHkylzcV5knnhxYmBgbGpoyrHlC9Q/XaDwNhGBgYmzLyovGq9kBSGF82bIGBgbEFI29e9grX6rBF3raMUkMMDIyNGNVxh6S4vewVk7IWAwPjAEbvkfmwV5JujkYxMDAwtmZUH189nwfZvGSNJkcwMDAOYzQHIIoNgGrgjvJcDAyM7RhJgljd7q+2BCZXYWBgnMaYD0NUg28+2PF2JQYGxqaMZ/HIN/Tzjf5JuMfAwDiBUS1ZextnSQOgF5TLGAwMjNsyJsMT1fZk9ZM1Ry4wMDA2ZRS24OPUsPohqg0JDAwMjF5bcX5toRlQ7aliYGAcw5gMRvTq6WjEFgMD4wBGXohWWwh5IljdesPAwDiH0Ssd56RJ4B71NzAwMO7E+AL0hvoIpA9eMgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.1"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.1"></script>
+
+<!-- third-party -->
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?295530ec02";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.4.1"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.1"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>
