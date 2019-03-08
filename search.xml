@@ -29,12 +29,80 @@
 <p>}</p>
 <p>}</p>
 <p>}</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1331964616&auto=1&height=66"></iframe>]]></content>
+<iframe type="music" frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1331964616&auto=1&height=66"></iframe>]]></content>
       
         
         <tags>
             
             <tag> 随笔 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[python爬取西刺的可用代理]]></title>
+      <url>/2018/12/07/python/python02/</url>
+      <content type="html"><![CDATA[<p><a href="http://www.xicidaili.com/" target="_blank" rel="noopener">西刺代理</a><br>在使用python爬取网络数据时，网络需要设置代理服务器，防止目标网站对IP的限制。网站实现了众多可以使用的代理服务器，这里写了一个爬虫，爬取其中 国内高匿代理IP。</p>
+<h4 id="通过代码把ip、端口爬到本地"><a href="#通过代码把ip、端口爬到本地" class="headerlink" title="通过代码把ip、端口爬到本地"></a>通过代码把ip、端口爬到本地</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import time</span><br><span class="line">import selenium.webdriver as web</span><br><span class="line"></span><br><span class="line">url = &apos;https://www.xicidaili.com/nn/&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def start_chrome():</span><br><span class="line">    _driver = web.Chrome(&apos;D:/pythonprojects/PythonTrain01/chromedriver.exe&apos;)</span><br><span class="line">    _driver.start_client()</span><br><span class="line">    return _driver</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def get_ip():</span><br><span class="line">    ips = []</span><br><span class="line">    td_sel = &apos;#ip_list &gt; tbody &gt; tr&apos;</span><br><span class="line">    tds = driver.find_elements_by_css_selector(td_sel)</span><br><span class="line">    for td in tds[1:]:</span><br><span class="line">        ip_sel = &apos;td:nth-child(2)&apos;</span><br><span class="line">        port_sel = &apos;td:nth-child(3)&apos;</span><br><span class="line">        ip = td.find_element_by_css_selector(ip_sel).text</span><br><span class="line">        port = td.find_element_by_css_selector(port_sel).text</span><br><span class="line">        ips.append(f&apos;&#123;ip&#125; : &#123;port&#125;&apos;)</span><br><span class="line">    return ips</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def save(ips):</span><br><span class="line">    ips = &apos;\n&apos;.join(ips) + &apos;\n&apos;</span><br><span class="line">    if os.path.exists(&apos;proxy.txt&apos;):</span><br><span class="line">        with open(&apos;proxy.txt&apos;, &apos;a&apos;) as f:</span><br><span class="line">            f.write(ips)</span><br><span class="line">    else:</span><br><span class="line">        with open(&apos;proxy.txt&apos;, &apos;w+&apos;) as f:</span><br><span class="line">            f.write(ips)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def find_next():</span><br><span class="line">    for i in range(1, 5):</span><br><span class="line">        driver.get(url + str(i))</span><br><span class="line">        time.sleep(3)</span><br><span class="line">        save(get_ip())</span><br><span class="line">        print(f&apos;获取第&#123;i&#125;页数据&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">driver = start_chrome()</span><br><span class="line">find_next()</span><br></pre></td></tr></table></figure>
+<h4 id="通过花刺筛选可用的代理"><a href="#通过花刺筛选可用的代理" class="headerlink" title="通过花刺筛选可用的代理"></a>通过花刺筛选可用的代理</h4><figure class="image-box">
+                <img src="/2018/12/07/python/python02/花刺.png" alt="花刺" title class>
+                <p>花刺</p>
+            </figure>
+<blockquote>
+<p>使用方法：导入 -&gt; 验证全部 -&gt; 清除</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[urllib使用]]></title>
+      <url>/2018/12/07/python/python01/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>模拟浏览器发送请求的库，python自带。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Python2</th>
+<th style="text-align:center">Python3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">urllib</td>
+<td style="text-align:center">urllib.request</td>
+</tr>
+<tr>
+<td style="text-align:center">urllib2</td>
+<td style="text-align:center">urllib.parse</td>
+</tr>
+</tbody>
+</table>
+<h4 id="urllib-requset"><a href="#urllib-requset" class="headerlink" title="urllib.requset"></a>urllib.requset</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">response = req.urlopen(url) # 请求网络</span><br><span class="line">response的常见函数：</span><br><span class="line">  1、read()：读取相应内容，内容是二进制格式；</span><br><span class="line">  2、geturl()：获取请求的url；</span><br><span class="line">  3、getheaders()：获取头部信息；</span><br><span class="line">  4、getcode()：获取状态嘛；</span><br><span class="line">  5、readlines()：按行读取，一般很少使用；</span><br></pre></td></tr></table></figure>
+<h4 id="urllib-parse"><a href="#urllib-parse" class="headerlink" title="urllib.parse"></a>urllib.parse</h4><h5 id="urllib-parse-quote"><a href="#urllib-parse-quote" class="headerlink" title="urllib.parse.quote"></a>urllib.parse.quote</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = urllib.parse.quote.(url) #编码</span><br><span class="line">ret = urllib.parse.unquote.(url) #解码</span><br></pre></td></tr></table></figure>
+<h5 id="urllib-parse-urlencode"><a href="#urllib-parse-urlencode" class="headerlink" title="urllib.parse.urlencode"></a>urllib.parse.urlencode</h5><p>将参数进行编码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urllib.parse.urlencode(data) # 需要传递一个字典</span><br></pre></td></tr></table></figure></p>
+<h4 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;&apos;user-Agent&apos; : &apos;&apos;&#125;</span><br><span class="line"># 构建请求对象（这实际上也是反爬的第一步，通过伪装自己的UA（user-agent）；）</span><br><span class="line">request = urllib.requset.Requset(url, header=headers)</span><br><span class="line"># 发送请求</span><br><span class="line">response = urllib.requset.urlopen(request)</span><br></pre></td></tr></table></figure>
+<h4 id="post请求"><a href="#post请求" class="headerlink" title="post请求"></a>post请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;&apos;user-agent&apos;: &apos;Huang&apos;&#125;</span><br><span class="line">data = &#123;&apos;name&apos;: &apos;Huang&apos;, &apos;age&apos;: &apos;26&apos;&#125;</span><br><span class="line"># 队请求的参数进行编码query = parse.urlencode(data)</span><br><span class="line">req = request.Request(&apos;http://www.baidu.com/&apos;, query, headers)</span><br><span class="line">response = request.urlopen(req)</span><br></pre></td></tr></table></figure>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>某些时候在模拟某个浏览器请求数据的时候，可能会出现接口报错的情况，那么有可能需要我们全部的请求参数，包括<strong>请求头</strong>全部都传过去，但是，有两个参数不能传：</p>
+<ul>
+<li>‘Content-Length’ : ‘120’#是内容长度，有时候会自动计算，但以防万一还是不要加；</li>
+<li>‘Accept-Encoding’ : ‘gzip,deflate’ # 告诉服务需不需要压缩，一般已不需要加；</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> python </tag>
             
         </tags>
         
@@ -89,51 +157,6 @@
         <tags>
             
             <tag> scala </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[urllib使用]]></title>
-      <url>/2018/03/07/python/python01/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>模拟浏览器发送请求的库，python自带。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Python2</th>
-<th style="text-align:center">Python3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">urllib</td>
-<td style="text-align:center">urllib.request</td>
-</tr>
-<tr>
-<td style="text-align:center">urllib2</td>
-<td style="text-align:center">urllib.parse</td>
-</tr>
-</tbody>
-</table>
-<h4 id="urllib-requset"><a href="#urllib-requset" class="headerlink" title="urllib.requset"></a>urllib.requset</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">response = req.urlopen(url) # 请求网络</span><br><span class="line">response的常见函数：</span><br><span class="line">  1、read()：读取相应内容，内容是二进制格式；</span><br><span class="line">  2、geturl()：获取请求的url；</span><br><span class="line">  3、getheaders()：获取头部信息；</span><br><span class="line">  4、getcode()：获取状态嘛；</span><br><span class="line">  5、readlines()：按行读取，一般很少使用；</span><br></pre></td></tr></table></figure>
-<h4 id="urllib-parse"><a href="#urllib-parse" class="headerlink" title="urllib.parse"></a>urllib.parse</h4><h5 id="urllib-parse-quote"><a href="#urllib-parse-quote" class="headerlink" title="urllib.parse.quote"></a>urllib.parse.quote</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = urllib.parse.quote.(url) #编码</span><br><span class="line">ret = urllib.parse.unquote.(url) #解码</span><br></pre></td></tr></table></figure>
-<h5 id="urllib-parse-urlencode"><a href="#urllib-parse-urlencode" class="headerlink" title="urllib.parse.urlencode"></a>urllib.parse.urlencode</h5><p>将参数进行编码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urllib.parse.urlencode(data) # 需要传递一个字典</span><br></pre></td></tr></table></figure></p>
-<h4 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;&apos;user-Agent&apos; : &apos;&apos;&#125;</span><br><span class="line"># 构建请求对象（这实际上也是反爬的第一步，通过伪装自己的UA（user-agent）；）</span><br><span class="line">request = urllib.requset.Requset(url, header=headers)</span><br><span class="line"># 发送请求</span><br><span class="line">response = urllib.requset.urlopen(request)</span><br></pre></td></tr></table></figure>
-<h4 id="post请求"><a href="#post请求" class="headerlink" title="post请求"></a>post请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;&apos;user-agent&apos;: &apos;Huang&apos;&#125;</span><br><span class="line">data = &#123;&apos;name&apos;: &apos;Huang&apos;, &apos;age&apos;: &apos;26&apos;&#125;</span><br><span class="line"># 队请求的参数进行编码query = parse.urlencode(data)</span><br><span class="line">req = request.Request(&apos;http://www.baidu.com/&apos;, query, headers)</span><br><span class="line">response = request.urlopen(req)</span><br></pre></td></tr></table></figure>
-<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>某些时候在模拟某个浏览器请求数据的时候，可能会出现接口报错的情况，那么有可能需要我们全部的请求参数，包括<strong>请求头</strong>全部都传过去，但是，有两个参数不能传：</p>
-<ul>
-<li>‘Content-Length’ : ‘120’#是内容长度，有时候会自动计算，但以防万一还是不要加；</li>
-<li>‘Accept-Encoding’ : ‘gzip,deflate’ # 告诉服务需不需要压缩，一般已不需要加；</li>
-</ul>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> mysql </tag>
             
         </tags>
         

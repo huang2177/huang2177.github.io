@@ -5,14 +5,14 @@
     
     
     <title>
-        sql优化 |
+        urllib使用 |
         
         Bm和弦的技术博客
         
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="mysql">
+    <meta name="keywords" content="python">
     <link rel="shortcut icon" href="/img/favicon.png">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/style.css?v=1.4.1">
@@ -148,7 +148,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>sql优化</span>
+            <span>urllib使用</span>
             
         </div>
         
@@ -161,11 +161,11 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">sql优化</h1>
+        <h1 class="title">urllib使用</h1>
         <h5 class="subtitle">
             
-                <time datetime="2017-03-07T07:28:13.000Z" itemprop="datePublished" class="page-time">
-  2017-03-07
+                <time datetime="2018-12-07T06:48:13.000Z" itemprop="datePublished" class="page-time">
+  2018-12-07
 </time>
 
 
@@ -192,17 +192,17 @@
 
 
 <div class="container body-wrap">
-    <article id="post-mysql/mysql05" class="post-article article-type-post" itemprop="blogPost">
+    <article id="post-python/python01" class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">sql优化</h1>
+        <h1 class="post-card-title">urllib使用</h1>
         <div class="post-meta">
-            <time class="post-time" title="2017-03-07 15:28:13" datetime="2017-03-07T07:28:13.000Z" itemprop="datePublished">2017-03-07</time>
+            <time class="post-time" title="2018-12-07 14:48:13" datetime="2018-12-07T06:48:13.000Z" itemprop="datePublished">2018-12-07</time>
 
             
 
 
             
-	<span id="/2017/03/07/mysql/mysql05/" class="leancloud_visitors" data-flag-title="sql优化" title="sql优化">
+	<span id="/2018/12/07/python/python01/" class="leancloud_visitors" data-flag-title="urllib使用" title="urllib使用">
 		
 			<i class="icon icon-eye"></i>
 		
@@ -213,8 +213,8 @@
             
     <span class="leancloud-comment">
         <i class="icon icon-comment-o"></i>
-        <a href="/2017/03/07/mysql/mysql05/#comment">
-            <span class="valine-comment-count" data-xid="/2017/03/07/mysql/mysql05/"></span>
+        <a href="/2018/12/07/python/python01/#comment">
+            <span class="valine-comment-count" data-xid="/2018/12/07/python/python01/"></span>
         </a>
     </span>
 
@@ -224,26 +224,36 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <h2 id="sql优化原则："><a href="#sql优化原则：" class="headerlink" title="sql优化原则："></a>sql优化原则：</h2><ul>
-<li><p>选择需要优化的SQL，不是所有的SQL都需要优化在优化的过程中,首选更要优化的SQL;</p>
-<p><strong>怎么选择？</strong></p>
+            <blockquote>
+<p>模拟浏览器发送请求的库，python自带。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Python2</th>
+<th style="text-align:center">Python3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">urllib</td>
+<td style="text-align:center">urllib.request</td>
+</tr>
+<tr>
+<td style="text-align:center">urllib2</td>
+<td style="text-align:center">urllib.parse</td>
+</tr>
+</tbody>
+</table>
+<h4 id="urllib-requset"><a href="#urllib-requset" class="headerlink" title="urllib.requset"></a>urllib.requset</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">response = req.urlopen(url) # 请求网络</span><br><span class="line">response的常见函数：</span><br><span class="line">  1、read()：读取相应内容，内容是二进制格式；</span><br><span class="line">  2、geturl()：获取请求的url；</span><br><span class="line">  3、getheaders()：获取头部信息；</span><br><span class="line">  4、getcode()：获取状态嘛；</span><br><span class="line">  5、readlines()：按行读取，一般很少使用；</span><br></pre></td></tr></table></figure>
+<h4 id="urllib-parse"><a href="#urllib-parse" class="headerlink" title="urllib.parse"></a>urllib.parse</h4><h5 id="urllib-parse-quote"><a href="#urllib-parse-quote" class="headerlink" title="urllib.parse.quote"></a>urllib.parse.quote</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = urllib.parse.quote.(url) #编码</span><br><span class="line">ret = urllib.parse.unquote.(url) #解码</span><br></pre></td></tr></table></figure>
+<h5 id="urllib-parse-urlencode"><a href="#urllib-parse-urlencode" class="headerlink" title="urllib.parse.urlencode"></a>urllib.parse.urlencode</h5><p>将参数进行编码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urllib.parse.urlencode(data) # 需要传递一个字典</span><br></pre></td></tr></table></figure></p>
+<h4 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;&apos;user-Agent&apos; : &apos;&apos;&#125;</span><br><span class="line"># 构建请求对象（这实际上也是反爬的第一步，通过伪装自己的UA（user-agent）；）</span><br><span class="line">request = urllib.requset.Requset(url, header=headers)</span><br><span class="line"># 发送请求</span><br><span class="line">response = urllib.requset.urlopen(request)</span><br></pre></td></tr></table></figure>
+<h4 id="post请求"><a href="#post请求" class="headerlink" title="post请求"></a>post请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;&apos;user-agent&apos;: &apos;Huang&apos;&#125;</span><br><span class="line">data = &#123;&apos;name&apos;: &apos;Huang&apos;, &apos;age&apos;: &apos;26&apos;&#125;</span><br><span class="line"># 队请求的参数进行编码query = parse.urlencode(data)</span><br><span class="line">req = request.Request(&apos;http://www.baidu.com/&apos;, query, headers)</span><br><span class="line">response = request.urlopen(req)</span><br></pre></td></tr></table></figure>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>某些时候在模拟某个浏览器请求数据的时候，可能会出现接口报错的情况，那么有可能需要我们全部的请求参数，包括<strong>请求头</strong>全部都传过去，但是，有两个参数不能传：</p>
 <ul>
-<li>1小时谓求1W次，1次10个10；</li>
-<li>1小时请求10次，1次1W个10；</li>
-</ul>
-<p><strong>思考：</strong></p>
-<ul>
-<li>从里位时间产生的IO来说，是相同的；<br>针对第一个SQL如累我能把lO个IO变成7个IO，一小时滅少3W个IO；<br>针对第二个SQL如果能把1W个IO变成7K个IO，—小时滅少3W个10；</li>
-<li>从优化难度上1W-&gt;7K难的多；</li>
-<li>从整体性能上来说第一个SQL的优化能够极大的提升系统整体的性能，第二个SQL慢一点,无非也就是SlO个连接査询慢一点；</li>
-</ul>
-</li>
-<li>定位性能瓶SQL<ul>
-<li>SQL运行较慢有两个原因，IO和CPU，明确性能瓶颈所在；</li>
-<li>明确优化目标；</li>
-<li>优先选择优化高并发低消耗的sql。</li>
-</ul>
-</li>
+<li>‘Content-Length’ : ‘120’#是内容长度，有时候会自动计算，但以防万一还是不要加；</li>
+<li>‘Accept-Encoding’ : ‘gzip,deflate’ # 告诉服务需不需要压缩，一般已不需要加；</li>
 </ul>
 
         </div>
@@ -252,12 +262,12 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-02-27T07:42:23.479Z" itemprop="dateUpdated">2019-02-27 15:42:23</time>
+    最后更新时间：<time datetime="2019-03-08T09:42:34.954Z" itemprop="dateUpdated">2019-03-08 17:42:34</time>
 </span><br>
 
 
         
-        转载注明出处，原文地址：<a href="/2017/03/07/mysql/mysql05/" target="_blank" rel="external">https://huang2177.github.io/2017/03/07/mysql/mysql05/</a>
+        转载注明出处，原文地址：<a href="/2018/12/07/python/python01/" target="_blank" rel="external">https://huang2177.github.io/2018/12/07/python/python01/</a>
         
     </div>
     <footer>
@@ -271,7 +281,7 @@
         
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 
             <div class="page-share-wrap">
     
@@ -280,7 +290,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huang2177.github.io/2017/03/07/mysql/mysql05/&title=《sql优化》 — Bm和弦的技术博客&pic=https://huang2177.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huang2177.github.io/2018/12/07/python/python01/&title=《urllib使用》 — Bm和弦的技术博客&pic=https://huang2177.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -292,7 +302,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2017/03/07/mysql/mysql05/&title=《sql优化》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2018/12/07/python/python01/&title=《urllib使用》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -320,18 +330,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="prev">
-      <a href="/2017/03/25/android/android01/" id="post-prev" class="post-nav-link">
+      <a href="/2018/12/07/python/python02/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">android中的单例模式</h4>
+        <h4 class="title">python爬取西刺的可用代理</h4>
       </a>
     </div>
   
 
   
     <div class="next">
-      <a href="/2017/03/04/mysql/mysql04/" id="post-next" class="post-nav-link">
+      <a href="/2018/03/10/scala/scala06/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">查看mysql的执行计划（explain ）和执行明细状态（profiling）</h4>
+        <h4 class="title">Scala类型约束</h4>
       </a>
     </div>
   
@@ -343,7 +353,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#sql优化原则："><span class="post-toc-number">1.</span> <span class="post-toc-text">sql优化原则：</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#urllib-requset"><span class="post-toc-number">1.</span> <span class="post-toc-text">urllib.requset</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#urllib-parse"><span class="post-toc-number">2.</span> <span class="post-toc-text">urllib.parse</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#get请求"><span class="post-toc-number">3.</span> <span class="post-toc-text">get请求</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#post请求"><span class="post-toc-number">4.</span> <span class="post-toc-text">post请求</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注意"><span class="post-toc-number">5.</span> <span class="post-toc-text">注意</span></a></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </div></div></aside>
@@ -402,7 +412,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huang2177.github.io/2017/03/07/mysql/mysql05/&title=《sql优化》 — Bm和弦的技术博客&pic=https://huang2177.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huang2177.github.io/2018/12/07/python/python01/&title=《urllib使用》 — Bm和弦的技术博客&pic=https://huang2177.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -414,7 +424,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2017/03/07/mysql/mysql05/&title=《sql优化》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2018/12/07/python/python01/&title=《urllib使用》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -426,7 +436,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3a204DMQxF0f7/Tw8Sr9Cwj51RGWfnqaIwzSqS5dvrhc/1fdav+bs/f/7uCZuPDBkyHsu4lod8PLkuufr6c9/9jgwZMs5hkCDLw+suMH+ODBkyZPAguH5aGtZlyJAhYy8jTSLTIC5DhgwZ5HLrgnMdZDnm9lpchgwZD2TsGgzc8foD8w0ZMmT8M8YVnvumh61byZAhYzSDjA9rQbmzrsGRwRRUhgwZD2fwkNcfRtaacbX1MhkyZExikD/ujAHW4ZW8i3gyZMgYyuDNL768lRaftRWNYi9QhgwZD2ekiw58DaLWvONPkyFDxmwGX/NK0740TG9YPpMhQ8ZQRtpKS+vjYrcv/LJkyJAxm8ETu9qCRf9aQWooQ4aMoQw+pOSh844U849byZAh4xhG56G8Yt61bCFDhoxzGBuWREuj0Fd4Up4MGTImMXjqliZ//NKdhY947ipDhoxBjM5ggBe6cS9wPYOVIUPGUEYtmUvDdG3ASUYOwf9EhgwZj2Xw5hpfsCCM4Dsm41UZMmQcxkjL1L3pYzoMkCFDxgkMXkamwbG25kUac2ivTYYMGYMYV3h4sZpeJS16fxlhypAhYyijtu6QNuZqV+yPEGTIkDGJQYJsZ7hIQjanvkXKkCHjAEa6sFVbj+BNfx76ZciQIaNTfNby0+KXIkOGDBml1LDPDu4jQ4aMAxi8iE2HB53SlJe4MmTImM3YNRggwbc/cigCZMiQ8VTGF/NazFJtQE6sAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aQW6DQAwF0Nz/0nTTRaWW6bdNIjE8VhEh4Ecld8b26xUfx48j+fb4dZz9Kj9/wYGBgXFbxrE81tesg+5dmTz3DyoGBsYDGOvEd/a5F+76KevrT89jYGBgLJdr86DzV4aBgYFRTbjJZrV3NwwMDIzeJvZ99a6P7sUxMDBuyMir7p///Jb+BgYGxq0YR/Go3i3fAPfi+f4tBgbG1ozJsi9vEsyvjIY/MDAwNmXkpfm83J8MZ1wMw8DA2JoxH57oLf56rcr1y8XAwNiVkQRXeB/xK8gbk4VUi4GBsSkjGmIYtCoLO+k4kuYyEQMDYwtGvqHNg6sORqxDH/0PwcDAuC1jEm4viLzEVogEAwNja8Z6a5oPlebtgUmqLVQNMTAwNmLk1l7JLCnVTdJ3+U+GgYFxQ0YSRHWwtTr22hu2wMDAeA5jXg6rLv7yAbJ16KdLQwwMjO0YydeF3XCrPdBrJ2BgYDyTkSS4JO3m+Oo9/0FiYGA8jJE84Ko2ZK/EhoGBgVF9cC9d9hL66ZUYGBiPYVQf0LtDXnQrty0xMDC2ZkwWZ71BimqzM0q4GBgY2zGO4tF8T8UMmZfkoi4oBgbGzRm9ga18JKK8EY0bEr2xMwwMjPsykhAnI1/zrBg1EjAwMB7AqC7dqku65MwIiYGBgTEuyU3SbpTEMTAwMOLN5LXNgELjAQMD4wGM+bjDfAnYa5RiYGA8gVFNeUkqTBJlMpDRW6RiYGBsxPgCCVm8KivDAdgAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
