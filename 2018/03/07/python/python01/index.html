@@ -5,14 +5,14 @@
     
     
     <title>
-        Scala面向对象 |
+        urllib使用 |
         
         Bm和弦的技术博客
         
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="scala">
+    <meta name="keywords" content="mysql">
     <link rel="shortcut icon" href="/img/favicon.png">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/style.css?v=1.4.1">
@@ -148,7 +148,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>Scala面向对象</span>
+            <span>urllib使用</span>
             
         </div>
         
@@ -161,11 +161,11 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">Scala面向对象</h1>
+        <h1 class="title">urllib使用</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-03-05T02:21:30.000Z" itemprop="datePublished" class="page-time">
-  2018-03-05
+                <time datetime="2018-03-07T06:48:13.000Z" itemprop="datePublished" class="page-time">
+  2018-03-07
 </time>
 
 
@@ -192,17 +192,17 @@
 
 
 <div class="container body-wrap">
-    <article id="post-scala/scala04" class="post-article article-type-post" itemprop="blogPost">
+    <article id="post-python/python01" class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">Scala面向对象</h1>
+        <h1 class="post-card-title">urllib使用</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-03-05 10:21:30" datetime="2018-03-05T02:21:30.000Z" itemprop="datePublished">2018-03-05</time>
+            <time class="post-time" title="2018-03-07 14:48:13" datetime="2018-03-07T06:48:13.000Z" itemprop="datePublished">2018-03-07</time>
 
             
 
 
             
-	<span id="/2018/03/05/scala/scala04/" class="leancloud_visitors" data-flag-title="Scala面向对象" title="Scala面向对象">
+	<span id="/2018/03/07/python/python01/" class="leancloud_visitors" data-flag-title="urllib使用" title="urllib使用">
 		
 			<i class="icon icon-eye"></i>
 		
@@ -213,8 +213,8 @@
             
     <span class="leancloud-comment">
         <i class="icon icon-comment-o"></i>
-        <a href="/2018/03/05/scala/scala04/#comment">
-            <span class="valine-comment-count" data-xid="/2018/03/05/scala/scala04/"></span>
+        <a href="/2018/03/07/python/python01/#comment">
+            <span class="valine-comment-count" data-xid="/2018/03/07/python/python01/"></span>
         </a>
     </span>
 
@@ -224,33 +224,37 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <p>我们需要封装对象、定义模板，所以需要面向对象。</p>
-<h2 id="1）Scala单例对象"><a href="#1）Scala单例对象" class="headerlink" title="1）Scala单例对象"></a>1）Scala单例对象</h2><p>Scala中没有static关键，如需要使用静态类则需要使用object关键字；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">object scala01 &#123;</span><br><span class="line">     var a = 10 //在外部类中可以使用scala01.a调用</span><br><span class="line">     // 在外部类中可以使用scala01.test()调用</span><br><span class="line">     def test(): Unit = &#123;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="2）Scala构造器"><a href="#2）Scala构造器" class="headerlink" title="2）Scala构造器"></a>2）Scala构造器</h2><figure class="image-box">
-                <a rel="Scala面向对象" href="https://app.yinxiang.com/shard/s54/res/c669e2b9-5c3f-47ad-aed9-18d54d882836/TIM%E5%9B%BE%E7%89%8720190219153910.png" title="Scala构造器" data-fancybox="images"><img src="https://app.yinxiang.com/shard/s54/res/c669e2b9-5c3f-47ad-aed9-18d54d882836/TIM%E5%9B%BE%E7%89%8720190219153910.png" alt="Scala构造器" title class></a>
-                <p>Scala构造器</p>
-            </figure>
-<blockquote>
-<p>注意：<br>     1）若变量没有经过var、val修饰，则外部不能访问；<br>     2）如想要主构造器私有化，则需要在类名后加上private关键字；辅助构造器则在def前面加private；<br><figure class="image-box">
-                <a rel="Scala面向对象" href="https://app.yinxiang.com/shard/s54/res/dc684eac-b278-47e7-a140-983555c52548/TIM%E5%9B%BE%E7%89%8720190219155209.png" title data-fancybox="images"><img src="https://app.yinxiang.com/shard/s54/res/dc684eac-b278-47e7-a140-983555c52548/TIM%E5%9B%BE%E7%89%8720190219155209.png" alt title class></a>
-                <p></p>
-            </figure></p>
+            <blockquote>
+<p>模拟浏览器发送请求的库，python自带。</p>
 </blockquote>
-<h2 id="3）访问权限"><a href="#3）访问权限" class="headerlink" title="3）访问权限"></a>3）访问权限</h2><figure class="image-box">
-                <a rel="Scala面向对象" href="https://app.yinxiang.com/shard/s54/res/233f6166-c80d-4098-a65d-35adcbc082dd/TIM%E5%9B%BE%E7%89%8720190219160118.png" title="访问权限" data-fancybox="images"><img src="https://app.yinxiang.com/shard/s54/res/233f6166-c80d-4098-a65d-35adcbc082dd/TIM%E5%9B%BE%E7%89%8720190219160118.png" alt="访问权限" title class></a>
-                <p>访问权限</p>
-            </figure>
-<h2 id="4）Trait特质（相当于java的接口）"><a href="#4）Trait特质（相当于java的接口）" class="headerlink" title="4）Trait特质（相当于java的接口）"></a>4）Trait特质（相当于java的接口）</h2><figure class="image-box">
-                <a rel="Scala面向对象" href="https://app.yinxiang.com/shard/s54/res/d37425d8-5635-44a5-8ae8-8f531661efcc/TIM%E5%9B%BE%E7%89%8720190219163131.png" title="Trait特质" data-fancybox="images"><img src="https://app.yinxiang.com/shard/s54/res/d37425d8-5635-44a5-8ae8-8f531661efcc/TIM%E5%9B%BE%E7%89%8720190219163131.png" alt="Trait特质" title class></a>
-                <p>Trait特质</p>
-            </figure>
-<blockquote>
-<p>特质与抽象类的区别：<br>    1）优先使用特质。一个类扩展多个特质是很方便的，但却只能扩展一个抽象类。<br>    2）如果你需要构造函数参数，使用抽象类。因为抽象类可以定义带参数的构造函数，而特质不行。<br>注意：如果要实现多个接口，需要使用with关键字（混入特质），且with必须写在最后；</p>
-</blockquote>
-<h2 id="5）样例类"><a href="#5）样例类" class="headerlink" title="5）样例类"></a>5）样例类</h2><p>（1）支持模式匹配；<br>（2）默认会生成半生对象（即可以直接使用Test(“huang”,26)）；<br>（3）默认会实现toString()、equals()等方法；</p>
-<blockquote>
-<p>case class Test（var name : String,var age : Int）</p>
-</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Python2</th>
+<th style="text-align:center">Python3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">urllib</td>
+<td style="text-align:center">urllib.request</td>
+</tr>
+<tr>
+<td style="text-align:center">urllib2</td>
+<td style="text-align:center">urllib.parse</td>
+</tr>
+</tbody>
+</table>
+<h4 id="urllib-requset"><a href="#urllib-requset" class="headerlink" title="urllib.requset"></a>urllib.requset</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">response = req.urlopen(url) # 请求网络</span><br><span class="line">response的常见函数：</span><br><span class="line">  1、read()：读取相应内容，内容是二进制格式；</span><br><span class="line">  2、geturl()：获取请求的url；</span><br><span class="line">  3、getheaders()：获取头部信息；</span><br><span class="line">  4、getcode()：获取状态嘛；</span><br><span class="line">  5、readlines()：按行读取，一般很少使用；</span><br></pre></td></tr></table></figure>
+<h4 id="urllib-parse"><a href="#urllib-parse" class="headerlink" title="urllib.parse"></a>urllib.parse</h4><h5 id="urllib-parse-quote"><a href="#urllib-parse-quote" class="headerlink" title="urllib.parse.quote"></a>urllib.parse.quote</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = urllib.parse.quote.(url) #编码</span><br><span class="line">ret = urllib.parse.unquote.(url) #解码</span><br></pre></td></tr></table></figure>
+<h5 id="urllib-parse-urlencode"><a href="#urllib-parse-urlencode" class="headerlink" title="urllib.parse.urlencode"></a>urllib.parse.urlencode</h5><p>将参数进行编码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urllib.parse.urlencode(data) # 需要传递一个字典</span><br></pre></td></tr></table></figure></p>
+<h4 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;&apos;user-Agent&apos; : &apos;&apos;&#125;</span><br><span class="line"># 构建请求对象（这实际上也是反爬的第一步，通过伪装自己的UA（user-agent）；）</span><br><span class="line">request = urllib.requset.Requset(url, header=headers)</span><br><span class="line"># 发送请求</span><br><span class="line">response = urllib.requset.urlopen(request)</span><br></pre></td></tr></table></figure>
+<h4 id="post请求"><a href="#post请求" class="headerlink" title="post请求"></a>post请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;&apos;user-agent&apos;: &apos;Huang&apos;&#125;</span><br><span class="line">data = &#123;&apos;name&apos;: &apos;Huang&apos;, &apos;age&apos;: &apos;26&apos;&#125;</span><br><span class="line"># 队请求的参数进行编码query = parse.urlencode(data)</span><br><span class="line">req = request.Request(&apos;http://www.baidu.com/&apos;, query, headers)</span><br><span class="line">response = request.urlopen(req)</span><br></pre></td></tr></table></figure>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>某些时候在模拟某个浏览器请求数据的时候，可能会出现接口报错的情况，那么有可能需要我们全部的请求参数，包括<strong>请求头</strong>全部都传过去，但是，有两个参数不能传：</p>
+<ul>
+<li>‘Content-Length’ : ‘120’#是内容长度，有时候会自动计算，但以防万一还是不要加；</li>
+<li>‘Accept-Encoding’ : ‘gzip,deflate’ # 告诉服务需不需要压缩，一般已不需要加；</li>
+</ul>
 
         </div>
         
@@ -258,12 +262,12 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-02-27T05:30:15.413Z" itemprop="dateUpdated">2019-02-27 13:30:15</time>
+    最后更新时间：<time datetime="2019-03-07T08:34:24.704Z" itemprop="dateUpdated">2019-03-07 16:34:24</time>
 </span><br>
 
 
         
-        转载注明出处，原文地址：<a href="/2018/03/05/scala/scala04/" target="_blank" rel="external">https://huang2177.github.io/2018/03/05/scala/scala04/</a>
+        转载注明出处，原文地址：<a href="/2018/03/07/python/python01/" target="_blank" rel="external">https://huang2177.github.io/2018/03/07/python/python01/</a>
         
     </div>
     <footer>
@@ -277,7 +281,7 @@
         
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
 
             <div class="page-share-wrap">
     
@@ -286,7 +290,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huang2177.github.io/2018/03/05/scala/scala04/&title=《Scala面向对象》 — Bm和弦的技术博客&pic=https://huang2177.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huang2177.github.io/2018/03/07/python/python01/&title=《urllib使用》 — Bm和弦的技术博客&pic=https://huang2177.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -298,7 +302,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2018/03/05/scala/scala04/&title=《Scala面向对象》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2018/03/07/python/python01/&title=《urllib使用》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -326,18 +330,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="prev">
-      <a href="/2018/03/07/python/python01/" id="post-prev" class="post-nav-link">
+      <a href="/2018/03/08/scala/scala05/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">urllib使用</h4>
+        <h4 class="title">Scala并发编程模型（AKKA）</h4>
       </a>
     </div>
   
 
   
     <div class="next">
-      <a href="/2018/03/02/spark/spark01/" id="post-next" class="post-nav-link">
+      <a href="/2018/03/05/scala/scala04/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">spark01</h4>
+        <h4 class="title">Scala面向对象</h4>
       </a>
     </div>
   
@@ -349,7 +353,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1）Scala单例对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">1）Scala单例对象</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2）Scala构造器"><span class="post-toc-number">2.</span> <span class="post-toc-text">2）Scala构造器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3）访问权限"><span class="post-toc-number">3.</span> <span class="post-toc-text">3）访问权限</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4）Trait特质（相当于java的接口）"><span class="post-toc-number">4.</span> <span class="post-toc-text">4）Trait特质（相当于java的接口）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5）样例类"><span class="post-toc-number">5.</span> <span class="post-toc-text">5）样例类</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#urllib-requset"><span class="post-toc-number">1.</span> <span class="post-toc-text">urllib.requset</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#urllib-parse"><span class="post-toc-number">2.</span> <span class="post-toc-text">urllib.parse</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#get请求"><span class="post-toc-number">3.</span> <span class="post-toc-text">get请求</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#post请求"><span class="post-toc-number">4.</span> <span class="post-toc-text">post请求</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注意"><span class="post-toc-number">5.</span> <span class="post-toc-text">注意</span></a></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </div></div></aside>
@@ -408,7 +412,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huang2177.github.io/2018/03/05/scala/scala04/&title=《Scala面向对象》 — Bm和弦的技术博客&pic=https://huang2177.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://huang2177.github.io/2018/03/07/python/python01/&title=《urllib使用》 — Bm和弦的技术博客&pic=https://huang2177.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -420,7 +424,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2018/03/05/scala/scala04/&title=《Scala面向对象》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2018/03/07/python/python01/&title=《urllib使用》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -432,7 +436,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3aS27DMAwFwNz/0u62QGLnPclpEWm0MvKxPVoQFMnHI17Hr/X8+dn18+/P/pt8fsPCwMD4WsZxuc5+c32Ha1h+/+TdMDAw9mFcB76z67PwWjw+uE8UlDEwMDCCpPAa04ZmDAwMjLsYeTDNj6kYGBgYM4fY6xuNHYZnfo+BgbEPow2Rf3n9kf4GBgbGVzGOcuWH2M+V6l48BQMDY2lGHuBmivszpbfiKRgYGIsyxo6Uecnshj1O/ouBgbE0oz2szpS62lGz/H0wMDD2YYw1KZMUsP32tlCLgYGxEGNsnCspwM0kfMWYBQYGxgaM9vDZJnMtuA3TGBgYOzDy4tpMIE7u0DYkXvQ3MDAwlmPkIw5ta6G9Z74Fpy1MDAyMzRh5AS4vlrXbVKSJGBgYmzFaXh5qx47QUcMAAwNjA8ZMG3K+uNamj6epIQYGxqKMsbGJewtqY7MhGBgY+zCStK8dI2ubDWOb+CY1xMDAWIgxM+KQBOJ2s/JXx8DA2JkxdqwdK5zl5bkoTGNgYGzDaAez2oeNldKK6TYMDIylGcmRMk8B8zGvPJS/eU8MDIxFGUe5WlJb6M9LdY98bzAwML6cMdYynGkkzAT3ti2KgYGxEqMNsm0ieFdUfBPWMTAwNmD8b/lsrOWAgYGBkSdwbWFuZtTjzYkcAwMDY6LEP9YMKMYyMDAwNmAkh9h2aCxPAccaEhgYGPsw5kNe2zYYG7MYSz0xMDC+nPEDIYRqmL/03C4AAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aS4rDMBAFQN//0h6Y1UCw/LrlDFgqrUISZJcWTX90HPE6f9f417//OT9Wvuf4WVMLAwPjtYxzuD63rv7n6pvkyJJ3w8DA2IeRb1cNi1cPzp8bBWUMDAyMOJiOX6IXuDEwMDB6Abf3WuOUFAMDA2PMSIrYXhOtF4i/WItjYGC8kFEdDPzn5y/ONzAwMF7COIsrTwd77f7mW2FgYCzNSBK1XgJX3TkffF7ugIGBsQEjaYolwTQvepNyt5AsYmBgLMqopmu95lqeRFbHCRgYGBh50EzK0ZyUD0oxMDB2YPSa8jMXLGbSzUItjoGBsRAjb29VL0Dk44S8DL48dAwMjKUZ1fCXDy97JWs1AcXAwNiNUW3oVxv9M4lgVB5jYGBswJhvgc0AkudiYGBg5Olg9VJFXh7PXFnDwMDYk5EEx15gLReoMwEXAwPj5Yxey6zQrC+mg/k44Sa3xcDA2IDRS/KS9LF6HS06GgwMjKUZMylaL6XLL5xVy2kMDIxVGd9I/qoD0QeKZAwMjA0YvW+SNC45pvxKx00Ri4GBsShj5vJWuSnWGnw+kCBiYGC8nHEWV95ca1bSvYtiGBgYSzPyNZP85Rcv8mdhYGDsxugF2RxzFFcvVcXAwNiBkbf486Tw2XVzQBgYGBjBeGCc9uWD0uaRYWBgYMSbPjsMKAweMDAwNmAkRWy1TZZfsHigVYeBgbE0YybkVV/iqaDcxGBgYLyP8QP+x9E/wbrqMQAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 

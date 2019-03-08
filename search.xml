@@ -3,6 +3,35 @@
   
     
     <entry>
+      <title><![CDATA[谢谢你，撑起我们的半边天！]]></title>
+      <url>/2019/03/08/suibi/women_day/</url>
+      <content type="html"><![CDATA[<figure class="image-box">
+                <img src="/2019/03/08/suibi/women_day/women_day.jpeg" alt title class>
+                <p></p>
+            </figure>
+<p>@center{</p>
+<p><strong>你曾是一步一吟的少女</strong></p>
+<p>行走在山岭海边</p>
+<p>微风拂起你的长发</p>
+<p>后来，你成为了妻子</p>
+<p>成为了母亲</p>
+<p>从那时起</p>
+<p>生活和岁月</p>
+<p>便开始给你刻下一道道年轮</p>
+<p>谢谢你，撑起我们的半边天！<br>……</p>
+<p>}</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Scala类型约束]]></title>
       <url>/2018/03/10/scala/scala06/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -51,6 +80,51 @@
         <tags>
             
             <tag> scala </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[urllib使用]]></title>
+      <url>/2018/03/07/python/python01/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>模拟浏览器发送请求的库，python自带。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Python2</th>
+<th style="text-align:center">Python3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">urllib</td>
+<td style="text-align:center">urllib.request</td>
+</tr>
+<tr>
+<td style="text-align:center">urllib2</td>
+<td style="text-align:center">urllib.parse</td>
+</tr>
+</tbody>
+</table>
+<h4 id="urllib-requset"><a href="#urllib-requset" class="headerlink" title="urllib.requset"></a>urllib.requset</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">response = req.urlopen(url) # 请求网络</span><br><span class="line">response的常见函数：</span><br><span class="line">  1、read()：读取相应内容，内容是二进制格式；</span><br><span class="line">  2、geturl()：获取请求的url；</span><br><span class="line">  3、getheaders()：获取头部信息；</span><br><span class="line">  4、getcode()：获取状态嘛；</span><br><span class="line">  5、readlines()：按行读取，一般很少使用；</span><br></pre></td></tr></table></figure>
+<h4 id="urllib-parse"><a href="#urllib-parse" class="headerlink" title="urllib.parse"></a>urllib.parse</h4><h5 id="urllib-parse-quote"><a href="#urllib-parse-quote" class="headerlink" title="urllib.parse.quote"></a>urllib.parse.quote</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = urllib.parse.quote.(url) #编码</span><br><span class="line">ret = urllib.parse.unquote.(url) #解码</span><br></pre></td></tr></table></figure>
+<h5 id="urllib-parse-urlencode"><a href="#urllib-parse-urlencode" class="headerlink" title="urllib.parse.urlencode"></a>urllib.parse.urlencode</h5><p>将参数进行编码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urllib.parse.urlencode(data) # 需要传递一个字典</span><br></pre></td></tr></table></figure></p>
+<h4 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;&apos;user-Agent&apos; : &apos;&apos;&#125;</span><br><span class="line"># 构建请求对象（这实际上也是反爬的第一步，通过伪装自己的UA（user-agent）；）</span><br><span class="line">request = urllib.requset.Requset(url, header=headers)</span><br><span class="line"># 发送请求</span><br><span class="line">response = urllib.requset.urlopen(request)</span><br></pre></td></tr></table></figure>
+<h4 id="post请求"><a href="#post请求" class="headerlink" title="post请求"></a>post请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;&apos;user-agent&apos;: &apos;Huang&apos;&#125;</span><br><span class="line">data = &#123;&apos;name&apos;: &apos;Huang&apos;, &apos;age&apos;: &apos;26&apos;&#125;</span><br><span class="line"># 队请求的参数进行编码query = parse.urlencode(data)</span><br><span class="line">req = request.Request(&apos;http://www.baidu.com/&apos;, query, headers)</span><br><span class="line">response = request.urlopen(req)</span><br></pre></td></tr></table></figure>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>某些时候在模拟某个浏览器请求数据的时候，可能会出现接口报错的情况，那么有可能需要我们全部的请求参数，包括<strong>请求头</strong>全部都传过去，但是，有两个参数不能传：</p>
+<ul>
+<li>‘Content-Length’ : ‘120’#是内容长度，有时候会自动计算，但以防万一还是不要加；</li>
+<li>‘Accept-Encoding’ : ‘gzip,deflate’ # 告诉服务需不需要压缩，一般已不需要加；</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> mysql </tag>
             
         </tags>
         
@@ -886,6 +960,22 @@
     </entry>
     
     <entry>
+      <title><![CDATA[zookeeper简介]]></title>
+      <url>/2017/11/27/hadoop/zk/zookeeper01/</url>
+      <content type="html"><![CDATA[<h3 id="1）简介"><a href="#1）简介" class="headerlink" title="1）简介"></a>1）简介</h3><p>（1）是<strong>大数据生态圈的管理员</strong>。<br>     （2）ZooKeeper是一个分布式的，开放源码的<strong>分布式应用程序协调服务</strong>，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br>     （3）ZooKeeper的目标就是封装好复杂易出错的关键服务，将简单易用的接口和性能高效、功能稳定的系统提供给用户。<br>     （4）ZooKeeper包含一个简单的原语集， 提供Java和C的接口。</p>
+<h3 id="2）主要功能"><a href="#2）主要功能" class="headerlink" title="2）主要功能"></a>2）主要功能</h3><p>（1）储存数据（配置信息）<br>     （2）监听（可能存在长千上万的服务器、节点，维护起来很不方便）</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> zookeeper </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[zookeeper运行机制及目录结构]]></title>
       <url>/2017/11/27/hadoop/zk/zookeeper02/</url>
       <content type="html"><![CDATA[<h3 id="1）zookeeper运行机制："><a href="#1）zookeeper运行机制：" class="headerlink" title="1）zookeeper运行机制："></a>1）zookeeper运行机制：</h3><p>@card{</p>
@@ -937,22 +1027,6 @@
 </ul>
 </li>
 </ul>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> zookeeper </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[zookeeper简介]]></title>
-      <url>/2017/11/27/hadoop/zk/zookeeper01/</url>
-      <content type="html"><![CDATA[<h3 id="1）简介"><a href="#1）简介" class="headerlink" title="1）简介"></a>1）简介</h3><p>（1）是<strong>大数据生态圈的管理员</strong>。<br>     （2）ZooKeeper是一个分布式的，开放源码的<strong>分布式应用程序协调服务</strong>，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br>     （3）ZooKeeper的目标就是封装好复杂易出错的关键服务，将简单易用的接口和性能高效、功能稳定的系统提供给用户。<br>     （4）ZooKeeper包含一个简单的原语集， 提供Java和C的接口。</p>
-<h3 id="2）主要功能"><a href="#2）主要功能" class="headerlink" title="2）主要功能"></a>2）主要功能</h3><p>（1）储存数据（配置信息）<br>     （2）监听（可能存在长千上万的服务器、节点，维护起来很不方便）</p>
 ]]></content>
       
         
