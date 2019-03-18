@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    
+    
+    <title>
+        
+        Bm和弦的技术博客
+        
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Android、吉他">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:    false,
+            lv: JSON.parse('{"enable":true,"app_id":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","app_key":"gSa6ktF3wTvzdEIaRVqO9nqp","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"SyYxpv3988jhaD13VtvW9ECM-gzGzoHsz","appkey":"gSa6ktF3wTvzdEIaRVqO9nqp","notify":false,"verify":false,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":false,"owner":"huangbryant210707","repo":"MyBlogComment","oauth":{"client_id":"eaaab52b29376fc1c7e3","client_secret":"6b68a84c502f280844289475500ea72e0d9c2a4e"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts = [];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu">
+    <div class="inner flex-row-vertical">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+            <i class="icon icon-lg icon-close"></i>
+        </a>
+        <div class="brand-wrap">
+            
+            <div class="brand">
+                <!--  <a href="/" class="avatar waves-effect waves-circle waves-light">
+                </a>-->
+                <img src="/img/avatar.jpg" class="avatar waves-effect waves-circle waves-light">
+                <hgroup class="introduce">
+                    <h5 class="nickname">Bm和弦</h5>
+                    <a href="mailto:15378412400@163.com" title="15378412400@163.com" class="mail">
+                        
+                            <span>1</span>
+                        
+                            <span>5</span>
+                        
+                            <span>3</span>
+                        
+                            <span>7</span>
+                        
+                            <span>8</span>
+                        
+                            <span>4</span>
+                        
+                            <span>1</span>
+                        
+                            <span>2</span>
+                        
+                            <span>4</span>
+                        
+                            <span>0</span>
+                        
+                            <span>0</span>
+                        
+                            <span>@</span>
+                        
+                            <span>1</span>
+                        
+                            <span>6</span>
+                        
+                            <span>3</span>
+                        
+                            <span>.</span>
+                        
+                            <span>c</span>
+                        
+                            <span>o</span>
+                        
+                            <span>m</span>
+                        
+                    </a>
+                </hgroup>
+                
+                    <ul class="menu-link">
+                        
+                        <li>
+                            <a href="https://github.com/huangbryant210707" target="_blank">
+                                <i class="icon icon-lg icon-github"></i>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                
+            </div>
+        </div>
+        <div class="scroll-wrap flex-col">
+            <ul class="nav">
+                
+                <li class=" active">
+                    <a href="/">
+                        <i class="icon icon-lg icon-home"></i>
+                        首页
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/tags">
+                        <i class="icon icon-lg icon-tags"></i>
+                        标签
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/archives">
+                        <i class="icon icon-lg icon-archives"></i>
+                        归档
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/guitar">
+                        <i class="icon icon-lg icon-file-image-o"></i>
+                        吉他谱
+                    </a>
+                </li>
+                
+                <li class>
+                    <a href="/about">
+                        <i class="icon icon-lg icon-user"></i>
+                        关于
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <main id="main">
+        
+    <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Bm和弦的技术博客</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header index-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Bm和弦的技术博客</h1>
+        <h5 class="subtitle">
+            
+                
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left">
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+    <div class="container body-wrap">
+        <ul class="post-list">
+        
+            <li class="post-list-item fade">
+                <article id="post-guitar/晴天" class="article-card article-type-post" itemprop="blogPost">
+    
+        
+<div class="item-thumb">
+    <a class="thumb-link" href="/2019/03/13/guitar/晴天/"></a>
+    <div class="thumb-hover">
+        <span class="icon icon-eye"></span>
+    </div>
+    <img src="/img/thumb/10.jpg" alt="图片路径不正确">
+    
+
+
+    
+        <h3 class="post-title ab-title" itemprop="name">
+            <a class="post-title-link" href="/2019/03/13/guitar/晴天/">晴天</a>
+        </h3>
+    
+
+
+
+</div>
+
+    
+    
+    
+    
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-03-13 15:49:37" datetime="2019-03-13T07:49:37.000Z" itemprop="datePublished">2019-03-13</time>
+
+        
+
+
+        
+	<span id="/2019/03/13/guitar/晴天/" class="leancloud_visitors" data-flag-title="晴天" title="晴天">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+        
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2019/03/13/guitar/晴天/#comment">
+            <span class="valine-comment-count" data-xid="/2019/03/13/guitar/晴天/"></span>
+        </a>
+    </span>
+
+
+
+        
+        
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+        
+        
+            @column-3{
+@card{
+
+                
+                
+            
+}
+@card{
+
+                
+                
+            
+}
+@card{
+
+                
+                
+          ...
+        
+        <a href="/2019/03/13/guitar/晴天/" class="post-more waves-effect waves-button">
+            more
+        </a>
+    </div>
+
+</article>
+
+
+            </li>
+        
+            <li class="post-list-item fade">
+                <article id="post-suibi/women_day" class="article-card article-type-post" itemprop="blogPost">
+    
+        
+<div class="item-thumb">
+    <a class="thumb-link" href="/2019/03/08/suibi/women_day/"></a>
+    <div class="thumb-hover">
+        <span class="icon icon-eye"></span>
+    </div>
+    <img src="/img/thumb/9.jpg" alt="图片路径不正确">
+    
+
+
+    
+        <h3 class="post-title ab-title" itemprop="name">
+            <a class="post-title-link" href="/2019/03/08/suibi/women_day/">谢谢你，撑起我们的半边天！</a>
+        </h3>
+    
+
+
+
+</div>
+
+    
+    
+    
+    
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-03-08 11:15:37" datetime="2019-03-08T03:15:37.000Z" itemprop="datePublished">2019-03-08</time>
+
+        
+
+
+        
+	<span id="/2019/03/08/suibi/women_day/" class="leancloud_visitors" data-flag-title="谢谢你，撑起我们的半边天！" title="谢谢你，撑起我们的半边天！">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+        
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2019/03/08/suibi/women_day/#comment">
+            <span class="valine-comment-count" data-xid="/2019/03/08/suibi/women_day/"></span>
+        </a>
+    </span>
+
+
+
+        
+        
+  <span class="music"><i class="icon icon-music"></i></span>
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+        
+        
+            
+                
+                
+            
+@column-1{
+@card{
+@center{
+你曾是一步一吟的少女
+行走在山岭海边
+微风拂过灿烂的脸颊
+后来
+你成为了妻子
+成为了母亲
+从那时起
+生活和岁月
+便开始给你刻下一道道年轮
+我想
+送你三月的风 
+吹走你的烦恼
+送你一整个春天 
+愿你的生活阳...
+        
+        <a href="/2019/03/08/suibi/women_day/" class="post-more waves-effect waves-button">
+            more
+        </a>
+    </div>
+
+</article>
+
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+
+    </div>
+
+
+            </li>
+        
+            <li class="post-list-item fade">
+                <article id="post-python/python02" class="article-card article-type-post" itemprop="blogPost">
+    
+        
+<div class="item-thumb">
+    <a class="thumb-link" href="/2018/12/07/python/python02/"></a>
+    <div class="thumb-hover">
+        <span class="icon icon-eye"></span>
+    </div>
+    <img src="/img/thumb/8.jpg" alt="图片路径不正确">
+    
+
+
+    
+        <h3 class="post-title ab-title" itemprop="name">
+            <a class="post-title-link" href="/2018/12/07/python/python02/">python爬取西刺的可用代理</a>
+        </h3>
+    
+
+
+
+</div>
+
+    
+    
+    
+    
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-12-07 15:48:13" datetime="2018-12-07T07:48:13.000Z" itemprop="datePublished">2018-12-07</time>
+
+        
+
+
+        
+	<span id="/2018/12/07/python/python02/" class="leancloud_visitors" data-flag-title="python爬取西刺的可用代理" title="python爬取西刺的可用代理">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+        
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/12/07/python/python02/#comment">
+            <span class="valine-comment-count" data-xid="/2018/12/07/python/python02/"></span>
+        </a>
+    </span>
+
+
+
+        
+        
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+        
+        
+            西刺代理在使用python爬取网络数据时，网络需要设置代理服务器，防止目标网站对IP的限制。网站实现了众多可以使用的代理服务器，这里写了一个爬虫，爬取其中 国内高匿代理IP。
+通过代码把ip、端口爬到本地123456789101112131415161718192021222324252627282930313233343536373839404142...
+        
+        <a href="/2018/12/07/python/python02/" class="post-more waves-effect waves-button">
+            more
+        </a>
+    </div>
+
+</article>
+
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </div>
+
+
+            </li>
+        
+            <li class="post-list-item fade">
+                <article id="post-python/python01" class="article-card article-type-post" itemprop="blogPost">
+    
+        
+<div class="item-thumb">
+    <a class="thumb-link" href="/2018/12/07/python/python01/"></a>
+    <div class="thumb-hover">
+        <span class="icon icon-eye"></span>
+    </div>
+    <img src="/img/thumb/7.jpg" alt="图片路径不正确">
+    
+
+
+    
+        <h3 class="post-title ab-title" itemprop="name">
+            <a class="post-title-link" href="/2018/12/07/python/python01/">urllib使用</a>
+        </h3>
+    
+
+
+
+</div>
+
+    
+    
+    
+    
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-12-07 14:48:13" datetime="2018-12-07T06:48:13.000Z" itemprop="datePublished">2018-12-07</time>
+
+        
+
+
+        
+	<span id="/2018/12/07/python/python01/" class="leancloud_visitors" data-flag-title="urllib使用" title="urllib使用">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+        
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/12/07/python/python01/#comment">
+            <span class="valine-comment-count" data-xid="/2018/12/07/python/python01/"></span>
+        </a>
+    </span>
+
+
+
+        
+        
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+        
+        
+            
+模拟浏览器发送请求的库，python自带。
+
+
+
+
+Python2
+Python3
+
+
+
+
+urllib
+urllib.request
+
+
+urllib2
+urllib.parse
+
+
+
+urllib.requset1234567response = req.urlopen(url) # 请求网络response的常见函数：  1、read()：读取...
+        
+        <a href="/2018/12/07/python/python01/" class="post-more waves-effect waves-button">
+            more
+        </a>
+    </div>
+
+</article>
+
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </div>
+
+
+            </li>
+        
+            <li class="post-list-item fade">
+                <article id="post-scala/scala06" class="article-card article-type-post" itemprop="blogPost">
+    
+        
+<div class="item-thumb">
+    <a class="thumb-link" href="/2018/03/10/scala/scala06/"></a>
+    <div class="thumb-hover">
+        <span class="icon icon-eye"></span>
+    </div>
+    <img src="/img/thumb/6.jpg" alt="图片路径不正确">
+    
+
+
+    
+        <h3 class="post-title ab-title" itemprop="name">
+            <a class="post-title-link" href="/2018/03/10/scala/scala06/">Scala类型约束</a>
+        </h3>
+    
+
+
+
+</div>
+
+    
+    
+    
+    
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-03-10 17:21:42" datetime="2018-03-10T09:21:42.000Z" itemprop="datePublished">2018-03-10</time>
+
+        
+
+
+        
+	<span id="/2018/03/10/scala/scala06/" class="leancloud_visitors" data-flag-title="Scala类型约束" title="Scala类型约束">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+        
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/03/10/scala/scala06/#comment">
+            <span class="valine-comment-count" data-xid="/2018/03/10/scala/scala06/"></span>
+        </a>
+    </span>
+
+
+
+        
+        
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+        
+        
+            
+在Java中比较两个对象是否相等可以继承Comparable，而在Scala中则继承Ordered。
+
+Java中上界（super Bounds）、下界（Lower bounds）：
+                
+                Java中上界、下界
+            
+Sava中上界（super Bounds）、下界（Lo...
+        
+        <a href="/2018/03/10/scala/scala06/" class="post-more waves-effect waves-button">
+            more
+        </a>
+    </div>
+
+</article>
+
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+
+    </div>
+
+
+            </li>
+        
+            <li class="post-list-item fade">
+                <article id="post-scala/scala05" class="article-card article-type-post" itemprop="blogPost">
+    
+        
+<div class="item-thumb">
+    <a class="thumb-link" href="/2018/03/08/scala/scala05/"></a>
+    <div class="thumb-hover">
+        <span class="icon icon-eye"></span>
+    </div>
+    <img src="/img/thumb/5.jpg" alt="图片路径不正确">
+    
+
+
+    
+        <h3 class="post-title ab-title" itemprop="name">
+            <a class="post-title-link" href="/2018/03/08/scala/scala05/">Scala并发编程模型（AKKA）</a>
+        </h3>
+    
+
+
+
+</div>
+
+    
+    
+    
+    
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-03-08 16:21:36" datetime="2018-03-08T08:21:36.000Z" itemprop="datePublished">2018-03-08</time>
+
+        
+
+
+        
+	<span id="/2018/03/08/scala/scala05/" class="leancloud_visitors" data-flag-title="Scala并发编程模型（AKKA）" title="Scala并发编程模型（AKKA）">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+        
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/03/08/scala/scala05/#comment">
+            <span class="valine-comment-count" data-xid="/2018/03/08/scala/scala05/"></span>
+        </a>
+    </span>
+
+
+
+        
+        
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+        
+        
+            
+Spark底层通信是使用AKKA，而Hadoop则使用rpc。
+
+1）Akka简介写并发程序比较难，而Akka帮我们解决了这个问题；Akka构建在JVM上面，是一种高并发、分布式、高容错的应用开发工具包；Akka同时提供了Scala、Java的开发接口；Akka可以开发一些高并发的程序；
+2）Akka的Actor模型Akka处理并发的方法基于Acto...
+        
+        <a href="/2018/03/08/scala/scala05/" class="post-more waves-effect waves-button">
+            more
+        </a>
+    </div>
+
+</article>
+
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+
+    </div>
+
+
+            </li>
+        
+            <li class="post-list-item fade">
+                <article id="post-scala/scala04" class="article-card article-type-post" itemprop="blogPost">
+    
+        
+<div class="item-thumb">
+    <a class="thumb-link" href="/2018/03/05/scala/scala04/"></a>
+    <div class="thumb-hover">
+        <span class="icon icon-eye"></span>
+    </div>
+    <img src="/img/thumb/4.jpg" alt="图片路径不正确">
+    
+
+
+    
+        <h3 class="post-title ab-title" itemprop="name">
+            <a class="post-title-link" href="/2018/03/05/scala/scala04/">Scala面向对象</a>
+        </h3>
+    
+
+
+
+</div>
+
+    
+    
+    
+    
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-03-05 10:21:30" datetime="2018-03-05T02:21:30.000Z" itemprop="datePublished">2018-03-05</time>
+
+        
+
+
+        
+	<span id="/2018/03/05/scala/scala04/" class="leancloud_visitors" data-flag-title="Scala面向对象" title="Scala面向对象">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+        
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/03/05/scala/scala04/#comment">
+            <span class="valine-comment-count" data-xid="/2018/03/05/scala/scala04/"></span>
+        </a>
+    </span>
+
+
+
+        
+        
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+        
+        
+            我们需要封装对象、定义模板，所以需要面向对象。
+1）Scala单例对象Scala中没有static关键，如需要使用静态类则需要使用object关键字；123456object scala01 &#123;     var a = 10 //在外部类中可以使用scala01.a调用     // 在外部类中可以使用scala01.test()调用    ...
+        
+        <a href="/2018/03/05/scala/scala04/" class="post-more waves-effect waves-button">
+            more
+        </a>
+    </div>
+
+</article>
+
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+
+    </div>
+
+
+            </li>
+        
+            <li class="post-list-item fade">
+                <article id="post-spark/spark01" class="article-card article-type-post" itemprop="blogPost">
+    
+        
+<div class="item-thumb">
+    <a class="thumb-link" href="/2018/03/02/spark/spark01/"></a>
+    <div class="thumb-hover">
+        <span class="icon icon-eye"></span>
+    </div>
+    <img src="/img/thumb/3.jpg" alt="图片路径不正确">
+    
+
+
+    
+        <h3 class="post-title ab-title" itemprop="name">
+            <a class="post-title-link" href="/2018/03/02/spark/spark01/">spark01</a>
+        </h3>
+    
+
+
+
+</div>
+
+    
+    
+    
+    
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-03-02 15:49:37" datetime="2018-03-02T07:49:37.000Z" itemprop="datePublished">2018-03-02</time>
+
+        
+
+
+        
+	<span id="/2018/03/02/spark/spark01/" class="leancloud_visitors" data-flag-title="spark01" title="spark01">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+        
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/03/02/spark/spark01/#comment">
+            <span class="valine-comment-count" data-xid="/2018/03/02/spark/spark01/"></span>
+        </a>
+    </span>
+
+
+
+        
+        
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+        
+        
+            1
+        
+        <a href="/2018/03/02/spark/spark01/" class="post-more waves-effect waves-button">
+            more
+        </a>
+    </div>
+
+</article>
+
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li></ul>
+
+    </div>
+
+
+            </li>
+        
+            <li class="post-list-item fade">
+                <article id="post-scala/scala03" class="article-card article-type-post" itemprop="blogPost">
+    
+        
+<div class="item-thumb">
+    <a class="thumb-link" href="/2018/02/27/scala/scala03/"></a>
+    <div class="thumb-hover">
+        <span class="icon icon-eye"></span>
+    </div>
+    <img src="/img/thumb/2.jpg" alt="图片路径不正确">
+    
+
+
+    
+        <h3 class="post-title ab-title" itemprop="name">
+            <a class="post-title-link" href="/2018/02/27/scala/scala03/">Scala数组&amp;集合</a>
+        </h3>
+    
+
+
+
+</div>
+
+    
+    
+    
+    
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-02-27 15:11:44" datetime="2018-02-27T07:11:44.000Z" itemprop="datePublished">2018-02-27</time>
+
+        
+
+
+        
+	<span id="/2018/02/27/scala/scala03/" class="leancloud_visitors" data-flag-title="Scala数组&集合" title="Scala数组&集合">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+        
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/02/27/scala/scala03/#comment">
+            <span class="valine-comment-count" data-xid="/2018/02/27/scala/scala03/"></span>
+        </a>
+    </span>
+
+
+
+        
+        
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+        
+        
+            数组1）定义：
+var arr1 = new Arrayint     arr1(1) = 1     arr += 2 //此时arr1的长度为4 [Array（1，null，null，2）]     var arr2 = Array(1,2,3,4) //实际上是调用 了Array的apply方法     arr2 += 5 //此时编译报错，这种...
+        
+        <a href="/2018/02/27/scala/scala03/" class="post-more waves-effect waves-button">
+            more
+        </a>
+    </div>
+
+</article>
+
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+
+    </div>
+
+
+            </li>
+        
+            <li class="post-list-item fade">
+                <article id="post-scala/scala02" class="article-card article-type-post" itemprop="blogPost">
+    
+        
+<div class="item-thumb">
+    <a class="thumb-link" href="/2018/02/24/scala/scala02/"></a>
+    <div class="thumb-hover">
+        <span class="icon icon-eye"></span>
+    </div>
+    <img src="/img/thumb/1.jpg" alt="图片路径不正确">
+    
+
+
+    
+        <h3 class="post-title ab-title" itemprop="name">
+            <a class="post-title-link" href="/2018/02/24/scala/scala02/">Scala方法、函数</a>
+        </h3>
+    
+
+
+
+</div>
+
+    
+    
+    
+    
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-02-24 13:06:27" datetime="2018-02-24T05:06:27.000Z" itemprop="datePublished">2018-02-24</time>
+
+        
+
+
+        
+	<span id="/2018/02/24/scala/scala02/" class="leancloud_visitors" data-flag-title="Scala方法、函数" title="Scala方法、函数">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+        
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/02/24/scala/scala02/#comment">
+            <span class="valine-comment-count" data-xid="/2018/02/24/scala/scala02/"></span>
+        </a>
+    </span>
+
+
+
+        
+        
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+        
+        
+            1）传值调用&amp;传名调用def fun(a : Int) : Int = {
+    a * a
+}
+传值调用：将值，方法返回的值作为参数传递到另外一个方法；def test(a : Int) : Unit = {
+    a * a 
+}test(fun(2))//会先执行fun（只会执行一遍）
+传名调用：直接将一个函数传递到方法内部执行；de...
+        
+        <a href="/2018/02/24/scala/scala02/" class="post-more waves-effect waves-button">
+            more
+        </a>
+    </div>
+
+</article>
+
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scala/">scala</a></li></ul>
+
+    </div>
+
+
+            </li>
+        
+        </ul>
+        
+<nav id="page-nav">
+    <div class="inner">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    </div>
+</nav>
+
+    </div>
+
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                Bm和弦 &copy;
+                2016 -
+                
+                2019
+            </span>
+
+            
+
+            
+                <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/&title=Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABv0lEQVR42u3aQY7DIAwF0N7/0hmp206TbzvQVnqsqibAIwsLbB6PuB3P9u7/5OnrO+963dBwcXHH3OO0JUO/vnm+gPNe54vExcXdya0ijqC9Gz//HLi4uN/PrQ6dhC1cXNxf586DFy4u7m9xk+mbE4w3TLi4uPu51YTpit8L87u4uLhF7lFs+Qjzuf4ZExcXdws3Oagkic5e2OptoXBxcVdz8wNPfiiaX7C4CGG4uLiLub3SSHIVY1JEufgHFxd3MbcayCZllerW54a4i4uL2+ImYSi/SFHtlY9wcW7DxcW9lZtvR6r7pt62pvwtcXFxF3DzwmovzOW98sMVLi7uam5eHE0mzgNZ79oWLi7uHu4kSuRPe8vAxcX9FLd3pKmmRCfbI1xc3P3cXlW2cOcrCJTVuXBxcVdz58Fl8rRa6MXFxd3JTbpVQ9hduVtcXNxPcecXreaJ0WgZuLi4W7i9gutdt8CqRyBcXNyd3Dx45WWV6gGpsFRcXNyN3N6ViOpS80VeVINxcXG/hpskR6rHp3LSFhcX9yu5kw1KvtTbAhkuLu6A2ws9k2sZo0CGi4u7mNtLmE5SqNVkCi4u7kbuH6ECTdRrs+e0AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.1"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.1"></script>
+
+<!-- third-party -->
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?295530ec02";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.4.1"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.1"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>
