@@ -992,6 +992,22 @@
     </entry>
     
     <entry>
+      <title><![CDATA[zookeeper简介]]></title>
+      <url>/2017/11/27/hadoop/zk/zookeeper01/</url>
+      <content type="html"><![CDATA[<h3 id="1）简介"><a href="#1）简介" class="headerlink" title="1）简介"></a>1）简介</h3><p>（1）是<strong>大数据生态圈的管理员</strong>。<br>     （2）ZooKeeper是一个分布式的，开放源码的<strong>分布式应用程序协调服务</strong>，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br>     （3）ZooKeeper的目标就是封装好复杂易出错的关键服务，将简单易用的接口和性能高效、功能稳定的系统提供给用户。<br>     （4）ZooKeeper包含一个简单的原语集， 提供Java和C的接口。</p>
+<h3 id="2）主要功能"><a href="#2）主要功能" class="headerlink" title="2）主要功能"></a>2）主要功能</h3><p>（1）储存数据（配置信息）<br>     （2）监听（可能存在长千上万的服务器、节点，维护起来很不方便）</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> zookeeper </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[zookeeper运行机制及目录结构]]></title>
       <url>/2017/11/27/hadoop/zk/zookeeper02/</url>
       <content type="html"><![CDATA[<h3 id="1）zookeeper运行机制："><a href="#1）zookeeper运行机制：" class="headerlink" title="1）zookeeper运行机制："></a>1）zookeeper运行机制：</h3><p>@card{</p>
@@ -1043,22 +1059,6 @@
 </ul>
 </li>
 </ul>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> zookeeper </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[zookeeper简介]]></title>
-      <url>/2017/11/27/hadoop/zk/zookeeper01/</url>
-      <content type="html"><![CDATA[<h3 id="1）简介"><a href="#1）简介" class="headerlink" title="1）简介"></a>1）简介</h3><p>（1）是<strong>大数据生态圈的管理员</strong>。<br>     （2）ZooKeeper是一个分布式的，开放源码的<strong>分布式应用程序协调服务</strong>，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br>     （3）ZooKeeper的目标就是封装好复杂易出错的关键服务，将简单易用的接口和性能高效、功能稳定的系统提供给用户。<br>     （4）ZooKeeper包含一个简单的原语集， 提供Java和C的接口。</p>
-<h3 id="2）主要功能"><a href="#2）主要功能" class="headerlink" title="2）主要功能"></a>2）主要功能</h3><p>（1）储存数据（配置信息）<br>     （2）监听（可能存在长千上万的服务器、节点，维护起来很不方便）</p>
 ]]></content>
       
         
