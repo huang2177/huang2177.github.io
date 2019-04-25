@@ -3,6 +3,47 @@
   
     
     <entry>
+      <title><![CDATA[Android 模块化、组件化的理解]]></title>
+      <url>/2019/03/09/android/android09/</url>
+      <content type="html"><![CDATA[<h4 id="模块化-or-组件化"><a href="#模块化-or-组件化" class="headerlink" title="模块化 or 组件化"></a>模块化 or 组件化</h4><ul>
+<li>从上面的概述来看其实组件化跟模块化没有明显的区别；</li>
+<li>一个登录功能可以是一个模块也可以是一个组件，一个日期选择控件可以是一个模块，也可以是一个组件；</li>
+<li>因为不管是模块化还是组件化，它们都有一个共同的目标：将一个大的软件系统细化成一个个模块或者组件，都是为了<strong>重用和解耦</strong>。</li>
+<li>因此没有一个明确的界线去区分它们，只是 <strong>组件化较模块化粒度更小</strong>。</li>
+</ul>
+<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
+<li>模块：<strong>侧重于功能</strong>，与业务无关，比如自定义控件、网络请求库、图片加载库等</li>
+<li>组件：<strong>侧重于业务</strong>，可编译成单独的app，一般只负责单一业务，具备自身的生命周期（通常包含Android四大组件的一个或多个，所以称之为组件也更加贴切）</li>
+</ul>
+<h4 id="组件化框架"><a href="#组件化框架" class="headerlink" title="组件化框架"></a>组件化框架</h4><h5 id="面向接口"><a href="#面向接口" class="headerlink" title="面向接口"></a>面向接口</h5><ul>
+<li>并不能真正的解耦；</li>
+<li>内部生成映射表，这个映射表的数据结构通常是一个Map，Key是一个字符串，Value是一个类或者是类的路径名称（用于通过反射进行类的实例化）。</li>
+</ul>
+<h5 id="面向通信协议"><a href="#面向通信协议" class="headerlink" title="面向通信协议"></a>面向通信协议</h5><ul>
+<li>可以真正的实现隔离；</li>
+<li>基于事件总线的方式实现组件之间的通信，这些框架会在内部建立跨进程通信的连接（也就是事件总线），这条事件总线负责分发路由请求以及返回执行结果。</li>
+<li>只支持基本类型参数的转发。</li>
+</ul>
+<h4 id="组件化演变过程"><a href="#组件化演变过程" class="headerlink" title="组件化演变过程"></a>组件化演变过程</h4><ul>
+<li>从单工程项目过度到多模块的阶段；</li>
+<li>从多模块过度到多组件的阶段；</li>
+<li>多组件独立进程的阶段。<blockquote>
+<p>而目前大多数应用其实都是在第二个阶段或者介于第二和第三个阶段之间，所以对于这样的项目，选择一个既支持类查找方式，又支持事件总线的组件化框架是最合适的。</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[谢谢你，撑起我们的半边天！]]></title>
       <url>/2019/03/08/suibi/women_day/</url>
       <content type="html"><![CDATA[<figure class="image-box">
@@ -992,6 +1033,22 @@
     </entry>
     
     <entry>
+      <title><![CDATA[zookeeper简介]]></title>
+      <url>/2017/11/27/hadoop/zk/zookeeper01/</url>
+      <content type="html"><![CDATA[<h3 id="1）简介"><a href="#1）简介" class="headerlink" title="1）简介"></a>1）简介</h3><p>（1）是<strong>大数据生态圈的管理员</strong>。<br>     （2）ZooKeeper是一个分布式的，开放源码的<strong>分布式应用程序协调服务</strong>，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br>     （3）ZooKeeper的目标就是封装好复杂易出错的关键服务，将简单易用的接口和性能高效、功能稳定的系统提供给用户。<br>     （4）ZooKeeper包含一个简单的原语集， 提供Java和C的接口。</p>
+<h3 id="2）主要功能"><a href="#2）主要功能" class="headerlink" title="2）主要功能"></a>2）主要功能</h3><p>（1）储存数据（配置信息）<br>     （2）监听（可能存在长千上万的服务器、节点，维护起来很不方便）</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> zookeeper </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[zookeeper运行机制及目录结构]]></title>
       <url>/2017/11/27/hadoop/zk/zookeeper02/</url>
       <content type="html"><![CDATA[<h3 id="1）zookeeper运行机制："><a href="#1）zookeeper运行机制：" class="headerlink" title="1）zookeeper运行机制："></a>1）zookeeper运行机制：</h3><p>@card{</p>
@@ -1043,22 +1100,6 @@
 </ul>
 </li>
 </ul>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> zookeeper </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[zookeeper简介]]></title>
-      <url>/2017/11/27/hadoop/zk/zookeeper01/</url>
-      <content type="html"><![CDATA[<h3 id="1）简介"><a href="#1）简介" class="headerlink" title="1）简介"></a>1）简介</h3><p>（1）是<strong>大数据生态圈的管理员</strong>。<br>     （2）ZooKeeper是一个分布式的，开放源码的<strong>分布式应用程序协调服务</strong>，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br>     （3）ZooKeeper的目标就是封装好复杂易出错的关键服务，将简单易用的接口和性能高效、功能稳定的系统提供给用户。<br>     （4）ZooKeeper包含一个简单的原语集， 提供Java和C的接口。</p>
-<h3 id="2）主要功能"><a href="#2）主要功能" class="headerlink" title="2）主要功能"></a>2）主要功能</h3><p>（1）储存数据（配置信息）<br>     （2）监听（可能存在长千上万的服务器、节点，维护起来很不方便）</p>
 ]]></content>
       
         
