@@ -3,51 +3,6 @@
   
     
     <entry>
-      <title><![CDATA[Android 模块化、组件化的理解]]></title>
-      <url>/2019/03/09/android/android09/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>不管是模块化还是组件化，都不是一个新的设计思想，它们很早就已经被提出了。但是早期的移动应用由于相对简单，本身逻辑功能也不多，所以在移动端的应用反而没那么广泛。</p>
-</blockquote>
-<h4 id="模块化-or-组件化"><a href="#模块化-or-组件化" class="headerlink" title="模块化 or 组件化"></a>模块化 or 组件化</h4><ul>
-<li>从上面的概述来看其实组件化跟模块化没有明显的区别；</li>
-<li>一个登录功能可以是一个模块也可以是一个组件，一个日期选择控件可以是一个模块，也可以是一个组件；</li>
-<li>因为不管是模块化还是组件化，它们都有一个共同的目标：将一个大的软件系统细化成一个个模块或者组件，都是为了<strong>重用和解耦</strong>。</li>
-<li>因此没有一个明确的界线去区分它们，只是 <strong>组件化较模块化粒度更小</strong>。</li>
-</ul>
-<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
-<li>模块：<strong>侧重于功能</strong>，与业务无关，比如自定义控件、网络请求库、图片加载库等</li>
-<li>组件：<strong>侧重于业务</strong>，可编译成单独的app，一般只负责单一业务，具备自身的生命周期（通常包含Android四大组件的一个或多个，所以称之为组件也更加贴切）</li>
-</ul>
-<h4 id="组件化框架"><a href="#组件化框架" class="headerlink" title="组件化框架"></a>组件化框架</h4><h5 id="面向接口"><a href="#面向接口" class="headerlink" title="面向接口"></a>面向接口</h5><ul>
-<li>并不能真正的解耦；</li>
-<li>内部生成映射表，这个映射表的数据结构通常是一个Map，Key是一个字符串，Value是一个类或者是类的路径名称；</li>
-<li>用于通过<strong>反射进行类的实例化</strong>。</li>
-</ul>
-<h5 id="面向通信协议"><a href="#面向通信协议" class="headerlink" title="面向通信协议"></a>面向通信协议</h5><ul>
-<li>可以真正的实现隔离；</li>
-<li>基于事件总线的方式实现组件之间的通信，这些框架会在内部建立跨进程通信的连接（也就是事件总线），这条事件总线负责分发路由请求以及返回执行结果。</li>
-<li>只支持基本类型参数的转发。</li>
-</ul>
-<h4 id="组件化演变过程"><a href="#组件化演变过程" class="headerlink" title="组件化演变过程"></a>组件化演变过程</h4><ul>
-<li>从单工程项目过度到多模块的阶段；</li>
-<li>从多模块过度到多组件的阶段；</li>
-<li>多组件独立进程的阶段。<blockquote>
-<p>而目前大多数应用其实都是在第二个阶段或者介于第二和第三个阶段之间，所以对于这样的项目，选择一个既支持类查找方式，又支持事件总线的组件化框架是最合适的。</p>
-</blockquote>
-</li>
-</ul>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> android </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[谢谢你，撑起我们的半边天！]]></title>
       <url>/2019/03/08/suibi/women_day/</url>
       <content type="html"><![CDATA[<figure class="image-box">
@@ -80,6 +35,66 @@
         <tags>
             
             <tag> 随笔 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android 动画（一）Animation]]></title>
+      <url>/2018/12/15/android/android10/</url>
+      <content type="html"><![CDATA[<p>在日常的Android开发中，我们可能经常会使用到动画，但是Android有哪些动画，它们有什么区别，我们也需要去了解。下面就对Android中常用的动画做一下总结。</p>
+<blockquote>
+<p>总的说来，Android中动画可分为两大类：<strong>传统动画(Animation)</strong>、<strong>属性动画(Animator)</strong>。</p>
+</blockquote>
+<h4 id="传统动画-Animation-分类"><a href="#传统动画-Animation-分类" class="headerlink" title="传统动画(Animation)分类"></a>传统动画(Animation)分类</h4><h5 id="帧动画（Frame-Animation）"><a href="#帧动画（Frame-Animation）" class="headerlink" title="帧动画（Frame Animation）"></a>帧动画（Frame Animation）</h5><p>帧动画是比较容易实现的一种动画。比较<font color="#0000FF">依赖UI资源</font>，它的原理就是<font color="#0000FF">将一张张图片连贯起来进行播放</font>，从而在视觉上产生动画的感觉。</p>
+<p>在drawable文件夹下面创建 frame_anim1.xml文件夹：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;animation-list android:oneshot=&quot;true&quot; </span><br><span class="line">                xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@color/design_default_color_primary&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item android:drawable=&quot;@color/design_default_color_primary_dark&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item android:drawable=&quot;@color/colorAccent&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--当然item内部也可以有其他节点--&gt;</span><br><span class="line">    &lt;!--&lt;item android:duration=&quot;200&quot;&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;shape&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;corners android:radius=&quot;2dp&quot;/&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;solid android:color=&quot;@color/colorAccent&quot;/&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;/shape&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;/item&gt;--&gt;</span><br><span class="line">&lt;/animation-list&gt;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>oneshot参数说明：true表示东湖只会执行一次，否则循环执行；</p>
+</blockquote>
+<p>在代码中添加到view（主要）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">imageView.setImageResource(R.drawable.frame_anim1);</span><br><span class="line">AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getDrawable();</span><br><span class="line">animationDrawable.start();</span><br></pre></td></tr></table></figure></p>
+<h5 id="补间动画"><a href="#补间动画" class="headerlink" title="补间动画"></a>补间动画</h5><p>补间动画又可以分为四种形式，分别是<strong>alpha</strong>（淡入淡出），<strong>translate</strong>（位移），<strong>scale</strong>（缩放大小），<strong>rotate</strong>（旋转）。</p>
+<h6 id="xml的形式"><a href="#xml的形式" class="headerlink" title="xml的形式"></a>xml的形式</h6><p>补间动画的实现，一般会采用xml 文件的形式；会更容易书写和阅读，同时也更容易复用。</p>
+<p>首先，在<strong>res/anim/</strong>文件夹下定义如下的动画实现方式：<br>alpha_anim.xml 动画实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;alpha xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:duration=&quot;1000&quot;</span><br><span class="line">    android:fromAlpha=&quot;1.0&quot;</span><br><span class="line">    android:interpolator=&quot;@android:anim/accelerate_decelerate_interpolator&quot;</span><br><span class="line">    android:toAlpha=&quot;0.0&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>scale_anim.xml 动画实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;scale xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:duration=&quot;1000&quot;</span><br><span class="line">    android:fromXScale=&quot;0.0&quot;</span><br><span class="line">    android:fromYScale=&quot;0.0&quot;</span><br><span class="line">    android:pivotX=&quot;50%&quot;</span><br><span class="line">    android:pivotY=&quot;50%&quot;</span><br><span class="line">    android:toXScale=&quot;1.0&quot;</span><br><span class="line">    android:toYScale=&quot;1.0&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>代码调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.alpha_anim);</span><br><span class="line">img = (ImageView) findViewById(R.id.img);</span><br><span class="line">img.startAnimation(animation);</span><br></pre></td></tr></table></figure></p>
+<p>当然，也可以使用set将多个动画组合起来使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:interpolator=&quot;@[package:]anim/interpolator_resource&quot;</span><br><span class="line">    android:shareInterpolator=[&quot;true&quot; | &quot;false&quot;] &gt;</span><br><span class="line">    &lt;alpha</span><br><span class="line">        android:fromAlpha=&quot;float&quot;</span><br><span class="line">        android:toAlpha=&quot;float&quot; /&gt;</span><br><span class="line">    &lt;scale</span><br><span class="line">        android:fromXScale=&quot;float&quot;</span><br><span class="line">        android:toXScale=&quot;float&quot;</span><br><span class="line">        android:fromYScale=&quot;float&quot;</span><br><span class="line">        android:toYScale=&quot;float&quot;</span><br><span class="line">        android:pivotX=&quot;float&quot;</span><br><span class="line">        android:pivotY=&quot;float&quot; /&gt;</span><br><span class="line">    &lt;translate</span><br><span class="line">        android:fromXDelta=&quot;float&quot;</span><br><span class="line">        android:toXDelta=&quot;float&quot;</span><br><span class="line">        android:fromYDelta=&quot;float&quot;</span><br><span class="line">        android:toYDelta=&quot;float&quot; /&gt;</span><br><span class="line">    &lt;rotate</span><br><span class="line">        android:fromDegrees=&quot;float&quot;</span><br><span class="line">        android:toDegrees=&quot;float&quot;</span><br><span class="line">        android:pivotX=&quot;float&quot;</span><br><span class="line">        android:pivotY=&quot;float&quot; /&gt;</span><br><span class="line">    &lt;set&gt;</span><br><span class="line">        ...</span><br><span class="line">    &lt;/set&gt;</span><br><span class="line">&lt;/set&gt;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>interpolator：插值器，决定了View的动画的变化方式，也就是动画的变化速率。<br>pivot 决定了当前动画执行的参考位置</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>PivotX取值</th>
+<th>含义   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>原点坐标加上 50px，作为起始点</td>
+</tr>
+<tr>
+<td>10%</td>
+<td>原点坐标加上自己宽度的 50%（即控件水平中心）作为起始点 </td>
+</tr>
+<tr>
+<td>10%p</td>
+<td>原点坐标加上父控件宽度的 50% 作为起始点 x 轴坐标 </td>
+</tr>
+</tbody>
+</table>
+<h6 id="代码形式"><a href="#代码形式" class="headerlink" title="代码形式"></a>代码形式</h6><p>有时候，动画的属性值可能需要动态的调整，这个时候使用xml 就不合适了，需要使用java代码实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">animation = new RotateAnimation(-deValue, deValue</span><br><span class="line">, Animation.RELATIVE_TO_SELF</span><br><span class="line">, pxValue</span><br><span class="line">, Animation.RELATIVE_TO_SELF</span><br><span class="line">, pyValue);</span><br><span class="line">animation.setDuration(timeValue);</span><br><span class="line"></span><br><span class="line">animation.setFillAfter(true); // 动画是否需要保持最后的状态，停留在最后一帧。</span><br><span class="line">animation.setRepeatCount(-1); // 动画的重复次数</span><br><span class="line">animation.setRepeatMode(Animation.REVERSE); // 重复方式</span><br><span class="line">img.startAnimation(animation);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>也可以通过<strong>AnimationSet</strong>完成多个动画的组合使用。</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> android </tag>
             
         </tags>
         
@@ -154,54 +169,39 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Android 动画（一）Animation]]></title>
-      <url>/2018/04/15/android/android10/</url>
-      <content type="html"><![CDATA[<p>在日常的Android开发中，我们可能经常会使用到动画，但是Android有哪些动画，它们有什么区别，我们也需要去了解。下面就对Android中常用的动画做一下总结。</p>
-<blockquote>
-<p>总的说来，Android中动画可分为两大类：<strong>传统动画(Animation)</strong>、<strong>属性动画(Animator)</strong>。</p>
+      <title><![CDATA[Android 模块化、组件化的理解]]></title>
+      <url>/2018/10/09/android/android09/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>不管是模块化还是组件化，都不是一个新的设计思想，它们很早就已经被提出了。但是早期的移动应用由于相对简单，本身逻辑功能也不多，所以在移动端的应用反而没那么广泛。</p>
 </blockquote>
-<h4 id="传统动画-Animation-分类"><a href="#传统动画-Animation-分类" class="headerlink" title="传统动画(Animation)分类"></a>传统动画(Animation)分类</h4><h5 id="帧动画（Frame-Animation）"><a href="#帧动画（Frame-Animation）" class="headerlink" title="帧动画（Frame Animation）"></a>帧动画（Frame Animation）</h5><p>帧动画是比较容易实现的一种动画。比较<font color="#0000FF">依赖UI资源</font>，它的原理就是<font color="#0000FF">将一张张图片连贯起来进行播放</font>，从而在视觉上产生动画的感觉。</p>
-<p>在drawable文件夹下面创建 frame_anim1.xml文件夹：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;animation-list android:oneshot=&quot;true&quot; </span><br><span class="line">                xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@color/design_default_color_primary&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item android:drawable=&quot;@color/design_default_color_primary_dark&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item android:drawable=&quot;@color/colorAccent&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--当然item内部也可以有其他节点--&gt;</span><br><span class="line">    &lt;!--&lt;item android:duration=&quot;200&quot;&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;shape&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;corners android:radius=&quot;2dp&quot;/&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;solid android:color=&quot;@color/colorAccent&quot;/&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;/shape&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;/item&gt;--&gt;</span><br><span class="line">&lt;/animation-list&gt;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>oneshot参数说明：true表示东湖只会执行一次，否则循环执行；</p>
+<h4 id="模块化-or-组件化"><a href="#模块化-or-组件化" class="headerlink" title="模块化 or 组件化"></a>模块化 or 组件化</h4><ul>
+<li>从上面的概述来看其实组件化跟模块化没有明显的区别；</li>
+<li>一个登录功能可以是一个模块也可以是一个组件，一个日期选择控件可以是一个模块，也可以是一个组件；</li>
+<li>因为不管是模块化还是组件化，它们都有一个共同的目标：将一个大的软件系统细化成一个个模块或者组件，都是为了<strong>重用和解耦</strong>。</li>
+<li>因此没有一个明确的界线去区分它们，只是 <strong>组件化较模块化粒度更小</strong>。</li>
+</ul>
+<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
+<li>模块：<strong>侧重于功能</strong>，与业务无关，比如自定义控件、网络请求库、图片加载库等</li>
+<li>组件：<strong>侧重于业务</strong>，可编译成单独的app，一般只负责单一业务，具备自身的生命周期（通常包含Android四大组件的一个或多个，所以称之为组件也更加贴切）</li>
+</ul>
+<h4 id="组件化框架"><a href="#组件化框架" class="headerlink" title="组件化框架"></a>组件化框架</h4><h5 id="面向接口"><a href="#面向接口" class="headerlink" title="面向接口"></a>面向接口</h5><ul>
+<li>并不能真正的解耦；</li>
+<li>内部生成映射表，这个映射表的数据结构通常是一个Map，Key是一个字符串，Value是一个类或者是类的路径名称；</li>
+<li>用于通过<strong>反射进行类的实例化</strong>。</li>
+</ul>
+<h5 id="面向通信协议"><a href="#面向通信协议" class="headerlink" title="面向通信协议"></a>面向通信协议</h5><ul>
+<li>可以真正的实现隔离；</li>
+<li>基于事件总线的方式实现组件之间的通信，这些框架会在内部建立跨进程通信的连接（也就是事件总线），这条事件总线负责分发路由请求以及返回执行结果。</li>
+<li>只支持基本类型参数的转发。</li>
+</ul>
+<h4 id="组件化演变过程"><a href="#组件化演变过程" class="headerlink" title="组件化演变过程"></a>组件化演变过程</h4><ul>
+<li>从单工程项目过度到多模块的阶段；</li>
+<li>从多模块过度到多组件的阶段；</li>
+<li>多组件独立进程的阶段。<blockquote>
+<p>而目前大多数应用其实都是在第二个阶段或者介于第二和第三个阶段之间，所以对于这样的项目，选择一个既支持类查找方式，又支持事件总线的组件化框架是最合适的。</p>
 </blockquote>
-<p>在代码中添加到view（主要）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">imageView.setImageResource(R.drawable.frame_anim1);</span><br><span class="line">AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getDrawable();</span><br><span class="line">animationDrawable.start();</span><br></pre></td></tr></table></figure></p>
-<h5 id="补间动画"><a href="#补间动画" class="headerlink" title="补间动画"></a>补间动画</h5><p>补间动画又可以分为四种形式，分别是<strong>alpha</strong>（淡入淡出），<strong>translate</strong>（位移），<strong>scale</strong>（缩放大小），<strong>rotate</strong>（旋转）。</p>
-<h6 id="xml的形式"><a href="#xml的形式" class="headerlink" title="xml的形式"></a>xml的形式</h6><p>补间动画的实现，一般会采用xml 文件的形式；会更容易书写和阅读，同时也更容易复用。</p>
-<p>首先，在<strong>res/anim/</strong>文件夹下定义如下的动画实现方式：<br>alpha_anim.xml 动画实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;alpha xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:duration=&quot;1000&quot;</span><br><span class="line">    android:fromAlpha=&quot;1.0&quot;</span><br><span class="line">    android:interpolator=&quot;@android:anim/accelerate_decelerate_interpolator&quot;</span><br><span class="line">    android:toAlpha=&quot;0.0&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
-<p>scale_anim.xml 动画实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;scale xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:duration=&quot;1000&quot;</span><br><span class="line">    android:fromXScale=&quot;0.0&quot;</span><br><span class="line">    android:fromYScale=&quot;0.0&quot;</span><br><span class="line">    android:pivotX=&quot;50%&quot;</span><br><span class="line">    android:pivotY=&quot;50%&quot;</span><br><span class="line">    android:toXScale=&quot;1.0&quot;</span><br><span class="line">    android:toYScale=&quot;1.0&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
-<p>代码调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.alpha_anim);</span><br><span class="line">img = (ImageView) findViewById(R.id.img);</span><br><span class="line">img.startAnimation(animation);</span><br></pre></td></tr></table></figure></p>
-<p>当然，也可以使用set将多个动画组合起来使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:interpolator=&quot;@[package:]anim/interpolator_resource&quot;</span><br><span class="line">    android:shareInterpolator=[&quot;true&quot; | &quot;false&quot;] &gt;</span><br><span class="line">    &lt;alpha</span><br><span class="line">        android:fromAlpha=&quot;float&quot;</span><br><span class="line">        android:toAlpha=&quot;float&quot; /&gt;</span><br><span class="line">    &lt;scale</span><br><span class="line">        android:fromXScale=&quot;float&quot;</span><br><span class="line">        android:toXScale=&quot;float&quot;</span><br><span class="line">        android:fromYScale=&quot;float&quot;</span><br><span class="line">        android:toYScale=&quot;float&quot;</span><br><span class="line">        android:pivotX=&quot;float&quot;</span><br><span class="line">        android:pivotY=&quot;float&quot; /&gt;</span><br><span class="line">    &lt;translate</span><br><span class="line">        android:fromXDelta=&quot;float&quot;</span><br><span class="line">        android:toXDelta=&quot;float&quot;</span><br><span class="line">        android:fromYDelta=&quot;float&quot;</span><br><span class="line">        android:toYDelta=&quot;float&quot; /&gt;</span><br><span class="line">    &lt;rotate</span><br><span class="line">        android:fromDegrees=&quot;float&quot;</span><br><span class="line">        android:toDegrees=&quot;float&quot;</span><br><span class="line">        android:pivotX=&quot;float&quot;</span><br><span class="line">        android:pivotY=&quot;float&quot; /&gt;</span><br><span class="line">    &lt;set&gt;</span><br><span class="line">        ...</span><br><span class="line">    &lt;/set&gt;</span><br><span class="line">&lt;/set&gt;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>interpolator：插值器，决定了View的动画的变化方式，也就是动画的变化速率。<br>pivot 决定了当前动画执行的参考位置</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>PivotX取值</th>
-<th>含义   </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10</td>
-<td>原点坐标加上 50px，作为起始点</td>
-</tr>
-<tr>
-<td>10%</td>
-<td>原点坐标加上自己宽度的 50%（即控件水平中心）作为起始点 </td>
-</tr>
-<tr>
-<td>10%p</td>
-<td>原点坐标加上父控件宽度的 50% 作为起始点 x 轴坐标 </td>
-</tr>
-</tbody>
-</table>
-<h6 id="代码形式"><a href="#代码形式" class="headerlink" title="代码形式"></a>代码形式</h6><p>有时候，动画的属性值可能需要动态的调整，这个时候使用xml 就不合适了，需要使用java代码实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">animation = new RotateAnimation(-deValue, deValue</span><br><span class="line">, Animation.RELATIVE_TO_SELF</span><br><span class="line">, pxValue</span><br><span class="line">, Animation.RELATIVE_TO_SELF</span><br><span class="line">, pyValue);</span><br><span class="line">animation.setDuration(timeValue);</span><br><span class="line"></span><br><span class="line">animation.setFillAfter(true); // 动画是否需要保持最后的状态，停留在最后一帧。</span><br><span class="line">animation.setRepeatCount(-1); // 动画的重复次数</span><br><span class="line">animation.setRepeatMode(Animation.REVERSE); // 重复方式</span><br><span class="line">img.startAnimation(animation);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>也可以通过<strong>AnimationSet</strong>完成多个动画的组合使用。</p>
-</blockquote>
+</li>
+</ul>
 ]]></content>
       
         
