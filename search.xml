@@ -41,18 +41,106 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Android 动画（三）插值器和估值器]]></title>
+      <url>/2018/12/21/android/android12/</url>
+      <content type="html"><![CDATA[<p>在日常的Android开发中，我们可能经常会使用到动画，但是Android有哪些动画，它们有什么区别，我们也需要去了解。下面就对Android中常用的动画做一下总结。</p>
+<p>前面一篇文章已经总结了传统动画，如果需要了解，可以点击下面链接。<br><strong><a href="https://huang2177.github.io/2018/12/15/android/android10">Android 动画（一）Animation</a>。</strong></p>
+<p>或者想了解下插值器和估值器，可以点击下面链接。<br><strong><a href="https://huang2177.github.io/2018/12/20/android/android11">Android 动画（二）Animator</a>。</strong></p>
+<h4 id="插值器（Interpolator）"><a href="#插值器（Interpolator）" class="headerlink" title="插值器（Interpolator）"></a>插值器（Interpolator）</h4><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><p>作用：设置 属性值 从初始值过渡到结束值 的<strong>变化规律</strong>；如动画效果变化的模式，如匀速变化、加速变化 等等。</p>
+<h5 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h5><ul>
+<li><p>在XML代码中设置插值器属性<strong>android:interpolator</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;scale xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    // 通过资源ID设置插值器</span><br><span class="line">    android:interpolator=&quot;@android:anim/overshoot_interpolator&quot;</span><br><span class="line">    android:duration=&quot;3000&quot;</span><br><span class="line">    android:fromXScale=&quot;0.0&quot;</span><br><span class="line">    android:fromYScale=&quot;0.0&quot;</span><br><span class="line">    android:pivotX=&quot;50%&quot;</span><br><span class="line">    android:pivotY=&quot;50%&quot;</span><br><span class="line">    android:toXScale=&quot;2&quot;</span><br><span class="line">    android:toYScale=&quot;2&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过java代码设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 步骤1:创建 需要设置动画的 视图View</span><br><span class="line">Button mButton = (Button) findViewById(R.id.Button);</span><br><span class="line">// 步骤2：创建透明度动画的对象 &amp; 设置动画效果</span><br><span class="line">Animation alphaAnimation = new AlphaAnimation(1,0);</span><br><span class="line">alphaAnimation.setDuration(3000);</span><br><span class="line">// 步骤3：创建对应的插值器类对象    </span><br><span class="line">Interpolator overshootInterpolator = new OvershootInterpolator();</span><br><span class="line">// 步骤4：给动画设置插值器 </span><br><span class="line">alphaAnimation.setInterpolator(overshootInterpolator);</span><br><span class="line">// 步骤5：播放动画</span><br><span class="line">mButton.startAnimation(alphaAnimation);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="自定义插值器"><a href="#自定义插值器" class="headerlink" title="自定义插值器"></a>自定义插值器</h5><ul>
+<li>本质：根据动画的进度（0%-100%）计算出当前属性值改变的百分比</li>
+<li>具体使用：自定义插值器需要实现 Interpolator / TimeInterpolator接口 &amp; 复写getInterpolation（）</li>
+</ul>
+<p>系统提供相关插值器的插值器的理解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 匀速 LinearInterpolator</span><br><span class="line">@HasNativeInterpolator  </span><br><span class="line">public class LinearInterpolator extends BaseInterpolator implements NativeInterpolatorFactory&#123;</span><br><span class="line">    public float getInterpolation(float input) &#123;  </span><br><span class="line">        return input;  </span><br><span class="line">        // 没有对input值进行任何逻辑处理，直接返回</span><br><span class="line">        // 即input值 = fraction值</span><br><span class="line">        // 因为input值是匀速增加的，因此fraction值也是匀速增加的.</span><br><span class="line">        // 所以动画的运动情况也是匀速的，所以是匀速插值器</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 先加速再减速 AccelerateDecelerateInterpolator</span><br><span class="line">@HasNativeInterpolator  </span><br><span class="line">public class AccelerateDecelerateInterpolator implements Interpolator,NativeInterpolatorFactory&#123;</span><br><span class="line">    public float getInterpolation(float input) &#123;  </span><br><span class="line">        return (float)(Math.cos((input + 1) * Math.PI) / 2.0f) + 0.5f;</span><br><span class="line">        // 使用了余弦函数，因input的取值范围是0到1，那么cos函数中的取值范围就是π到2π。</span><br><span class="line">        // 而cos(π)的结果是-1，cos(2π)的结果是1</span><br><span class="line">        // 所以该值除以2加上0.5后，getInterpolation()方法最终返回的结果值还是在0到1之间。</span><br><span class="line">        // 只不过经过了余弦运算之后，最终的结果不再是匀速增加的了，而是经历了一个先加速后减速的过程.</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="估值器（TypeEvaluator）"><a href="#估值器（TypeEvaluator）" class="headerlink" title="估值器（TypeEvaluator）"></a>估值器（TypeEvaluator）</h4><h5 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h5><p>作用：设置 属性值 从初始值过渡到结束值 的<strong>变化具体数值</strong></p>
+<h5 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 在第3个参数中传入对应估值器类的对象</span><br><span class="line">ObjectAnimator anim = ObjectAnimator.ofObject(myView2, &quot;height&quot;, new Evaluator()，1，3);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>系统内置的估值器有3个：<br> IntEvaluator：以整型的形式从初始值 - 结束值 进行过渡<br> FloatEvaluator：以浮点型的形式从初始值 - 结束值 进行过渡<br> ArgbEvaluator：以Argb类型的形式从初始值 - 结束值 进行过渡</p>
+</blockquote>
+<h5 id="自定义估值器"><a href="#自定义估值器" class="headerlink" title="自定义估值器"></a>自定义估值器</h5><blockquote>
+<p>自定义估值器需要实现 TypeEvaluator接口 &amp; 复写evaluate()</p>
+</blockquote>
+<p>看一个已经实现好的系统内置的浮点型插值器：FloatEvaluator<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class FloatEvaluator implements TypeEvaluator &#123;  </span><br><span class="line">    // FloatEvaluator实现了TypeEvaluator接口</span><br><span class="line">    // 重写evaluate()</span><br><span class="line">    public Object evaluate(float fraction, Object startValue, Object endValue) &#123;  </span><br><span class="line">        // fraction：表示动画完成度（根据它来计算当前动画的值）</span><br><span class="line">        // startValue、endValue：动画的初始值和结束值</span><br><span class="line">        float startFloat = ((Number) startValue).floatValue();  </span><br><span class="line">        return startFloat + fraction * (((Number) endValue).floatValue() - startFloat);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>初始值 过渡 到结束值 的算法是：</p>
+<ol>
+<li>用结束值减去初始值，算出它们之间的差值</li>
+<li>用上述差值乘以fraction系数</li>
+<li>再加上初始值，就得到当前动画的值</li>
+</ol>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Android 动画（二）Animator]]></title>
+      <url>/2018/12/20/android/android11/</url>
+      <content type="html"><![CDATA[<p>在日常的Android开发中，我们可能经常会使用到动画，但是Android有哪些动画，它们有什么区别，我们也需要去了解。下面就对Android中常用的动画做一下总结。</p>
+<p>前面一篇文章已经总结了传统动画，如果需要了解，可以点击下面链接。<br><strong><a href="https://huang2177.github.io/2018/12/15/android/android10">Android 动画（一）Animation</a>。</strong></p>
+<p>或者想了解下插值器和估值器，可以点击下面链接。<br><strong><a href="https://huang2177.github.io/2018/12/21/android/android12">Android 动画（三）插值器和估值器</a>。</strong></p>
+<blockquote>
+<p>属性动画，是通过操作对象属性的动画。因此，所有补间动画的内容，都可以通过属性动画实现。</p>
+</blockquote>
+<h4 id="属性动画核心原理"><a href="#属性动画核心原理" class="headerlink" title="属性动画核心原理"></a>属性动画核心原理</h4><p>在上面实现属性动画的时候，我们使用到了<strong>ObjectAnimator</strong>这个类，这个类继承自<strong>ValueAnimator</strong>，而ValueAnimator则继承自<strong>Animator</strong>。<br>使用这个类可以对任意对象的任意属性进行动画操作。而ValueAnimator是整个属性动画机制当中最核心的一个类。</p>
+<blockquote>
+<p>属性动画的运行机制是通过不断地对值进行操作来实现的，而初始值和结束值之间的动画过渡就是由ValueAnimator这个类来负责计算的。<br>它的内部使用一种时间循环的机制来计算值与值之间的动画过渡，我们只需要将初始值和结束值提供给ValueAnimator，并且告诉它动画所需运行的时长，那么ValueAnimator就会完成从初始值平滑地过渡的效果。<br>除此之外，ValueAnimator还负责管理动画的播放次数、播放模式、以及对动画设置监听器等。</p>
+</blockquote>
+<p>但是，动画是怎样平滑过渡的呢？实际上是由<strong>TypeEvaluator</strong>和<strong>TimeInterpolator</strong>决定的：</p>
+<blockquote>
+<p>TypeEvaluator决定了动画如何从初始值过渡到结束值。<br>TimeInterpolator 决定了动画从初始值过渡到结束值每一秒具体的属性值。</p>
+</blockquote>
+<h4 id="属性动画实现传统动画"><a href="#属性动画实现传统动画" class="headerlink" title="属性动画实现传统动画"></a>属性动画实现传统动画</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private void RotateAnimation() &#123;</span><br><span class="line">     ObjectAnimator anim = ObjectAnimator.ofFloat(myView, &quot;rotation&quot;, 0f, 360f);</span><br><span class="line">     anim.setDuration(1000);</span><br><span class="line">     anim.start();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> private void AlpahAnimation() &#123;</span><br><span class="line">     ObjectAnimator anim = ObjectAnimator.ofFloat(myView, &quot;alpha&quot;, 1.0f, 0.8f, 0.6f, 0.4f, 0.2f, 0.0f);</span><br><span class="line">     anim.setRepeatCount(-1);</span><br><span class="line">     anim.setRepeatMode(ObjectAnimator.REVERSE);</span><br><span class="line">     anim.setDuration(2000);</span><br><span class="line">     anim.start();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>当然属性动画也可以组合使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(myView, &quot;alpha&quot;, 1.0f, 0.5f, 0.8f, 1.0f);</span><br><span class="line">ObjectAnimator scaleXAnim = ObjectAnimator.ofFloat(myView, &quot;scaleX&quot;, 0.0f, 1.0f);</span><br><span class="line">ObjectAnimator scaleYAnim = ObjectAnimator.ofFloat(myView, &quot;scaleY&quot;, 0.0f, 2.0f);</span><br><span class="line">ObjectAnimator rotateAnim = ObjectAnimator.ofFloat(myView, &quot;rotation&quot;, 0, 360);</span><br><span class="line">ObjectAnimator transXAnim = ObjectAnimator.ofFloat(myView, &quot;translationX&quot;, 100, 400);</span><br><span class="line">ObjectAnimator transYAnim = ObjectAnimator.ofFloat(myView, &quot;tranlsationY&quot;, 100, 750);</span><br><span class="line">AnimatorSet set = new AnimatorSet();</span><br><span class="line">// 同时进行</span><br><span class="line">set.playTogether(alphaAnim, scaleXAnim, scaleYAnim, rotateAnim, transXAnim, transYAnim);</span><br><span class="line">// 按时序进行</span><br><span class="line">//set.playSequentially(alphaAnim, scaleXAnim, scaleYAnim, rotateAnim, transXAnim, transYAnim);</span><br><span class="line">set.setDuration(3000);</span><br><span class="line">set.start();</span><br></pre></td></tr></table></figure></p>
+<h4 id="animate-的原理"><a href="#animate-的原理" class="headerlink" title="animate()的原理"></a>animate()的原理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ViewPropertyAnimator animator = tvTodayRank.animate();</span><br><span class="line">animator.alpha(1f)</span><br><span class="line">        .rotation(360f)</span><br><span class="line">        .scaleX(25f)</span><br><span class="line">        .scaleXBy(23f)</span><br><span class="line">        .start();</span><br></pre></td></tr></table></figure>
+<p>看一下调用start()的源码，调用start()后执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Starts the currently pending property animations immediately. Calling &lt;code&gt;start()&lt;/code&gt;</span><br><span class="line"> * is optional because all animations start automatically at the next opportunity. However,</span><br><span class="line"> * if the animations are needed to start immediately and synchronously (not at the time when</span><br><span class="line"> * the next event is processed by the hierarchy, which is when the animations would begin</span><br><span class="line"> * otherwise), then this method can be used.</span><br><span class="line"> */</span><br><span class="line">public void start() &#123;</span><br><span class="line">    mView.removeCallbacks(mAnimationStarter);</span><br><span class="line">    startAnimation();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>startAnimation()：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * Starts the underlying Animator for a set of properties. We use a single animator that</span><br><span class="line">    * simply runs from 0 to 1, and then use that fractional value to set each property</span><br><span class="line">    * value accordingly.</span><br><span class="line">    */</span><br><span class="line">   private void startAnimation() &#123;</span><br><span class="line">       if (mRTBackend != null &amp;&amp; mRTBackend.startAnimation(this)) &#123;</span><br><span class="line">           return;</span><br><span class="line">       &#125;</span><br><span class="line">       mView.setHasTransientState(true);</span><br><span class="line">       ValueAnimator animator = ValueAnimator.ofFloat(1.0f);</span><br><span class="line">       </span><br><span class="line">       // ... 省了部分代码</span><br><span class="line">       </span><br><span class="line">       animator.start();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>当调用start()方法后，还是会转化为Animator执行；</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android 动画（一）Animation]]></title>
       <url>/2018/12/15/android/android10/</url>
       <content type="html"><![CDATA[<p>在日常的Android开发中，我们可能经常会使用到动画，但是Android有哪些动画，它们有什么区别，我们也需要去了解。下面就对Android中常用的动画做一下总结。</p>
 <blockquote>
 <p>总的说来，Android中动画可分为两大类：<strong>传统动画(Animation)</strong>、<strong>属性动画(Animator)</strong>。</p>
 </blockquote>
+<p>这一篇文章主要总结传统动画，如果属性动画，可以点击下面链接。<br><strong><a href="https://huang2177.github.io/2018/12/20/android/android11">Android 动画（二）Animator</a>。</strong></p>
+<p>或者想了解下插值器和估值器，可以点击下面链接。<br><strong><a href="https://huang2177.github.io/2018/12/21/android/android12">Android 动画（三）插值器和估值器</a>。</strong></p>
 <h4 id="传统动画-Animation-分类"><a href="#传统动画-Animation-分类" class="headerlink" title="传统动画(Animation)分类"></a>传统动画(Animation)分类</h4><h5 id="帧动画（Frame-Animation）"><a href="#帧动画（Frame-Animation）" class="headerlink" title="帧动画（Frame Animation）"></a>帧动画（Frame Animation）</h5><p>帧动画是比较容易实现的一种动画。比较<font color="#0000FF">依赖UI资源</font>，它的原理就是<font color="#0000FF">将一张张图片连贯起来进行播放</font>，从而在视觉上产生动画的感觉。</p>
 <p>在drawable文件夹下面创建 frame_anim1.xml文件夹：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;animation-list android:oneshot=&quot;true&quot; </span><br><span class="line">                xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@color/design_default_color_primary&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item android:drawable=&quot;@color/design_default_color_primary_dark&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item android:drawable=&quot;@color/colorAccent&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--当然item内部也可以有其他节点--&gt;</span><br><span class="line">    &lt;!--&lt;item android:duration=&quot;200&quot;&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;shape&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;corners android:radius=&quot;2dp&quot;/&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;solid android:color=&quot;@color/colorAccent&quot;/&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;/shape&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;/item&gt;--&gt;</span><br><span class="line">&lt;/animation-list&gt;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
-<p>oneshot参数说明：true表示东湖只会执行一次，否则循环执行；</p>
+<p>oneshot参数说明：true表示动画只会执行一次，否则循环执行；</p>
 </blockquote>
-<p>在代码中添加到view（主要）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">imageView.setImageResource(R.drawable.frame_anim1);</span><br><span class="line">AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getDrawable();</span><br><span class="line">animationDrawable.start();</span><br></pre></td></tr></table></figure></p>
+<p>在代码中添加到view：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">imageView.setImageResource(R.drawable.frame_anim1);</span><br><span class="line">AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getDrawable();</span><br><span class="line">animationDrawable.start();</span><br></pre></td></tr></table></figure></p>
 <h5 id="补间动画"><a href="#补间动画" class="headerlink" title="补间动画"></a>补间动画</h5><p>补间动画又可以分为四种形式，分别是<strong>alpha</strong>（淡入淡出），<strong>translate</strong>（位移），<strong>scale</strong>（缩放大小），<strong>rotate</strong>（旋转）。</p>
 <h6 id="xml的形式"><a href="#xml的形式" class="headerlink" title="xml的形式"></a>xml的形式</h6><p>补间动画的实现，一般会采用xml 文件的形式；会更容易书写和阅读，同时也更容易复用。</p>
 <p>首先，在<strong>res/anim/</strong>文件夹下定义如下的动画实现方式：<br>alpha_anim.xml 动画实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;alpha xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:duration=&quot;1000&quot;</span><br><span class="line">    android:fromAlpha=&quot;1.0&quot;</span><br><span class="line">    android:interpolator=&quot;@android:anim/accelerate_decelerate_interpolator&quot;</span><br><span class="line">    android:toAlpha=&quot;0.0&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
@@ -72,15 +160,15 @@
 <tbody>
 <tr>
 <td>10</td>
-<td>原点坐标加上 50px，作为起始点</td>
+<td>原点坐标加上 10px，作为起始点</td>
 </tr>
 <tr>
 <td>10%</td>
-<td>原点坐标加上自己宽度的 50%（即控件水平中心）作为起始点 </td>
+<td>原点坐标加上自己宽度的 10%（即控件水平中心）作为起始点 </td>
 </tr>
 <tr>
 <td>10%p</td>
-<td>原点坐标加上父控件宽度的 50% 作为起始点 x 轴坐标 </td>
+<td>原点坐标加上父控件宽度的 10% 作为起始点 x 轴坐标 </td>
 </tr>
 </tbody>
 </table>

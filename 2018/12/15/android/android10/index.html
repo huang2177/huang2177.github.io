@@ -235,12 +235,14 @@
 <blockquote>
 <p>总的说来，Android中动画可分为两大类：<strong>传统动画(Animation)</strong>、<strong>属性动画(Animator)</strong>。</p>
 </blockquote>
+<p>这一篇文章主要总结传统动画，如果属性动画，可以点击下面链接。<br><strong><a href="https://huang2177.github.io/2018/12/20/android/android11">Android 动画（二）Animator</a>。</strong></p>
+<p>或者想了解下插值器和估值器，可以点击下面链接。<br><strong><a href="https://huang2177.github.io/2018/12/21/android/android12">Android 动画（三）插值器和估值器</a>。</strong></p>
 <h4 id="传统动画-Animation-分类"><a href="#传统动画-Animation-分类" class="headerlink" title="传统动画(Animation)分类"></a>传统动画(Animation)分类</h4><h5 id="帧动画（Frame-Animation）"><a href="#帧动画（Frame-Animation）" class="headerlink" title="帧动画（Frame Animation）"></a>帧动画（Frame Animation）</h5><p>帧动画是比较容易实现的一种动画。比较<font color="#0000FF">依赖UI资源</font>，它的原理就是<font color="#0000FF">将一张张图片连贯起来进行播放</font>，从而在视觉上产生动画的感觉。</p>
 <p>在drawable文件夹下面创建 frame_anim1.xml文件夹：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;animation-list android:oneshot=&quot;true&quot; </span><br><span class="line">                xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@color/design_default_color_primary&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item android:drawable=&quot;@color/design_default_color_primary_dark&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item android:drawable=&quot;@color/colorAccent&quot;</span><br><span class="line">          android:duration=&quot;200&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--当然item内部也可以有其他节点--&gt;</span><br><span class="line">    &lt;!--&lt;item android:duration=&quot;200&quot;&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;shape&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;corners android:radius=&quot;2dp&quot;/&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;solid android:color=&quot;@color/colorAccent&quot;/&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;/shape&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;/item&gt;--&gt;</span><br><span class="line">&lt;/animation-list&gt;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
-<p>oneshot参数说明：true表示东湖只会执行一次，否则循环执行；</p>
+<p>oneshot参数说明：true表示动画只会执行一次，否则循环执行；</p>
 </blockquote>
-<p>在代码中添加到view（主要）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">imageView.setImageResource(R.drawable.frame_anim1);</span><br><span class="line">AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getDrawable();</span><br><span class="line">animationDrawable.start();</span><br></pre></td></tr></table></figure></p>
+<p>在代码中添加到view：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">imageView.setImageResource(R.drawable.frame_anim1);</span><br><span class="line">AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getDrawable();</span><br><span class="line">animationDrawable.start();</span><br></pre></td></tr></table></figure></p>
 <h5 id="补间动画"><a href="#补间动画" class="headerlink" title="补间动画"></a>补间动画</h5><p>补间动画又可以分为四种形式，分别是<strong>alpha</strong>（淡入淡出），<strong>translate</strong>（位移），<strong>scale</strong>（缩放大小），<strong>rotate</strong>（旋转）。</p>
 <h6 id="xml的形式"><a href="#xml的形式" class="headerlink" title="xml的形式"></a>xml的形式</h6><p>补间动画的实现，一般会采用xml 文件的形式；会更容易书写和阅读，同时也更容易复用。</p>
 <p>首先，在<strong>res/anim/</strong>文件夹下定义如下的动画实现方式：<br>alpha_anim.xml 动画实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;alpha xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:duration=&quot;1000&quot;</span><br><span class="line">    android:fromAlpha=&quot;1.0&quot;</span><br><span class="line">    android:interpolator=&quot;@android:anim/accelerate_decelerate_interpolator&quot;</span><br><span class="line">    android:toAlpha=&quot;0.0&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
@@ -260,15 +262,15 @@
 <tbody>
 <tr>
 <td>10</td>
-<td>原点坐标加上 50px，作为起始点</td>
+<td>原点坐标加上 10px，作为起始点</td>
 </tr>
 <tr>
 <td>10%</td>
-<td>原点坐标加上自己宽度的 50%（即控件水平中心）作为起始点 </td>
+<td>原点坐标加上自己宽度的 10%（即控件水平中心）作为起始点 </td>
 </tr>
 <tr>
 <td>10%p</td>
-<td>原点坐标加上父控件宽度的 50% 作为起始点 x 轴坐标 </td>
+<td>原点坐标加上父控件宽度的 10% 作为起始点 x 轴坐标 </td>
 </tr>
 </tbody>
 </table>
@@ -284,7 +286,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-04-29T09:39:22.971Z" itemprop="dateUpdated">2019-04-29 17:39:22</time>
+    最后更新时间：<time datetime="2019-05-07T04:05:32.954Z" itemprop="dateUpdated">2019-05-07 12:05:32</time>
 </span><br>
 
 
@@ -346,9 +348,9 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="prev">
-      <a href="/2019/03/08/suibi/women_day/" id="post-prev" class="post-nav-link">
+      <a href="/2018/12/20/android/android11/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">谢谢你，撑起我们的半边天！</h4>
+        <h4 class="title">Android 动画（二）Animator</h4>
       </a>
     </div>
   
