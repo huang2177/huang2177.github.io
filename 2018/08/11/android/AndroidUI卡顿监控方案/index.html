@@ -5,14 +5,14 @@
     
     
     <title>
-        Android 模块化、组件化的理解 |
+        AndroidUI卡顿监控方案 |
         
         Bm和弦的技术博客
         
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="android-组件化">
+    <meta name="keywords" content="android-性能优化">
     <link rel="shortcut icon" href="/img/favicon.png">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/style.css?v=1.4.1">
@@ -155,7 +155,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>Android 模块化、组件化的理解</span>
+            <span>AndroidUI卡顿监控方案</span>
             
         </div>
         
@@ -168,11 +168,11 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">Android 模块化、组件化的理解</h1>
+        <h1 class="title">AndroidUI卡顿监控方案</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-10-09T04:48:04.000Z" itemprop="datePublished" class="page-time">
-  2018-10-09
+                <time datetime="2018-08-11T02:31:29.000Z" itemprop="datePublished" class="page-time">
+  2018-08-11
 </time>
 
 
@@ -199,17 +199,17 @@
 
 
 <div class="container body-wrap">
-    <article id="post-android/android09" class="post-article article-type-post" itemprop="blogPost">
+    <article id="post-android/AndroidUI卡顿监控方案" class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">Android 模块化、组件化的理解</h1>
+        <h1 class="post-card-title">AndroidUI卡顿监控方案</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-10-09 12:48:04" datetime="2018-10-09T04:48:04.000Z" itemprop="datePublished">2018-10-09</time>
+            <time class="post-time" title="2018-08-11 10:31:29" datetime="2018-08-11T02:31:29.000Z" itemprop="datePublished">2018-08-11</time>
 
             
 
 
             
-	<span id="/2018/10/09/android/android09/" class="leancloud_visitors" data-flag-title="Android 模块化、组件化的理解" title="Android 模块化、组件化的理解">
+	<span id="/2018/08/11/android/AndroidUI卡顿监控方案/" class="leancloud_visitors" data-flag-title="AndroidUI卡顿监控方案" title="AndroidUI卡顿监控方案">
 		
 			<i class="icon icon-eye"></i>
 		
@@ -220,8 +220,8 @@
             
     <span class="leancloud-comment">
         <i class="icon icon-comment-o"></i>
-        <a href="/2018/10/09/android/android09/#comment">
-            <span class="valine-comment-count" data-xid="/2018/10/09/android/android09/"></span>
+        <a href="/2018/08/11/android/AndroidUI卡顿监控方案/#comment">
+            <span class="valine-comment-count" data-xid="/2018/08/11/android/AndroidUI卡顿监控方案/"></span>
         </a>
     </span>
 
@@ -231,50 +231,25 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <blockquote>
-<p>不管是模块化还是组件化，都不是一个新的设计思想，它们很早就已经被提出了。但是早期的移动应用由于相对简单，本身逻辑功能也不多，所以在移动端的应用反而没那么广泛。</p>
-</blockquote>
-<h4 id="模块化-or-组件化"><a href="#模块化-or-组件化" class="headerlink" title="模块化 or 组件化"></a>模块化 or 组件化</h4><ul>
-<li>从上面的概述来看其实组件化跟模块化没有明显的区别；</li>
-<li>一个登录功能可以是一个模块也可以是一个组件，一个日期选择控件可以是一个模块，也可以是一个组件；</li>
-<li>因为不管是模块化还是组件化，它们都有一个共同的目标：将一个大的软件系统细化成一个个模块或者组件，都是为了<strong>重用和解耦</strong>。</li>
-<li>因此没有一个明确的界线去区分它们，只是 <strong>组件化较模块化粒度更小</strong>。</li>
-</ul>
-<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
-<li>模块：<strong>侧重于功能</strong>，与业务无关，比如自定义控件、网络请求库、图片加载库等</li>
-<li>组件：<strong>侧重于业务</strong>，可编译成单独的app，一般只负责单一业务，具备自身的生命周期（通常包含Android四大组件的一个或多个，所以称之为组件也更加贴切）</li>
-</ul>
-<h4 id="组件化框架"><a href="#组件化框架" class="headerlink" title="组件化框架"></a>组件化框架</h4><h5 id="面向接口"><a href="#面向接口" class="headerlink" title="面向接口"></a>面向接口</h5><ul>
-<li>并不能真正的解耦；</li>
-<li>内部生成映射表，这个映射表的数据结构通常是一个Map，Key是一个字符串，Value是一个类或者是类的路径名称；</li>
-<li>用于通过<strong>反射进行类的实例化</strong>。</li>
-</ul>
-<h5 id="面向通信协议"><a href="#面向通信协议" class="headerlink" title="面向通信协议"></a>面向通信协议</h5><ul>
-<li>可以真正的实现隔离；</li>
-<li>基于事件总线的方式实现组件之间的通信，这些框架会在内部建立跨进程通信的连接（也就是事件总线），这条事件总线负责分发路由请求以及返回执行结果。</li>
-<li>只支持基本类型参数的转发。</li>
-</ul>
-<h4 id="组件化演变过程"><a href="#组件化演变过程" class="headerlink" title="组件化演变过程"></a>组件化演变过程</h4><ul>
-<li>从单工程项目过度到多模块的阶段；</li>
-<li>从多模块过度到多组件的阶段；</li>
-<li>多组件独立进程的阶段。<blockquote>
-<p>而目前大多数应用其实都是在第二个阶段或者介于第二和第三个阶段之间，所以对于这样的项目，选择一个既支持类查找方式，又支持事件总线的组件化框架是最合适的。</p>
-</blockquote>
-</li>
-</ul>
-
+            <h4 id="监控原理"><a href="#监控原理" class="headerlink" title="监控原理"></a>监控原理</h4><p>系统中Looper的关键代码如下。我们知道，在一个应用进程中，只有一个MainLooper，而在loop()方法中可以看出，<strong>Printer logging = me.mLogging</strong>，它在每个message处理前后都会被调用。如果主线程卡主了，说明<strong>msg.target.dispatchMessage(msg)</strong>内部执行太耗时了。根据这个原理，可以做一个UI卡顿监控的方案。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">for (;;) &#123;</span><br><span class="line">    Message msg = queue.next(); // might block</span><br><span class="line">    // 省略部分代码...</span><br><span class="line">    // This must be in a local variable, in case a UI event sets the logger</span><br><span class="line">    final Printer logging = me.mLogging;</span><br><span class="line">    if (logging != null) &#123;</span><br><span class="line">        logging.println(&quot;&gt;&gt;&gt;&gt;&gt; Dispatching to &quot; + msg.target + &quot; &quot; +</span><br><span class="line">                msg.callback + &quot;: &quot; + msg.what);</span><br><span class="line">    &#125;</span><br><span class="line">    // 省略部分代码...</span><br><span class="line">       try &#123;</span><br><span class="line">        msg.target.dispatchMessage(msg);</span><br><span class="line">        end = (slowDispatchThresholdMs == 0) ? 0 : SystemClock.uptimeMillis();</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        if (traceTag != 0) &#123;</span><br><span class="line">            Trace.traceEnd(traceTag);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 省略部分代码...</span><br><span class="line">    if (logging != null) &#123;</span><br><span class="line">        logging.println(&quot;&lt;&lt;&lt;&lt;&lt; Finished to &quot; + msg.target + &quot; &quot; + msg.callback);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>所以，我们只要实现自己的Printer，并且调用<strong>Looper.getMainLooper().setMessagePrinter(mPrinter)</strong>就可以实现自己的监控逻辑了。</p>
+<h5 id="卡顿监控"><a href="#卡顿监控" class="headerlink" title="卡顿监控"></a>卡顿监控</h5><p>LogPrinter关键代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class LogPrinter implements Printer,UiPerfMonitorConfig&#123;</span><br><span class="line">    private final String TAG = &quot;LogPrinter&quot;;</span><br><span class="line">    private LogPrinterListener mLogPrinter = null;</span><br><span class="line">    private long startTime;</span><br><span class="line">    </span><br><span class="line">    public LogPrinter(LogPrinterListener logPrinter)&#123;</span><br><span class="line">        mLogPrinter = logPrinter;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void println(String s)&#123;</span><br><span class="line">        //表示式dispatchMessage之前调用</span><br><span class="line">        if(startTime &lt;= 0)&#123; </span><br><span class="line">            startTime = System.currentTimeMills();</span><br><span class="line">            mLogPrinter.onStartLog();</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            long diffTime = System.currentTimeMills() - startTime;</span><br><span class="line">            excuTime(s, diffTime);</span><br><span class="line">            startTime = 0;</span><br><span class="line">            mLogPrinter.onEndLog();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void excuTime(String logInfo, long diffTime)&#123;</span><br><span class="line">        int level;</span><br><span class="line">        if(diffTime &gt; TIME_WARNING_LEVEL_2)&#123; </span><br><span class="line">            level = UI_PERF_LEVEL_2;</span><br><span class="line">        &#125;else if(diffTime &gt; TIME_WARNING_LEVEL_1)&#123;</span><br><span class="line">            level = UI_PERF_LEVEL_1;</span><br><span class="line">        &#125;</span><br><span class="line">        mLogPrinter.onEndLog(logInfo, level);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>UiPerfMonitorConfig定义了相关常量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public interface UiPerfMonitorConfig&#123;</span><br><span class="line">    public final int UI_PERF_LEVEL_1 = 1;</span><br><span class="line">    public final int UI_PERF_LEVEL_2 = 2;</span><br><span class="line">    </span><br><span class="line">    public final long TIME_WARNING_LEVEL_1 = 100;</span><br><span class="line">    public final long TIME_WARNING_LEVEL_2 = 300;</span><br><span class="line">    </span><br><span class="line">    public final String LOG_PATH = Enviroment.getExternalStorageDirectory().getPath()</span><br><span class="line">    + &quot;androidtech/uiperf&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>开启/停止监控<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//开启</span><br><span class="line">Looper.getMainLooper().setMessagePrinter(mPrinter);</span><br><span class="line">//停止</span><br><span class="line">Looper.getMainLooper().setMessagePrinter(null);</span><br></pre></td></tr></table></figure></p>
+<h5 id="获取相关数据"><a href="#获取相关数据" class="headerlink" title="获取相关数据"></a>获取相关数据</h5>
         </div>
         
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-05-14T06:58:55.400Z" itemprop="dateUpdated">2019-05-14 14:58:55</time>
+    最后更新时间：<time datetime="2019-05-14T07:44:42.417Z" itemprop="dateUpdated">2019-05-14 15:44:42</time>
 </span><br>
 
 
         
-        转载注明出处，原文地址：<a href="/2018/10/09/android/android09/" target="_blank" rel="external">https://huang2177.github.io/2018/10/09/android/android09/</a>
+        转载注明出处，原文地址：<a href="/2018/08/11/android/AndroidUI卡顿监控方案/" target="_blank" rel="external">https://huang2177.github.io/2018/08/11/android/AndroidUI卡顿监控方案/</a>
         
     </div>
     <footer>
@@ -288,7 +263,7 @@
         
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android-组件化/">android-组件化</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android-性能优化/">android-性能优化</a></li></ul>
 
             <div class="page-share-wrap">
     
@@ -303,7 +278,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2018/10/09/android/android09/&title=《Android 模块化、组件化的理解》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2018/08/11/android/AndroidUI卡顿监控方案/&title=《AndroidUI卡顿监控方案》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -331,18 +306,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="prev">
-      <a href="/2018/12/07/python/python01/" id="post-prev" class="post-nav-link">
+      <a href="/2018/10/09/android/android09/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">urllib使用</h4>
+        <h4 class="title">Android 模块化、组件化的理解</h4>
       </a>
     </div>
   
 
   
     <div class="next">
-      <a href="/2018/08/11/android/AndroidUI卡顿监控方案/" id="post-next" class="post-nav-link">
+      <a href="/2017/07/09/android/android08/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">AndroidUI卡顿监控方案</h4>
+        <h4 class="title">android 使用sharedpreferences 保存对象</h4>
       </a>
     </div>
   
@@ -354,7 +329,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#模块化-or-组件化"><span class="post-toc-number">1.</span> <span class="post-toc-text">模块化 or 组件化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#区别"><span class="post-toc-number">2.</span> <span class="post-toc-text">区别</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#组件化框架"><span class="post-toc-number">3.</span> <span class="post-toc-text">组件化框架</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#组件化演变过程"><span class="post-toc-number">4.</span> <span class="post-toc-text">组件化演变过程</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#监控原理"><span class="post-toc-number">1.</span> <span class="post-toc-text">监控原理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#代码实现"><span class="post-toc-number">2.</span> <span class="post-toc-text">代码实现</span></a></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </div></div></aside>
@@ -419,7 +394,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2018/10/09/android/android09/&title=《Android 模块化、组件化的理解》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://huang2177.github.io/2018/08/11/android/AndroidUI卡顿监控方案/&title=《AndroidUI卡顿监控方案》 — Bm和弦的技术博客&source=不会弹吉他的程序员不是一个好程序员？" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -431,7 +406,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aQW7DMAwF0dz/0u42QGtnPqm2EDVaBY4d62nBiKReLzyut3F3/f3bu/u/P8uvLxgyZMjYlnE9jrtpPZNqV/i3P1BlyJBxAOM58K2aHAnBz4t1e12GDBkycKgleHKnDBkyZKwKuDyYklT23/43ZMiQsQmDB8R+vauWPC/LxWXIkLEhoxYW/+bzr/Q3ZMiQsRXjCgdPYvm0eHi9fYsMGTJGM/rbPpKI8pZnbT4yZMiYzeAPcBK/Jz18FkxRhgwZgxj8Yd62JMGaL2gQ1mXIkDGUUdvSkQMW6ZGy58VqdUFlyJAxmsGDY63E1g/BMmTIOIFBMkGejpJnO0E/aG3KkCFjHCMth3V4ZCvJ54ZycRkyZGzO4IW2NLklie4rHB/KbTJkyDiAUQudaWuBvzEIwTJkyBjN6CefKTgt2wUNAxkyZIxmdNqHaSOBtDY7G1YZMmTMZtTK9CRNTZcjbYLKkCFjNiNtFtZCJ/+FYjtThgwZoxn8xasS2lWHLWTIkHEygwTifrk/3UqiMpwMGTIOYNTS1NoWkDQS4gMfMmTIOIDBj1zEx7bCBSIlNrTDlSFDxgjGFQ5eyl+1BOg3ZciQMZqRvoYnsTwQ17aVtb8EGTJk7MvoHJ7gRyL4yvGnZMiQcRqDH60gm7m0qbkAKUOGDBk4iU0nlx7R+JCRy5AhQ0bYeqzdWSvGyZAh4wRGetwh/ZZv+HjpTYYMGecw1rYYecGu3xyVIUPGAYwvEYgi4NXxY/8AAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3aQY7bMBAEQP//08klhwCJ7O4hZ7MBSqeFvZZYPJCjHr5e8fXj4frz26df/f5J/qunJ16+8PDw8C4N/f1Q2m/fs9+P7f0TP0wBHh4e3hpvdutk0O8ZyZ2TKXv8HA8PD+8b8J6W5lmtm1TCeHh4eP87ry1tZwX3+0nEw8PD+w68ZIjnJXI7ZTn7QtaCh4eHt9BF+j5/r/T38PDw8I676smCm4S2s3j3ZJy/7oyHh4e3wMsfcxKqtoex8vtE/4mHh4d3lZe/9udtsIQ6i33rMBcPDw9vjXcrkG3j4JNQODqqhYeHh/ePeG1LrC2X89K5boDh4eHhrfGSV/28td+W1+cbRpH+4uHh4R3z8ge3pW07WW0BXWwPeHh4eAu8fIh5Cyofykn5Ho0NDw8Pb4HXLvdf0wZri+8PU4CHh4d3ldcu9yeRaxttzIIJPDw8vD3e7IU/jx7yGDeflCKwwMPDw1vgHTWTyjggL6BnExRlLXh4eHiXeLMwt13cZ7/Ko9uos4eHh4d3zEva/G00sL1VFBsGHh4e3hrvpCXfxhaz4wXJBvOXz/Hw8PCWeXnAOjsu0P590nKru3Z4eHh4JW8WBLQFbnvcqn3648aAh4eH9+W85Haz9n9barebDR4eHt4Gr20p5cez8u0hH2J7DAsPDw9vj3fSAGuX/tkRq2ubAR4eHt4a726omoPbowlRgIKHh4e3xmtf/vPodnaf9np8Lh4eHt5V3rXjTVfr2Pywwoff4uHh4S3wTpbd2SGANleetccu7Cp4eHh4Qc7ZNqhmh6VaZP7cx/Hg4eHhrfHyRXm2cOdl+mzTqr/Gw8PD+3Je/sl5MJGHHdc2Bjw8PLxl3mwi2gNbsxAEDw8Pb493XvK2LatkkzgPKfDw8PA2eLMX/hNwsg0kW8jr1oWHh4eX8n4Cr899gubr20kAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
